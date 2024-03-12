@@ -1,0 +1,303 @@
+.main-contents {
+    // margin: 100px 0 0;
+
+    .main-goods {
+        width: auto;
+        min-width: 1200px;
+        padding: 0 80px;
+        box-sizing: border-box;
+
+        // heaeder, gnb 등 다묶어서 공통처리
+        position: relative;
+        margin: 0 auto;
+
+        .goods-list {
+            width: 100%;
+            padding-bottom: 22px;
+
+            .goods-list-title {
+                text-align: center;
+                position: relative;
+
+                h3 {
+                    font-size: 40px;
+                    font-weight: 800;
+                    padding-bottom: 24px;
+                }
+            }
+
+            .goods-list-content {
+                position: relative;
+                width: 100%;
+
+                .goods-tab {
+
+                    .goods-tab-title {
+                        padding-bottom: 30px;
+
+                        ul {
+                            display: block;
+                            // float: none;
+                            margin: 0 auto;
+                            font-size: 0;
+                            text-align: center;
+
+                            li {
+                                display: inline-block;
+                                font-size: 12px;
+                                text-align: center;
+                                margin: 0;
+
+                                a {
+                                    display: block;
+                                    padding: 10px 30px 10px 30px;
+                                    font-size: 18px;
+                                    color: #ccc;
+                                    font-weight: 500;
+
+                                    span {}
+
+                                    &.on {
+                                        color: #0ad09c;
+                                        font-weight: 700;
+
+                                        span {
+                                            position: relative;
+                                            
+                                            &::before {
+                                                content: '';
+                                                position: absolute;
+                                                left: 0;
+                                                bottom: -3px;
+                                                display: block;
+                                                width: 100%;
+                                                height: 2px;
+                                                background: #0ad09c;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                // &.on {
+                                //     a {
+                                //         color: #0ad09c;
+                                //         font-weight: 700;
+                                //     }
+                                // }
+
+                                
+                                &:first-child {
+                                    a {
+                                        margin-left: 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    .goods-tab-content {
+                        min-height: 150px;
+
+                        .goods-tab-box {
+                            display: none;                       
+
+                            &.on {
+                                display: block;
+                            }
+
+                            ul {
+                                display: flex;
+                                flex-wrap: wrap;;
+                                width: 100%;
+                                font-size: 0;
+                                // list-style: none;
+
+                                li {
+                                    width: 25%;
+                                    position: relative;
+                                    // min-height: 50px;
+                                    margin: 0 0 23px 0;
+                                    text-align: center;
+                                    vertical-align: top;
+                                    font-size: 14px;
+                                    margin-bottom: 70px;
+                                    // list-style: none;
+
+                                    .item-cont {
+                                        padding: 0 15px;
+                                        text-align: left;
+                                        color: #1c1c1c;
+
+                                        .item-photo-box {
+                                            position: relative;
+                                            display: inline-block !important;
+                                            overflow: hidden;
+                                            text-align: center;
+                                            border: 1px solid #f9f9f9;
+                                            vertical-align: middle;
+                                            background: #f9f9f9;
+                                            width: 100%;
+
+                                            a {
+                                                display: block;
+                                                color: #242424;
+                                                text-decoration: none;
+
+                                                &::after {
+                                                    content: "";
+                                                    position: absolute;
+                                                    left: 0;
+                                                    top: 0;
+                                                    bottom: 0;
+                                                    right: 0;
+                                                    background: rgba(0, 0, 0, 0.026);
+                                                }
+
+                                                img {
+                                                    width: 100%;
+                                                    transition: 0.6s;
+                                                    // img reset
+                                                    // border: 0 none;
+                                                    // vertical-align: top;
+                                                }
+                                            }
+
+                                            // .item-link {}
+                                        }
+                                        .item-info-cont {
+                                            display: block;
+                                            padding: 20px 0 0;
+                                            text-align: left;
+                                            vertical-align: middle;
+                                            font-size: 12px;
+
+                                            .item-tit-box {
+                                                padding: 0;
+
+                                                input {
+                                                    // reset
+                                                    // font-size: 16px;
+                                                    // line-height: 1.5;
+                                                    // color: #242424;
+                                                    // vertical-align: middle;
+
+                                                    &:read-only {
+                                                        background: #f9f9f9;
+                                                        cursor: default;
+                                                    }
+                                                }
+                                                .cate-name {
+                                                    font-size: 13px;
+                                                    font-weight: 800;
+                                                    color: #444;
+
+                                                    a {
+                                                        color: #242424;
+                                                        text-decoration: none;
+
+                                                    }
+
+                                                }
+                                                a {
+                                                    // reset
+                                                    // color: #242424;
+                                                    // text-decoration: none;
+
+                                                    .item-name {
+                                                        font-size: 16px;
+                                                        font-weight: normal;
+                                                        display: block;
+                                                        padding: 5px 0 0 0;
+                                                        word-break: break-all;
+                                                        overflow: hidden;
+                                                        text-overflow: ellipsis;
+                                                        white-space: nowrap;
+                                                    }
+                                                }
+                                            }
+
+                                            .item-money-box {
+                                                padding: 29px 0 0 0;
+                                                line-height: 1;
+                                                display: flex;
+                                                justify-content: space-between;
+                                                width: 100%;
+                                                align-items: center;
+
+                                                .flex-box {
+                                                    display: flex;
+                                                    align-items: center;
+                                                    font-size: 16px;
+                                                    font-weight: normal;
+
+                                                    .item-price {
+                                                        font-size: 16px;
+                                                        color: #242424;
+                                                        font-weight: 700;
+                                                    }
+                                                }
+                                            }
+                                            
+                                            .item-icon-box {
+                                                margin: 10px 0 0;
+                                                padding: 0;
+
+                                                img {
+                                                    display: inline-block;
+                                                    padding: 5px 3px 0 0;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .promotion-cont {
+        display: flex;
+        flex-wrap: wrap;
+        width: 1200px;
+        margin: 0 auto;
+        padding: 90px 0;
+
+        .box {
+            width: 33.33%;
+
+            a {
+                display: flex;
+                align-items: center;
+                // 공통 a
+                color: #242424;
+                text-decoration: none;
+
+                .icon {
+                    padding-right: 21px;
+
+                    img {
+                        // 공통
+                        border: 0 none;
+                        vertical-align: top;
+                    }
+                }
+
+                .text-wrap {
+
+                    .title {
+                        font-size: 20px;
+                        font-weight: 700;
+                    }
+
+                    .text {
+                        font-size: 16px;
+                        padding-top: 6px;
+                    }
+                }
+            }
+        }
+    }
+}

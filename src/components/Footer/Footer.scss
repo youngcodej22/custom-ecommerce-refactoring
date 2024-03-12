@@ -1,0 +1,129 @@
+.footer-wrap {
+    background-color: #242424;
+    position: relative;
+    border-top: 1px solid #e3e3e3;
+
+    .content-info-wrap {
+        border-bottom: 1px solid #e3e3e3;
+    }
+
+    #footer {
+        display: flex;
+        width: 1300px;
+        margin: 0 auto;
+        padding: 80px 50px 95px;
+        overflow: hidden;
+
+        & a {
+            color: inherit;
+        }
+
+        .footer-box {
+            margin-right: 20px;
+            // position: relative;
+            color: #c6c6c6;
+            border: 0;
+            font-weight: 300;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.7;
+
+            &:first-child {
+                width: 60%;
+            }
+            &:nth-child(2) {
+                width: 15%;
+            }
+            &:nth-child(3) {
+                width: 25%;
+            }
+
+            .footer-logo {}
+
+            .footer-tit {
+                font-size: 14px;
+                font-weight: 500;
+                padding-bottom: 22px;
+                color: #fff;
+
+                a {
+                    img {
+                        width: 140px;
+                    }
+                }
+            }
+
+            .footer-info {
+
+                .footer-info-list {
+                    color: inherit;
+                    font-weight: inherit;
+                    font-size: inherit;
+                    line-height: inherit;
+
+                    p {
+                        .bar {
+                            display: inline-block;
+                            width: 1px;
+                            height: 12px;
+                            background-color: #fff;
+                            opacity: 0.2;
+                            margin: 0 5px;
+                            vertical-align: -1px;
+                        }
+                        .btn-licensee-info {
+
+                        }
+                    }
+                    .dn {
+                        visibility: hidden;
+                    }
+                }
+
+                .copyright {
+                    // padding-top: 20px;
+                }
+                .certification-list {
+                    margin-top: 15px;
+                    display: flex;
+                    align-items: center;
+
+                    .seal-box {
+                        margin-right: 12px;
+                    }
+                    .escraw-box {
+                        // position: absolute;
+                        // bottom: -10px;
+                        // left: 100px;
+                    }
+                }
+                
+            }
+
+            .footer-list {
+                ul {
+                    li {
+                        a {
+
+                        }
+                    }
+                }
+            }
+
+            .tell {
+                color: #0ad09c;
+                font-weight: 600;
+                font-size: 22px;
+                padding-bottom: 8px;
+                margin-top: -8px;
+            }
+            .btn-email {
+                display: inline-block;
+                vertical-align: top;
+                margin-top: 6px;
+            }
+
+
+        }
+    }
+}

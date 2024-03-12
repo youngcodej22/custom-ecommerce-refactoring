@@ -1,0 +1,48 @@
+.insta-cont {
+    // padding-top: 150px;
+    margin-top: 150px;
+    margin-bottom: 175px;
+
+    .en {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    h2 {
+        font-size: 24px;
+        text-align: center;
+        font-weight: 700;
+
+        p {
+            color: #666666;
+            font-size: 20px;
+            font-weight: 500;
+            padding-top: 6px;
+
+            a {
+                color: inherit;
+            }
+        }
+    }
+
+    .insta-box {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
+        // padding: 40px 80px 175px;
+        padding: 40px 80px 0px;
+
+        img {
+            // width: calc(16.6666% - 15px);
+            // margin-left:20px 빼기
+            width: calc(16.66666% - 20px);
+            // width: 100%;
+            // 99.99996% 전체
+        }
+
+        // LoremPicsum
+        img:not(:first-child) {
+            margin-left: 20px;
+        }
+    }
+}

@@ -1,0 +1,65 @@
+.side-banner-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    .banner-cont {
+        width: 50%;
+        position: relative;
+
+        img {
+            width: 100%;
+
+        }
+
+        .txt-wrap {
+            color: #fff;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 16px;
+            font-weight: 200;
+            margin-top: -15px;
+
+            .main-tit {
+                padding-bottom: 10px;
+                font-size: 40px;
+                text-align: center;
+                font-weight: 800;
+                padding-bottom: 37px;
+            }
+            .en {
+                font-family: 'Montserrat', sans-serif;
+            };
+
+            .text {
+
+            }
+            .detail-btn {
+                // border-color: #fff;
+                color: #fff;
+                display: inline-block;
+                // border: 1px solid #242424;
+                border: 1px solid #fff;
+                width: 210px;
+                line-height: 48px;
+                text-align: center;
+                font-size: 16px;
+                box-sizing: border-box;
+                margin-top: 35px;
+                font-weight: 600;
+            }
+        }
+    }
+
+    .brand-wrap {
+
+    }
+
+    .store-wrap {
+
+    }
+}

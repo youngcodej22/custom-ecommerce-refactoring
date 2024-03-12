@@ -1,0 +1,371 @@
+header#header-nav {
+    // color: red;
+    // 반응형 처리 때문에 넣지 말자
+    // min-width: 1450px;
+    min-width: 300px;
+    // display: flex;
+    // justify-content: space-between;
+    // padding: 0 50px 0 50px;
+    // 임시로 나중에 padding을 처리
+    // height: 100px;
+    position: fixed;
+    z-index: 3;
+    width: 100%;
+    transition: all 0.2s ease-in-out;
+    border-bottom: 1px solid transparent;
+    background: transparent;
+    
+    &.on {
+        background: #fff;
+        border-bottom: 1px solid #eee;
+
+        // .gnb .gnb-wrap .gnb-li .gnb-deps1 {
+            // opacity: 1;
+        // }
+
+        .gnb .gnb-wrap .gnb-li .gnb-link {
+            color: #242424;
+        }
+
+        .menu ul li span {
+            color: #242424;
+        }
+    }
+
+    .logo {
+        position: absolute;
+        left: 50px;
+        top: 50%;
+        transform: translate(0%, -50%);
+
+        a {
+            display: block;
+
+            img {
+                width: 194px;
+                // reset
+                border: 0 none;
+                vertical-align: top;
+            }
+        }
+    }
+
+    .gnb {
+        // position: relative;
+        display: flex;
+        justify-content: center;
+        // width: 100%;
+        // max-width: 1200px;
+        // margin: 0 auto;
+        // padding: 0 60px;
+
+        .gnb-wrap {
+            // height: auto;
+            // overflow: initial;
+            // border: none;
+            display: flex;
+            justify-content: center;
+
+            // &::before {
+            //     content: "";
+            //     // display: none;
+            //     visibility: hidden;
+            //     position: absolute;
+            //     // top: 50%;
+            //     top: 100%;
+            //     left: 0;
+            //     // width: 1200px;
+            //     width: 100%;
+            //     min-height: 250px;
+            //     margin: 0 auto;
+            //     background: rgba(255,255,255, 0);
+            //     border-top: 1px solid rgba(247, 247, 247, 0);
+            //     // padding: 27px 0 70px;
+            //     z-index: 1;
+            //     transition: all 0.2s ease-in-out;
+            // }
+
+            // &.active-bg::before {
+            //     // display: block;
+            //     visibility: visible;
+            //     background: rgba(255,255,255, 1);
+            //     border-top: 1px solid rgba(247, 247, 247, 1);
+            // }
+
+            .gnb-li {
+                // display: inline-block;
+                position: initial;
+                // padding: 0 15px;
+                // margin: 0 15px;
+                transition: all 0.2s;
+
+                // @media (min-width: 1700px) {
+                //     padding: 0 25px;
+                //     // margin: 0 25px;
+                // }
+
+                .gnb-link {
+                    position: relative;
+                    display: inline-block;
+                    // margin: 0 15px;
+                    // padding: 25.5px 0;
+                    padding: 25.5px 25px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: #fff;
+                    text-align: center;
+                    line-height: 49px;
+                    letter-spacing: 1px;
+
+                    @media (max-width: 1700px) {
+                        // margin: 0 25px;
+                        // padding: 25.5px 0;
+                        padding: 25.5px 15px;    
+                        letter-spacing: 0px;
+                        
+                    }
+
+                    &:hover::after {
+                        // ! border-bottom으로 인해 전체 box size가 변화가 생겨 로고가 움직임
+                        // border-bottom: 4px solid #000;
+                        content: '';
+                        position: absolute;
+                        // left: 0;
+                        left: 50%;
+                        bottom: 0;
+                        display: inline-block;
+                        // * .gnb-link의 padding left right 값 빼기
+                        width: calc(100% - 30px);
+                        height: 4px;
+                        background: #242424;
+                        transform: translateX(-50%);
+
+                        @media (min-width: 1700px) {
+                            // * .gnb-link의 padding left right 값 빼기
+                            width: calc(100% - 50px);
+                        }
+                    }
+                }
+
+                &.new {
+
+                    & > a {
+                        position: relative;
+                    }
+
+                    & > a::before {
+                        content: '';
+                        width: 8px;
+                        height: 8px;
+                        position: absolute;
+                        top: 35px;
+                        // right: -12px;
+                        right: 14px;
+                        border-radius: 100%;
+                        background-color: #0ad09c;
+                    }
+                }
+
+                .gnb-deps1 {
+                    // display: none;
+                    opacity: 0;
+                    visibility: hidden;
+                    position: absolute;
+                    top: 100%;
+                    // left: 50%;
+                    left: 0;
+                    // transform: translate(-50%, 0);
+                    width: 100%;
+                    // min-height: 166px;
+                    min-height: 260px;
+                    background-color: #fff;
+                    // padding: 27px 0 70px;
+                    border-top: 1px solid #f7f7f7;
+                    // transition: all 0.2s;
+                    transition: all 0.2s ease-in-out;
+                    z-index: 1;
+
+                    // & > ul:not(:first-child) {
+                        // display: flex;
+                    // }
+
+                    ul {
+                        // display: flex;
+                        position: absolute;
+                        top: 50%;
+                        // top: 100%;
+                        // left: 0px;
+                        // left: 20%;
+                        width: 1200px;
+                        height: 100%;
+                        // height: 183px;
+                        margin: 0 auto;
+                        background: none;
+                        border: 0;
+                        padding: 40px 15px 70px;
+                        transform: translate(0, -50%);
+
+                        @media (min-width: 1700px) {
+                            // * padding-left 25px은 위에 li와 동일
+                            padding: 40px 25px 70px;
+                        }
+
+                        li {
+                            margin-left: 0;
+                            width: 160px;
+                            text-align: left;
+                            position: relative;
+
+                            a {
+                                display: inline-block;
+                                padding-bottom: 24px;
+                                font-size: 16px;
+                                font-weight: 700;
+                                color: inherit;
+                            }
+
+                            .gnb-deps2 {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                transform: translateY(0);
+                                padding: 46px 0 0;
+
+                                li {
+                                    a {
+                                        font-weight: 400;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // * 첫번째 Tab만 제외하고 (brand)
+            & .gnb-li:not(:first-child) .gnb-deps1 > ul{
+                display: flex;
+                font-family: 'Noto Sans KR', sans-serif;
+            }
+
+            & .gnb-li:nth-child(2) .gnb-deps1 > ul > li:first-child > a{
+                color: #0ad09c;
+            }
+        }
+    }
+
+    .menu {
+        position: absolute;
+        right: 25px;
+        top: 50%;
+        transform: translate(0%, -75%);
+
+        @media (max-width: 1500px) {
+            right: 25px;
+            transform: translate(0%, -50%);
+        }
+
+        ul {
+            transition: all 0.2s;
+
+            li {
+                display: inline-block;
+                padding: 0 18px;
+                // 첫번째만넣기
+                // cursor: pointer;
+                // flex처리
+                position: relative;
+
+                @media (max-width: 1600px) {
+                    padding: 0 14px;
+                }
+
+                @media (min-width: 1700px) {
+                    padding: 0 21px;
+                }
+
+                &:first-child {
+                    cursor: pointer;
+                }
+
+                img {
+                    display: inline-block;
+                    // border: 0 none;
+                    // vertical-align: top;
+                }
+
+                span {
+                    position: absolute;
+                    top: 33px;
+                    left: 0;
+                    width: 100%;
+                    height: 20px;
+                    line-height: 20px;
+                    text-align: center;
+                    color: #fff;
+                    font-size: 14px;
+                    white-space: nowrap;
+
+                    @media (max-width: 1600px) {
+                        font-size: 12px;
+                    }
+
+                    @media (max-width: 1500px) {
+                        display: none;
+                    }
+                }
+
+                a {
+                    // display: inline-block;
+                    // 가운데정렬
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 33px;
+                    height: 26px;
+                    // padding: 0 3px;
+                    // color: #888888;
+                    // font-size: 11px;
+
+                    span {
+                        // position: absolute;
+                        width: 100%;
+                        height: 20px;
+                        line-height: 20px;
+                        text-align: center;
+                        color: #fff;
+                        font-size: 14px;
+                        white-space: nowrap;
+
+                        @media (max-width: 1600px) {
+                            font-size: 13px;
+                        }
+                    }
+                }
+
+                // .btn-login {
+                //     background: url("/assets/icon/icon-login-black.png")
+                //         no-repeat center 0;
+                // }
+                // .btn-mypage {
+                //     background: url("/assets/icon/icon-mypage-black.png")
+                //         no-repeat center 0;
+                // }
+                // .btn-cart {
+                //     background: url("/assets/icon/icon-cart-black.png")
+                //         no-repeat center 0;
+                // }
+                // .btn-service {
+                //     background: url("/assets/icon/icon-service-black.png")
+                //         no-repeat center 0;
+                // }
+            }
+        }
+    }
+}
+
+.active {
+    // display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}

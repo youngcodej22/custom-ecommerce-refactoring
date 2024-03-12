@@ -1,0 +1,46 @@
+.side-banner-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.side-banner-wrap .banner-cont {
+  width: 50%;
+  position: relative;
+}
+.side-banner-wrap .banner-cont img {
+  width: 100%;
+}
+.side-banner-wrap .banner-cont .txt-wrap {
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 200;
+  margin-top: -15px;
+}
+.side-banner-wrap .banner-cont .txt-wrap .main-tit {
+  padding-bottom: 10px;
+  font-size: 40px;
+  text-align: center;
+  font-weight: 800;
+  padding-bottom: 37px;
+}
+.side-banner-wrap .banner-cont .txt-wrap .en {
+  font-family: "Montserrat", sans-serif;
+}
+.side-banner-wrap .banner-cont .txt-wrap .detail-btn {
+  color: #fff;
+  display: inline-block;
+  border: 1px solid #fff;
+  width: 210px;
+  line-height: 48px;
+  text-align: center;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin-top: 35px;
+  font-weight: 600;
+}/*# sourceMappingURL=SideBanner.css.map */
