@@ -9,3 +9,4 @@
 5. style: CSS
 6. fix: 수정
 7. refac: 리팩토링 (refactoring)
+8. types: type 추가
