@@ -1,0 +1,13 @@
+.productdetail {
+  padding: 0 95px 80px 95px;
+  min-height: 400px;
+}
+.productdetail .sub_content {
+  width: 100%;
+}
+.productdetail .sub_content .content {
+  padding-top: 30px;
+  width: 100%;
+  min-height: 500px;
+  padding: 0;
+}/*# sourceMappingURL=ProductDetail.css.map */
