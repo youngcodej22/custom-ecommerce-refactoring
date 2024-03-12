@@ -1,35 +1,76 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+// import Header from './components/Header/Header';
+// import Contents from './components/Contents/Contents';
+// import Footer from './components/Footer/Footer';
+
+import Layout from './layout/Layout';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
+import Home from './pages/Home/Home';
+import ProductList from './pages/ProductList/ProductList';
+import ProductDetail from './pages/ProductDetail/ProductDetail';
+import Brand from './pages/Brand/Brand';
+import Cart from './pages/Cart/Cart';
+import Promotion from './pages/Promotion/Promotion';
+
+import './styles/components/style.css';
+
+const router = createBrowserRouter([
+    {
+        path: '/',
+        // exact: true,
+        // element: <Layout isOn={isOn} setIsOn={setIsOn} />,
+        element: <Layout />,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                index: true,
+                path: '/',
+                element: <Home />,
+                // loader: homeLoader,
+            },
+            {
+                index: true,
+                path: '/productlist',
+                element: <ProductList />,
+                // exact: true,
+            },
+            {
+                index: true,
+                path: '/productdetail',
+                element: <ProductDetail />,
+                // exact: true,
+            },
+            {
+                index: true,
+                path: '/brand',
+                element: <Brand />,
+                // exact: true,
+            },
+            {
+                index: true,
+                path: '/cart',
+                element: <Cart />,
+                // exact: true,
+            },
+            {
+                index: true,
+                path: '/promotion',
+                element: <Promotion />,
+                // exact: true,
+            },
+        ],
+    },
+
+    // {
+    //     path: '/main/:id',
+    //     element: Contents,
+    // },
+]);
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
