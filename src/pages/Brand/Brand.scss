@@ -183,8 +183,7 @@
     }
 
     .brand_section_01 {
-        background: url(../../../public/assets/brand/brand_s1_bg.png) no-repeat
-            50% -50px;
+        background: url(/assets/brand/brand_s1_bg.png) no-repeat 50% -50px;
         background-size: 90%;
         padding-top: 120px;
 
@@ -216,8 +215,7 @@
         }
     }
     .brand_section_02 {
-        background: url(../../../public/assets/brand/brand_s4_bg.png) no-repeat
-            80% 100%;
+        background: url(/assets/brand/brand_s4_bg.png) no-repeat 80% 100%;
 
         .brand_column_wrap:nth-child(2) .brand_column:last-child p {
             margin-right: -20px;
