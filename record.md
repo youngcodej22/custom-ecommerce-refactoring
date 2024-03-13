@@ -41,6 +41,14 @@
 
 -   [github docs](https://docs.github.com/ko/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/changing-a-commit-message)
 
+### 2. tsx의 markup의 계층구조와 동일한 scss 가져오는 법
+
+-   ❔ 문제: markup 계층구조와 동일한 scss 계층구조를 만들 수 있는 쉬운 방법이 있을까? (효율성을 위해)
+-   ❗ 해결: extension설치, jsx to scss 사용
+-   ✔️ 참고:
+    -   [참고](https://inpa.tistory.com/entry/VS-Code-%E2%8F%B1%EF%B8%8F-HTML-CSS-%EB%8F%84%EA%B5%AC-%EC%B6%94%EC%B2%9C#html_css_support)
+    -   [CSS를 SCSS로](https://css2sass.herokuapp.com/)
+
 ---
 
 ### Reference
