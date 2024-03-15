@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
-// Promotion
+// assets
 import promotionMembership from '/assets/promotion/promotion-membership.png';
 import promotionKakao from '/assets/promotion/promotion-kakao.png';
 import promotionReview from '/assets/promotion/promotion-review.png';
-
-import { products } from '../../data/products';
+// data
+import productsOrigin from '../../data/json/products_home.json';
+// components
 import ProductCard from '../ProductCard/ProductCard';
+import Tabs from '../Tabs/Tabs';
+// styles
 import './MainContents.scss';
 
 const MainContents = () => {
+    // ? 추후 products에 랭킹을 매기고 상위 랭킹 데이터만 뽑을 수 있게 해보자
+    // limited data
+    const products = productsOrigin.slice(0, 8);
+
     const [isTabBoxOn, setIsTabBoxOn] = useState(1);
     const [isTabTitleOn, setIsTabTitleOn] = useState(1);
-
-    // const handleClick = e => {
-    //     e.preventDefault();
-    //     setIsTabTitleOn(true);
-    //     setIsTabBoxOn(true);
-    // };
 
     const handleClick = (e, index) => {
         // a 태그에 #으로 페이지 첫화면 상단으로 가는 것을 막자

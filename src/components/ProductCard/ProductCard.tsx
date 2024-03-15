@@ -37,11 +37,7 @@ const ProductCard = ({ product }) => {
                     </div>
                     <div className="item-icon-box">
                         {product.labels.map((label, index) => (
-                            <img
-                                key={index}
-                                src={label.labelImage}
-                                alt={label.labelAlt}
-                            />
+                            <img key={index} src={label[0]} alt={label[1]} />
                         ))}
                     </div>
                 </div>
