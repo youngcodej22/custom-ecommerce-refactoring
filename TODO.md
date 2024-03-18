@@ -25,6 +25,8 @@
 
 ### component 만들기
 
+**먼저, 해당 파일에서 컴포넌트에 해당하는 부분을 잘라내고, 둘째, 컴포넌트 `.tsx`파일을 만들고 붙여넣어 거기서부터 시작하자**
+
 1. ProductCard
 
     - [x] Card에 따라 설명이 들어가는 것과 안들어 가는 것 가능하게 하자.
@@ -32,8 +34,12 @@
     - [ ] ProductCard를 컴포넌트화 한 후에 framework화하자.
 
 2. Tab
+
     - [ ] Home>Season Trend에서 Tab 누르면 해당 카테고리 상품 보이게 (category가 NEW이면 label에서 MEN이 있는지 본다듣지)
     - [ ] ACC의 경우 남자,여자 다 보여야해서 db에서 category에서 잘 나타내자
+
+3. MainContents
+    - [ ] ProductCards에 연결된 데이터를 상위 랭킹을 json으로 넣어서 상위 8개 제품만 보이게 해보자
 
 <br />
 

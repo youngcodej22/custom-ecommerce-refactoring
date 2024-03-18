@@ -49,6 +49,64 @@
     -   [참고](https://inpa.tistory.com/entry/VS-Code-%E2%8F%B1%EF%B8%8F-HTML-CSS-%EB%8F%84%EA%B5%AC-%EC%B6%94%EC%B2%9C#html_css_support)
     -   [CSS를 SCSS로](https://css2sass.herokuapp.com/)
 
+### 3. 데이터 binding을 위한 알맞은 JSON 생성
+
+-   ❔ 문제: `ProductCard.tsx`에서 `labelImage`,`labeAlt`에 3개씩 데이터들이 있기 때문에 적절하게 `.map()`에 맞게 바인딩하기 어려웠다.
+
+```json
+// 기존 문제의 형식
+{
+    "labels": {
+        "labelImage": [
+            "https://mckayson.cdn-nhncommerce.com/data/icon/goods_icon/4.png",
+            "https://mckayson.cdn-nhncommerce.com/data/icon/goods_icon/2.png",
+            "https://mckayson.cdn-nhncommerce.com/data/icon/goods_icon/1.png"
+        ],
+        "labelAlt": ["신상품", "여성용", "두배적립"]
+    }
+}
+```
+
+```tsx
+// Error 발생
+<div className="item-icon-box">
+    {product.labels.map((label, index) => (
+        <img key={index} src={label.labelImage} alt={label.labelAlt} />
+    ))}
+</div>
+```
+
+-   ❗ 해결: `labels`에서 한 요소에 묶어 넣으니 해결.
+
+```json
+{
+    "labels": [
+        [
+            "https://mckayson.cdn-nhncommerce.com/data/icon/goods_icon/4.png",
+            "여성용"
+        ],
+        [
+            "https://mckayson.cdn-nhncommerce.com/data/icon/goods_icon/2.png",
+            "두배적립"
+        ],
+        [
+            "https://mckayson.cdn-nhncommerce.com/data/icon/goods_icon/1.png",
+            "신상품"
+        ]
+    ]
+}
+```
+
+```tsx
+<div className="item-icon-box">
+    {product.labels.map((label, index) => (
+        <img key={index} src={label[0]} alt={label[1]} />
+    ))}
+</div>
+```
+
+-   ✔️ 참고: 적절한 데이터 디자인이 필요하다고 느꼈다.
+
 ---
 
 ### Reference

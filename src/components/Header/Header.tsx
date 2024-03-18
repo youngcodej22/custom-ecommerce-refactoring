@@ -28,8 +28,6 @@ const Header: React.FC = () => {
     const [scrollY, setScrollY] = useState(window.scrollY);
     // const [scrollY, setScrollY] = useState(0);
 
-    console.log('0', isOn);
-
     const tabsliRef = useRef([]);
     // const [tabs, setTabs] = useState([
     //     {
@@ -75,15 +73,10 @@ const Header: React.FC = () => {
         if (location.pathname !== '/') {
             setIsOn(true);
             // setIsOn(location.pathname === '/productlist');
-            console.log('1', isOn);
         } else {
             setIsOn(false);
         }
-
-        console.log('2', isOn);
     }, [location.pathname]);
-
-    console.log('3', isOn);
 
     useEffect(() => {
         // Attach the event listener when the component mounts
