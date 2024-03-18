@@ -12,6 +12,8 @@
 8. [x] styles 추가 (custom CSS Framework 도입)
 9. [x] types 추가 (aos)
 
+<br />
+
 ## Component화
 
 1.  Home
@@ -32,6 +34,12 @@
 2. Tab
     - [ ] Home>Season Trend에서 Tab 누르면 해당 카테고리 상품 보이게 (category가 NEW이면 label에서 MEN이 있는지 본다듣지)
     - [ ] ACC의 경우 남자,여자 다 보여야해서 db에서 category에서 잘 나타내자
+
+<br />
+
+## Git extension을 활용해서 프로젝트 진행해보자
+
+-   [inpa](https://inpa.tistory.com/entry/VSCode-%F0%9F%92%BD-GIT-%EC%9D%B5%EC%8A%A4%ED%85%90%EC%85%98-%EC%B6%94%EC%B2%9C)
 
 ---
 
