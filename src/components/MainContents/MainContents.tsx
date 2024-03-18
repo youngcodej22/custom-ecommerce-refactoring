@@ -6,7 +6,8 @@ import promotionReview from '/assets/promotion/promotion-review.png';
 // data
 import productsOrigin from '../../data/json/products_home.json';
 // components
-import ProductCard from '../ProductCard/ProductCard';
+// ! Tabs로 이동
+// import ProductCard from '../ProductCard/ProductCard';
 import Tabs from '../Tabs/Tabs';
 // styles
 import './MainContents.scss';
@@ -34,7 +35,7 @@ const MainContents = () => {
                         <h3>SEASON TREND</h3>
                     </div>
                     <div className="goods-list-content">
-                        <div className="goods-tab">
+                        {/* <div className="goods-tab">
                             <div className="goods-tab-title">
                                 <ul>
                                     <li>
@@ -153,7 +154,13 @@ const MainContents = () => {
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
+                        <Tabs
+                            products={products}
+                            isTabBoxOn={isTabBoxOn}
+                            isTabTitleOn={isTabTitleOn}
+                            onTabClick={handleClick}
+                        />
                     </div>
                 </div>
                 <div className="btn-goods-down-more"></div>

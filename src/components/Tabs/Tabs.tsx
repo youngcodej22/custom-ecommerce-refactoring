@@ -1,8 +1,9 @@
 import React from 'react';
+import ProductCard from '../ProductCard/ProductCard';
 
 import './Tabs.scss';
 
-const Tabs = () => {
+const Tabs = ({ products, isTabBoxOn, isTabTitleOn, onTabClick }) => {
     return (
         <div className="goods-tab">
             <div className="goods-tab-title">
@@ -11,7 +12,7 @@ const Tabs = () => {
                         <a
                             href="#"
                             className={1 === isTabTitleOn ? 'on' : ''}
-                            onClick={e => handleClick(e, 1)}
+                            onClick={e => onTabClick(e, 1)}
                         >
                             <span>ALL</span>
                         </a>
@@ -20,7 +21,7 @@ const Tabs = () => {
                         <a
                             href="#"
                             className={2 === isTabTitleOn ? 'on' : ''}
-                            onClick={e => handleClick(e, 2)}
+                            onClick={e => onTabClick(e, 2)}
                         >
                             <span>MEN</span>
                         </a>
@@ -29,7 +30,7 @@ const Tabs = () => {
                         <a
                             href="#"
                             className={3 === isTabTitleOn ? 'on' : ''}
-                            onClick={e => handleClick(e, 3)}
+                            onClick={e => onTabClick(e, 3)}
                         >
                             <span>WOMEN</span>
                         </a>
@@ -38,7 +39,7 @@ const Tabs = () => {
                         <a
                             href="#"
                             className={4 === isTabTitleOn ? 'on' : ''}
-                            onClick={e => handleClick(e, 4)}
+                            onClick={e => onTabClick(e, 4)}
                         >
                             <span>ACC</span>
                         </a>
@@ -50,7 +51,7 @@ const Tabs = () => {
                     className={
                         1 === isTabBoxOn ? 'goods-tab-box on' : 'goods-tab-box'
                     }
-                    onClick={e => handleClick(e, 1)}
+                    onClick={e => onTabClick(e, 1)}
                 >
                     <ul>
                         {products.map((product, index) => (
@@ -62,7 +63,7 @@ const Tabs = () => {
                     className={
                         2 === isTabBoxOn ? 'goods-tab-box on' : 'goods-tab-box'
                     }
-                    onClick={e => handleClick(e, 2)}
+                    onClick={e => onTabClick(e, 2)}
                 >
                     <ul>
                         {products.map((product, index) => (
@@ -74,7 +75,7 @@ const Tabs = () => {
                     className={
                         3 === isTabBoxOn ? 'goods-tab-box on' : 'goods-tab-box'
                     }
-                    onClick={e => handleClick(e, 3)}
+                    onClick={e => onTabClick(e, 3)}
                 >
                     <ul>
                         {products.map((product, index) => (
@@ -86,7 +87,7 @@ const Tabs = () => {
                     className={
                         4 === isTabBoxOn ? 'goods-tab-box on' : 'goods-tab-box'
                     }
-                    onClick={e => handleClick(e, 4)}
+                    onClick={e => onTabClick(e, 4)}
                 >
                     <ul>
                         {products.map((product, index) => (
