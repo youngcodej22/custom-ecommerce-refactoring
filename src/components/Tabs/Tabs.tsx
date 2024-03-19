@@ -1,39 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 // import ProductCard from '../ProductCard/ProductCard';
+
+// context
+import { TabsContext } from '../../context/context';
 
 import './Tabs.scss';
 
-function TabPane({ children }) {
-    return <div className="tab-pane">{children}</div>;
+// ALL, MEN, WOMEN, ACC 순서
+
+function TabPane({ content, index }) {
+    // const isTabTitleOn = useContext(TabsContext)
+    // return <div className="tab-pane">{children}</div>;
+    const { isTabBoxOn, handleClick } = useContext(TabsContext);
+    const indexNum = parseInt(index);
+
+    return (
+        <div
+            className={
+                indexNum === isTabBoxOn ? 'goods-tab-box on' : 'goods-tab-box'
+            }
+            onClick={e => handleClick(e, indexNum)}
+        >
+            <ul>{content}</ul>
+        </div>
+    );
 }
 
 const Tabs = ({ children }) => {
-    // const [isTabTitleOn, setIsTabTitleOn] = useState(1);
-    // const [isTabBoxOn, setIsTabBoxOn] = useState(1);
+    // const [isTabTitleOn, setIsTabTitleOn] = useState(0);
+    // const [isTabBoxOn, setIsTabBoxOn] = useState(0);
 
-    const [isTabTitleOn, setIsTabTitleOn] = useState(0);
-    const [isTabBoxOn, setIsTabBoxOn] = useState(0);
-
-    const handleClick = (e, index) => {
-        // setIsActiveTab(index);
-        // a 태그에 #으로 페이지 첫화면 상단으로 가는 것을 막자
-        e.preventDefault();
-        setIsTabTitleOn(index);
-        setIsTabBoxOn(index);
-    };
+    // const handleClick = (e, index) => {
+    //     // setIsActiveTab(index);
+    //     // a 태그에 #으로 페이지 첫화면 상단으로 가는 것을 막자
+    //     e.preventDefault();
+    //     setIsTabTitleOn(index);
+    //     setIsTabBoxOn(index);
+    // };
+    const { isTabTitleOn, handleClick } = useContext(TabsContext);
 
     return (
+        // <TabsContext.Provider value={{ isTabBoxOn, handleClick }}>
         <div className="tab-container goods-tab">
             <div className="goods-tab-title">
                 <ul className="tab-nav">
                     {children.map((tab, index) => (
-                        <li
-                        // key={index}
-                        // className={`tab-item ${
-                        //     index === isTabTitleOn ? 'active' : ''
-                        // }`}
-                        // onClick={() => handleClick(index)}
-                        >
+                        <li key={index}>
+                            {/* class : active로 고치기 */}
                             <a
                                 key={index}
                                 href="#"
@@ -53,8 +66,12 @@ const Tabs = ({ children }) => {
 
             <div className="tab-content-wrap goods-tab-content">
                 {children[isTabTitleOn]}
+                {/* {children.map((tab, index) => (
+                <TabPane key={index} title={tab.props.title} index={index} content={tab.props.content} />
+                ))} */}
             </div>
         </div>
+        // </TabsContext.Provider>
     );
 };
 

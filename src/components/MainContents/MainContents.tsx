@@ -5,6 +5,9 @@ import promotionKakao from '/assets/promotion/promotion-kakao.png';
 import promotionReview from '/assets/promotion/promotion-review.png';
 // data
 import productsOrigin from '../../data/json/products_home.json';
+
+import { TabsContext } from '../../context/context';
+
 // components
 // ! Tabs로 이동
 import ProductCard from '../ProductCard/ProductCard';
@@ -28,6 +31,25 @@ const MainContents = () => {
     //     setIsTabBoxOn(index);
     // };
 
+    // const TabsArr = [
+    //     {
+    //         title: 'All',
+    //     },
+    //     {
+    //         title: 'MEN',
+    //     },
+    //     {
+    //         title: 'WOMEN',
+    //     },
+    //     {
+    //         title: 'ACC',
+    //     },
+    // ];
+
+    const renderTabContent = products.map((product, index) => (
+        <ProductCard key={index} product={product} />
+    ));
+
     return (
         <div className="main-contents">
             <div className="main-goods">
@@ -43,82 +65,45 @@ const MainContents = () => {
                             onTabClick={handleClick}
                         /> */}
                         <Tabs>
-                            <TabPane title="ALL">
-                                <div
-                                    className={
-                                        1 === isTabBoxOn
-                                            ? 'goods-tab-box on'
-                                            : 'goods-tab-box'
-                                    }
-                                    onClick={e => onTabClick(e, 1)}
-                                >
-                                    <ul>
-                                        {products.map((product, index) => (
-                                            <ProductCard
-                                                key={index}
-                                                product={product}
-                                            />
-                                        ))}
-                                    </ul>
-                                </div>
-                            </TabPane>
-                            <TabPane title="MEN">
-                                <div
-                                    className={
-                                        2 === isTabBoxOn
-                                            ? 'goods-tab-box on'
-                                            : 'goods-tab-box'
-                                    }
-                                    onClick={e => onTabClick(e, 2)}
-                                >
-                                    <ul>
-                                        {products.map((product, index) => (
-                                            <ProductCard
-                                                key={index}
-                                                product={product}
-                                            />
-                                        ))}
-                                    </ul>
-                                </div>
-                            </TabPane>
-                            <TabPane title="WOMEN">
-                                <div
-                                    className={
-                                        3 === isTabBoxOn
-                                            ? 'goods-tab-box on'
-                                            : 'goods-tab-box'
-                                    }
-                                    onClick={e => onTabClick(e, 3)}
-                                >
-                                    <ul>
-                                        {products.map((product, index) => (
-                                            <ProductCard
-                                                key={index}
-                                                product={product}
-                                            />
-                                        ))}
-                                    </ul>
-                                </div>
-                            </TabPane>
-                            <TabPane title="ACC">
-                                <div
-                                    className={
-                                        4 === isTabBoxOn
-                                            ? 'goods-tab-box on'
-                                            : 'goods-tab-box'
-                                    }
-                                    onClick={e => onTabClick(e, 4)}
-                                >
-                                    <ul>
-                                        {products.map((product, index) => (
-                                            <ProductCard
-                                                key={index}
-                                                product={product}
-                                            />
-                                        ))}
-                                    </ul>
-                                </div>
-                            </TabPane>
+                            {/* <TabPane title="ALL">
+                                {products.map((product, index) => (
+                                    <ProductCard
+                                        key={index}
+                                        product={product}
+                                    />
+                                ))}
+                            </TabPane> */}
+                            {/* {TabsArr.map((tab, index) => {
+                                <TabPane title={tab.title}>
+                                    {products.map((product, index) => (
+                                        <ProductCard
+                                            key={index}
+                                            product={product}
+                                        />
+                                    ))}
+                                </TabPane>;
+                            })} */}
+                            {/* <TabPane title="ALL" content={renderTabContent()} /> */}
+                            <TabPane
+                                title="ALL"
+                                content={renderTabContent}
+                                index="0"
+                            />
+                            <TabPane
+                                title="MEN"
+                                content={renderTabContent}
+                                index="1"
+                            />
+                            <TabPane
+                                title="WOMEN"
+                                content={renderTabContent}
+                                index="2"
+                            />
+                            <TabPane
+                                title="ACC"
+                                content={renderTabContent}
+                                index="3"
+                            />
                         </Tabs>
                     </div>
                 </div>
