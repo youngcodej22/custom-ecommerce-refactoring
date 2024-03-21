@@ -126,8 +126,35 @@ git pull --all
 ```
 
 -   ✔️ 참고:
+    -   ![capture-git_branch_all](../docs/images/01_git_branch_all.PNG)
     -   [참고-1](https://stackoverflow.com/questions/10312521/how-do-i-fetch-all-git-branches)
     -   [참고-2](https://github.com/jobhope/TechnicalNote/blob/master/github/CloneRepository.md)
+
+<br />
+
+### 5. git rebase로 최근 commit이 아닌 원하는 commit 선택 후 변경하는 법
+
+-   ❔ 문제: remote repository로 push를 했는데 commit message 오타로 인해 수정을 해야했다. (그러나 최근 commit이 아닌 최근에서 2번째 였다.)
+-   ❗ 해결: `rebase`를 활용해서 변경할 수 있다.
+    -   `rebase -i ${수정할 커밋의 직전 커밋}`: `-i`는 `--interative`
+    -   이후 GUI 또는 vim형식으로 rebase editor가 열리고 rebase에 대한 명령어들을 활용하여 수정할 수 있다.
+    -   `pick`(default), `drop`(삭제), `reword`(커밋 메시지 수정), `edit`(커밋 메세지, 설명 수정) 등...이 있다.
+    -   이후 `git status` 입력 시 use`git commit --amend`(rebase후 최근 커밋 수정), use`git rebase --continue`(계속진행), use`git rebase --edit-todo`(수정)가 나오게 되는데, 상황에 맞게 사용하면 된다.
+    -   이렇게 local repository는 모두 변경되었다. `git log`를 통해 원하는 커밋 상태인지 확인 후 remote repository를 `git push -f origin ${해당 branch}`로 변경해야 한다.
+    -   `-f`(force)같은 경우는 혼자서 작업 시에는 문제가 없지만, 협업을 할 때는 내가 강제로 remote repository commit 상태를 변경하면 동료들의 local repository commit 상태와 달라질 수 있으니 유의하자.
+
+```sh
+// git rebase -i ${수정할 커밋의 직전커밋}
+git rebase -i dafd898798279df
+// 숫자는 보여지는 commit 개수
+git rebase -i HEAD~3
+git log
+git status
+git push -f origin ${수정할 remote branch}
+```
+
+-   ✔️ 참고:
+    -   [rebase에 대한 설명](https://wonyong-jang.github.io/git/2021/02/05/Github-Rebase.html)
 
 <br />
 
