@@ -113,6 +113,24 @@
 
 <br />
 
+### 4. git clone 시에 모든 branch들을 가져오는 방법
+
+-   ❔ 문제: `git clone [repo url]`을 하면 `remotes/origin/HEAD`로 등록된 branch만 가져오게 된다. (나의 경우는 `main` branch에서 `develop` branch로 변경.)
+-   ❗ 해결: `git clone [repo url]`을 먼저 한 후에, remote repository에서 추적하는 branch들을 모두 가져올 수 있는 명령어를 사용 후 `fetch --all`아 `pull --all`을 통해 해결.
+
+```sh
+git clone https://github.com/yourname/example.git
+git branch -r | grep -v '\->' | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
+git fetch --all
+git pull --all
+```
+
+-   ✔️ 참고:
+    -   [참고-1](https://stackoverflow.com/questions/10312521/how-do-i-fetch-all-git-branches)
+    -   [참고-2](https://github.com/jobhope/TechnicalNote/blob/master/github/CloneRepository.md)
+
+<br />
+
 ---
 
 ### Reference
