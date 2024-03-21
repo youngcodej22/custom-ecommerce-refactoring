@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+// context
+import { TabsContext, useTabState } from './context/context';
+
 // import Header from './components/Header/Header';
 // import Contents from './components/Contents/Contents';
 // import Footer from './components/Footer/Footer';
@@ -70,7 +73,13 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-    return <RouterProvider router={router} />;
+    const { isTabTitleOn, isTabBoxOn, handleClick } = useTabState();
+
+    return (
+        <TabsContext.Provider value={{ isTabTitleOn, isTabBoxOn, handleClick }}>
+            <RouterProvider router={router} />
+        </TabsContext.Provider>
+    );
 }
 
 export default App;
