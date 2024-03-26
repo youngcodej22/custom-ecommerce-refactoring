@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 // data
 import productsData from '../../data/json/products_home.json';
 import benefitData from '../../data/benefits';
@@ -7,17 +7,45 @@ import benefitData from '../../data/benefits';
 import ProductCard from '../ProductCard/ProductCard';
 import Tabs, { TabPane } from '../Tabs/Tabs';
 import Benefit from '../Benefit/Benefit';
+
+import { TabsContext } from '../../context/context';
 // styles
 import './MainContents.scss';
 
 const MainContents = () => {
-    // ? 추후 products에 랭킹을 매기고 상위 랭킹 데이터만 뽑을 수 있게 해보자
-    // limited data
-    const products = productsData.slice(0, 8);
-    const benefits = benefitData;
-    // benefits.map(benefit => console.log('be*', benefit.title));
+    const { isTabTitleOn, isTabBoxOn, handleClick } = useContext(TabsContext);
+    const [filteredProducts, setFilteredProducts] = useState([]);
 
-    const renderTabContent = products.map((product, index) => (
+    // limit data
+    // ! 나중에 slice()사용대신 DB에 "rank" 12, 같은 데이터로 해결하자
+    const highRankFilteredProducts = filteredProducts.slice(0, 8);
+    const benefits = benefitData;
+
+    useEffect(() => {
+        const categoryMap = {
+            0: 'ALL',
+            1: 'MEN',
+            2: 'WOMEN',
+            3: 'ACC',
+        };
+        // Filter products based on the activeCategory and the acc key
+        const filterProducts = () => {
+            if (isTabTitleOn === 3) {
+                return productsData.filter(product => product.acc === true);
+            } else if (isTabTitleOn !== 0) {
+                const category = categoryMap[isTabTitleOn];
+                return productsData.filter(
+                    product =>
+                        product.category === category && product.acc === false,
+                );
+            }
+            return productsData;
+        };
+
+        setFilteredProducts(filterProducts());
+    }, [isTabTitleOn]);
+
+    const renderTabContent = highRankFilteredProducts.map((product, index) => (
         <ProductCard key={index} product={product} />
     ));
 
