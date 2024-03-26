@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+import defaultImage from '/assets/product/default_image.png';
 
 import './ProductCard.scss';
 
 const ProductCard = ({ product }) => {
+    const onErrorImg = e => {
+        e.target.src = defaultImage;
+    };
+
     return (
         <li className="product-card">
             <div className="item-cont">
                 <div className="item-photo-box">
                     <a href="">
-                        <img src={product.image} alt={product.name} />
+                        <img
+                            src={product.image ? product.image : defaultImage}
+                            alt={product.name}
+                            onError={onErrorImg}
+                        />
                     </a>
                     {/* cart/좋아요 버튼인데 일단 나중에 */}
                     {/* <div className="item-link">
