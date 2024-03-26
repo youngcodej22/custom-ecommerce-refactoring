@@ -39,9 +39,11 @@
     - [ ] ACC의 경우 남자,여자 다 보여야해서 db에서 category에서 잘 나타내자
     - [x] **MainContents**컴포넌트에서 `Tabs`컴포넌트로 코드를 분리시키면서 `handleClick()`을 `Tabs`로 옮김. (맥락상 Tabs에서 사용되는 event handle이기 때문에)
     - [ ] Tabs 컴포넌트를 다른 곳에서 재사용 할 수도 있기 때문에 ProductCard와 분리 시켜 보자 (children을 이용해야 할거다)
-        - [ ] MainContents에 TabPane에 대한 자식들을 어떻게 할 것인가? ProductCard는 MainContent에 존재해야한다. 맥락상 Tabs, TabPane은 Tab에 관련한 것만 있어야 한다.
-        - [ ] **결국** 자식(Tabs)가 가진 state, eventhandle을 부모(MainContent)가 사용하려면 ContextAPI같은 상태툴을 사용해야한다. 부모>자식은 props로 해결가능하지만
-        - [ ] 상태관리를 위해 props로 연결하는 것을 했지만 더 좋은 방법이 있나? **contextAPI, Redux, zustand 등으로 옮겨보자**
+        - [x] MainContents에 TabPane에 대한 자식들을 어떻게 할 것인가? ProductCard는 MainContent에 존재해야한다. 맥락상 Tabs, TabPane은 Tab에 관련한 것만 있어야 한다.
+        - [x] **결국** 자식(Tabs)가 가진 state, eventhandle을 부모(MainContent)가 사용하려면 ContextAPI같은 상태툴을 사용해야한다. 부모>자식은 props로 해결가능하지만
+        - [x] 상태관리를 위해 props로 연결하는 것을 했지만 더 좋은 방법이 있나?
+        - [x] contextAPI 사용
+        - [ ] Redux, zustand 등으로 옮기기
 
 3. MainContents
     - [ ] ProductCards에 연결된 데이터를 상위 랭킹을 json으로 넣어서 상위 8개 제품만 보이게 해보자
