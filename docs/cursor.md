@@ -6,6 +6,8 @@
 -   create add function in javascript
 -   what is wrong with this code?
 
+## install
+
 ---
 
 ##### 참고
