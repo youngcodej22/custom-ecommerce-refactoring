@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import MdPickContent from '../MdPickContent/MdPickContent';
+// data
+import productsData from '../../data/json/products_home.json';
 import coordinationData from '../../data/coordination.ts';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,15 +16,15 @@ import './MainMdPick.scss';
 
 const MainMdPick = () => {
     // Function to split the coordination data into chunks of 2
-    const chunkArray = (array, size) => {
-        return array.reduce(
-            (acc, _, index) =>
-                index % size ? acc : [...acc, array.slice(index, index + size)],
-            [],
-        );
-    };
+    // const chunkArray = (array, size) => {
+    //     return array.reduce(
+    //         (acc, _, index) =>
+    //             index % size ? acc : [...acc, array.slice(index, index + size)],
+    //         [],
+    //     );
+    // };
 
-    const coordinationChunks = chunkArray(coordinationData, 2);
+    // const coordinationChunks = chunkArray(coordinationData, 2);
 
     return (
         <div className="main-md-pick">
@@ -46,7 +48,9 @@ const MainMdPick = () => {
                     className="mySwiper"
                     wrapperTag="ul"
                     loop={true}
-                    onSwiper={swiper => console.log(swiper)}
+                    slidesPerView={2}
+                    // onSlideChange={swiper => setActiveIndex(swiper.realIndex)}
+                    // initialSlide={activeIndex}
                 >
                     {/* <SwiperSlide>
                         <MdPickContent />
@@ -60,9 +64,14 @@ const MainMdPick = () => {
                         <MdPickContent />
                         <MdPickContent />
                     </SwiperSlide> */}
-                    {coordinationChunks.map((chunk, index) => (
+                    {/* {coordinationChunks.map((chunk, index) => (
                         <SwiperSlide key={index}>
                             <MdPickContent data={chunk} />
+                        </SwiperSlide>
+                    ))} */}
+                    {coordinationData.map((coordi, index) => (
+                        <SwiperSlide key={index}>
+                            <MdPickContent data={coordi} index={index} />
                         </SwiperSlide>
                     ))}
                 </Swiper>
