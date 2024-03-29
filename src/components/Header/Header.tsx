@@ -239,16 +239,18 @@ const Header: React.FC = () => {
                             >
                                 <ul>
                                     <li>
-                                        <a href="">LOOKBOOK</a>
+                                        <a href="/brand/lookbook">LOOKBOOK</a>
                                     </li>
                                     <li>
-                                        <a href="">COORDINATION</a>
+                                        <a href="/brand/coordination">
+                                            COORDINATION
+                                        </a>
                                     </li>
                                     <li>
-                                        <a href="">HISTORY</a>
+                                        <a href="/brand">HISTORY</a>
                                     </li>
                                     <li>
-                                        <a href="">BRAND NEWS</a>
+                                        <a href="/brand/news">BRAND NEWS</a>
                                     </li>
                                 </ul>
                             </div>

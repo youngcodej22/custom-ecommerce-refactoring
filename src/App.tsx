@@ -16,6 +16,7 @@ import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Brand from './pages/Brand/Brand';
 import Cart from './pages/Cart/Cart';
 import Promotion from './pages/Promotion/Promotion';
+import Coordination from './pages/Coordination/Coordination';
 
 import './styles/components/style.css';
 
@@ -49,7 +50,6 @@ const router = createBrowserRouter([
                 index: true,
                 path: '/brand',
                 element: <Brand />,
-                // exact: true,
             },
             {
                 index: true,
@@ -61,6 +61,12 @@ const router = createBrowserRouter([
                 index: true,
                 path: '/promotion',
                 element: <Promotion />,
+                // exact: true,
+            },
+            {
+                index: true,
+                path: '/brand/coordination',
+                element: <Coordination />,
                 // exact: true,
             },
         ],
