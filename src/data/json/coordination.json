@@ -19,7 +19,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": true,
         "bestDisplay": 1
     },
     {
@@ -42,7 +41,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": true,
         "bestDisplay": 1
     },
     {
@@ -65,7 +63,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": true,
         "bestDisplay": 1
     },
     {
@@ -88,7 +85,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": true,
         "bestDisplay": 2
     },
     {
@@ -111,7 +107,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": true,
         "bestDisplay": 2
     },
     {
@@ -134,7 +129,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": true,
         "bestDisplay": 2
     },
     {
@@ -157,7 +151,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": true,
         "bestDisplay": 3
     },
     {
@@ -180,7 +173,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": true,
         "bestDisplay": 3
     },
     {
@@ -203,7 +195,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": true,
         "bestDisplay": 3
     },
     {
@@ -226,7 +217,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 4
     },
     {
@@ -249,7 +239,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 4
     },
     {
@@ -272,7 +261,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 4
     },
     {
@@ -295,7 +283,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 5
     },
     {
@@ -318,7 +305,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 5
     },
     {
@@ -341,7 +327,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 5
     },
     {
@@ -364,7 +349,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 6
     },
     {
@@ -387,7 +371,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 6
     },
     {
@@ -410,7 +393,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 6
     },
     {
@@ -433,7 +415,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 7
     },
     {
@@ -456,7 +437,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 7
     },
     {
@@ -479,7 +459,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 7
     },
     {
@@ -502,7 +481,6 @@
             ]
         ],
         "acc": true,
-        "bestCoordination": false,
         "bestDisplay": 8
     },
     {
@@ -525,7 +503,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 8
     },
     {
@@ -548,7 +525,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 8
     },
     {
@@ -571,7 +547,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 9
     },
     {
@@ -594,7 +569,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 9
     },
     {
@@ -617,7 +591,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 9
     },
     {
@@ -640,7 +613,6 @@
             ]
         ],
         "acc": true,
-        "bestCoordination": false,
         "bestDisplay": 10
     },
     {
@@ -663,7 +635,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 10
     },
     {
@@ -686,7 +657,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": false,
         "bestDisplay": 10
     }
 ]

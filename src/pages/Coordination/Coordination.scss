@@ -1,5 +1,7 @@
+@import '../../components/MainMdPick/MainMdPick.scss';
+
 .coordination {
-    .md_pick_banner {
+    .md-pick-banner {
         position: relative;
         margin-bottom: 40px;
 
@@ -9,7 +11,7 @@
             // border: 0 none;
             // vertical-align: top;
         }
-        .banner_txt {
+        .banner-txt {
             position: absolute;
             bottom: 10%;
             left: 0;
@@ -26,7 +28,7 @@
         }
     }
 
-    .scroll_down {
+    .scroll-down {
         position: relative;
         margin-bottom: 30px;
         font-size: 14px;
@@ -54,6 +56,28 @@
             top: 5px;
             left: 50%;
             animation: scrollDown 1.5s linear infinite;
+        }
+    }
+
+    .md-pick-wrap {
+        .main-tit {
+            // for Web Accessibility
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+        .md-pick-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+
+            .md-pick-content {
+                margin: 30px 0 30px 0;
+            }
         }
     }
 }

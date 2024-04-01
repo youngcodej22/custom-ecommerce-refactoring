@@ -13,12 +13,10 @@ import md_pick_10 from '/assets/mdpick/10_pick.jpg';
 // data
 import coordinationData from '../data/json/coordination.json';
 
-// Home > Best Coordination
-const filteredCoordination = coordinationData.filter((item) => item.bestCoordination === true);
-
-const display_1 = filteredCoordination.filter((item) => item.bestDisplay === 1);
-const display_2 = filteredCoordination.filter((item) => item.bestDisplay === 2);
-const display_3 = filteredCoordination.filter((item) => item.bestDisplay === 3);
+// each coordi = 3 product
+const display_1 = coordinationData.filter((item) => item.bestDisplay === 1);
+const display_2 = coordinationData.filter((item) => item.bestDisplay === 2);
+const display_3 = coordinationData.filter((item) => item.bestDisplay === 3);
 
 // Tab: Brand > Coordination
 const display_4 = coordinationData.filter((item) => item.bestDisplay === 4);
@@ -34,7 +32,8 @@ interface CoordinationItem {
     title: string;
     imageAlt: string;
     imageSrc: string;
-    products: object[]
+    products: object[],
+    showBest: boolean
 }
 
 const coordination: CoordinationItem[] = [
@@ -42,61 +41,71 @@ const coordination: CoordinationItem[] = [
         title: '코디네이션 1번',
         imageAlt: 'MD선정 코디 1번',
         imageSrc: md_pick_1,
-        products: display_1
+        products: display_1,
+        showBest: true
     },
     {
         title: '코디네이션 2번',
         imageAlt: 'MD선정 코디 2번',
         imageSrc: md_pick_2,
         products: display_2,
+        showBest: true
     },
     {
         title: '코디네이션 3번',
         imageAlt: 'MD선정 코디 3번',
         imageSrc: md_pick_3,
-        products: display_3
+        products: display_3,
+        showBest: true
     },
     {
         title: '코디네이션 4번',
         imageAlt: 'MD선정 코디 4번',
         imageSrc: md_pick_4,
-        products: display_4
+        products: display_4,
+        showBest: false
     },
     {
         title: '코디네이션 5번',
         imageAlt: 'MD선정 코디 5번',
         imageSrc: md_pick_5,
-        products: display_5
+        products: display_5,
+        showBest: false
     },
     {
         title: '코디네이션 6번',
         imageAlt: 'MD선정 코디 6번',
         imageSrc: md_pick_6,
-        products: display_6
+        products: display_6,
+        showBest: false
     },
     {
         title: '코디네이션 7번',
         imageAlt: 'MD선정 코디 7번',
         imageSrc: md_pick_7,
-        products: display_7
+        products: display_7,
+        showBest: false
     },
     {
         title: '코디네이션 8번',
         imageAlt: 'MD선정 코디 8번',
         imageSrc: md_pick_8,
-        products: display_8
+        products: display_8,
+        showBest: false
     },
     {
         title: '코디네이션 9번',
         imageAlt: 'MD선정 코디 9번',
         imageSrc: md_pick_9,
-        products: display_9
+        products: display_9,
+        showBest: false
     },
     {
         title: '코디네이션 10번',
         imageAlt: 'MD선정 코디 10번',
         imageSrc: md_pick_10,
-        products: display_10
+        products: display_10,
+        showBest: false
     },
 ]
 

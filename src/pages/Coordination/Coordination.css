@@ -1,11 +1,199 @@
-.coordination .md_pick_banner {
+.main-md-pick {
+  margin-bottom: 70px;
+}
+.main-md-pick .md-pick-wrap {
+  padding: 0 95px;
+}
+.main-md-pick .md-pick-wrap .main-tit {
+  font-size: 40px;
+  text-align: center;
+  font-weight: 800;
+  padding-bottom: 37px;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-thumb {
+  margin-bottom: 25px;
+  width: 44%;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-thumb img {
+  max-width: 100%;
+  border: 0 none;
+  vertical-align: top;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product {
+  width: 56%;
+  padding: 0 20px 0 25px;
+  box-sizing: border-box;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 {
+  width: 100%;
+  padding-bottom: 22px;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-tit {
+  text-align: center;
+  position: relative;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-tit h3 {
+  display: none;
+  font-size: 40px;
+  font-weight: 800;
+  padding-bottom: 24px;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 {
+  position: relative;
+  width: 100%;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 .item-gallery-type {
+  margin: 0;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 .item-gallery-type ul {
+  display: block;
+  width: 100%;
+  font-size: 0;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 .item-gallery-type ul li {
+  width: 100%;
+  padding: 15px 0;
+  margin: 0;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 .item-gallery-type ul li:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 .item-gallery-type ul li .item-cont {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 .item-gallery-type ul li .item-cont .item-photo-box {
+  width: 30%;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  text-align: center;
+  border: 1px solid #f9f9f9;
+  background: #f9f9f9;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 .item-gallery-type ul li .item-cont .item-photo-box a {
+  display: block;
+  color: #242424;
+  text-decoration: none;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 .item-gallery-type ul li .item-cont .item-photo-box a img {
+  width: 100%;
+  transition: 0.6s;
+  max-width: 100%;
+  border: 0 none;
+  vertical-align: top;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 .item-gallery-type ul li .item-cont .item-info-cont {
+  width: 60%;
+  padding: 0 0 0 20px;
+  box-sizing: border-box;
+  display: block;
+  text-align: left;
+  font-size: 12px;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 .item-gallery-type ul li .item-cont .item-info-cont .item-tit-box {
+  padding: 0;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 .item-gallery-type ul li .item-cont .item-info-cont .item-tit-box .cate-name {
+  display: none;
+  font-size: 13px;
+  font-weight: 800;
+  color: #444;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 .item-gallery-type ul li .item-cont .item-info-cont .item-tit-box a {
+  color: #242424;
+  text-decoration: none;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 .item-gallery-type ul li .item-cont .item-info-cont .item-tit-box a .item-name {
+  font-size: 16px;
+  font-weight: normal;
+  display: block;
+  padding: 5px 0 0;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 .item-gallery-type ul li .item-cont .item-info-cont .item-money-box {
+  white-space: nowrap;
+  padding: 29px 0 0 0;
+  line-height: 1;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 .item-gallery-type ul li .item-cont .item-info-cont .item-money-box .item-price {
+  font-size: 16px;
+  color: #242424;
+  font-weight: 700;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 .item-gallery-type ul li .item-cont .item-info-cont .item-money-box .item-price span {
+  font-size: 16px;
+  color: #242424;
+  font-weight: 700;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 .item-gallery-type ul li .item-cont .item-info-cont .item-icon-box {
+  margin: 10px 0 0;
+  padding: 0;
+}
+.main-md-pick .md-pick-wrap ul .md-pick-content .md-pick-product .goods-list.main-wrap-21 .goods-list-content.goods-content-21 .item-gallery-type ul li .item-cont .item-info-cont .item-icon-box img {
+  max-width: 100%;
+  display: inline-block;
+  padding: 5px 3px 0 0;
+  border: 0 none;
+  vertical-align: top;
+}
+.main-md-pick .md-pick-wrap .btn-goods-down-more {
+  margin-top: 35px;
+  width: 100%;
+  text-align: center;
+}
+.main-md-pick .md-pick-wrap .btn-goods-down-more a {
+  display: inline-block;
+  width: 210px;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  background-color: #242424;
+  color: #fff;
+  font-weight: 500;
+}
+.main-md-pick .md-pick-wrap .swiper .swiper-wrapper {
+  min-height: 560px;
+}
+.main-md-pick .md-pick-wrap .swiper .swiper-slide {
+  display: flex;
+}
+.main-md-pick .md-pick-wrap .swiper .swiper-pagination-bullets {
+  bottom: 0px;
+}
+.main-md-pick .md-pick-wrap .swiper .swiper-pagination-bullets .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  margin-right: 15px;
+}
+.main-md-pick .md-pick-wrap .swiper .swiper-pagination-bullets .swiper-pagination-bullet-active {
+  background-color: #0ad09c;
+}
+
+.coordination .md-pick-banner {
   position: relative;
   margin-bottom: 40px;
 }
-.coordination .md_pick_banner img {
+.coordination .md-pick-banner img {
   width: 100%;
 }
-.coordination .md_pick_banner .banner_txt {
+.coordination .md-pick-banner .banner-txt {
   position: absolute;
   bottom: 10%;
   left: 0;
@@ -13,12 +201,12 @@
   font-size: 80px;
   color: #fff;
 }
-.coordination .md_pick_banner .banner_txt h3 {
+.coordination .md-pick-banner .banner-txt h3 {
   line-height: 1.05;
   text-align: center;
   font-weight: 700;
 }
-.coordination .scroll_down {
+.coordination .scroll-down {
   position: relative;
   margin-bottom: 30px;
   font-size: 14px;
@@ -26,7 +214,7 @@
   color: #222;
   font-weight: 600;
 }
-.coordination .scroll_down::before {
+.coordination .scroll-down::before {
   content: "";
   width: 25px;
   height: 40px;
@@ -35,7 +223,7 @@
   margin: 0 auto 10px;
   border: 2px solid #222;
 }
-.coordination .scroll_down::after {
+.coordination .scroll-down::after {
   content: "";
   width: 2px;
   height: 7px;
@@ -45,6 +233,23 @@
   top: 5px;
   left: 50%;
   animation: scrollDown 1.5s linear infinite;
+}
+.coordination .md-pick-wrap .main-tit {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+.coordination .md-pick-wrap .md-pick-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.coordination .md-pick-wrap .md-pick-list .md-pick-content {
+  margin: 30px 0 30px 0;
 }
 
 @keyframes scrollDown {
