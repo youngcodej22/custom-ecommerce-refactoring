@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import MdPickContent from '../MdPickContent/MdPickContent';
 // data
-import productsData from '../../data/json/products_home.json';
-import coordinationData from '../../data/coordination.ts';
+// import coordinationData from '../../data/json/coordination.json';
+import coordinationData from '../../data/coordination';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -25,6 +25,17 @@ const MainMdPick = () => {
     // };
 
     // const coordinationChunks = chunkArray(coordinationData, 2);
+
+    console.log('**', coordinationData);
+
+    // Home > Best Coordination
+    // const filteredCoordination = coordinationData.filter(
+    //     item => item.bestCoordination === true,
+    // );
+    // console.log(
+    //     '🚀 ~ MainMdPick ~ filteredCoordination:',
+    //     filteredCoordination,
+    // );
 
     return (
         <div className="main-md-pick">
@@ -69,15 +80,23 @@ const MainMdPick = () => {
                             <MdPickContent data={chunk} />
                         </SwiperSlide>
                     ))} */}
-                    {coordinationData.map((coordi, index) => (
+                    {/* {coordinationData.map((coordi, index) => (
                         <SwiperSlide key={index}>
                             <MdPickContent coordi={coordi} index={index} />
                         </SwiperSlide>
-                    ))}
+                    ))} */}
+
+                    {coordinationData
+                        .filter(coordi => coordi.showBest)
+                        .map((coordi, index) => (
+                            <SwiperSlide key={index}>
+                                <MdPickContent coordi={coordi} index={index} />
+                            </SwiperSlide>
+                        ))}
                 </Swiper>
 
                 <div className="btn-goods-down-more">
-                    <a href="#">MORE STYLE &nbsp;+</a>
+                    <a href="/brand/coordination">MORE STYLE &nbsp;+</a>
                 </div>
             </div>
         </div>

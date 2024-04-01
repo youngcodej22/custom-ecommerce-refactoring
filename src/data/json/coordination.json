@@ -19,7 +19,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": true,
         "bestDisplay": 1
     },
     {
@@ -42,7 +41,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": true,
         "bestDisplay": 1
     },
     {
@@ -65,7 +63,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": true,
         "bestDisplay": 1
     },
     {
@@ -88,7 +85,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": true,
         "bestDisplay": 2
     },
     {
@@ -111,7 +107,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": true,
         "bestDisplay": 2
     },
     {
@@ -134,7 +129,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": true,
         "bestDisplay": 2
     },
     {
@@ -157,7 +151,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": true,
         "bestDisplay": 3
     },
     {
@@ -180,7 +173,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": true,
         "bestDisplay": 3
     },
     {
@@ -203,7 +195,6 @@
             ]
         ],
         "acc": false,
-        "bestCoordination": true,
         "bestDisplay": 3
     },
     {
@@ -225,7 +216,8 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 4
     },
     {
         "category": "티셔츠",
@@ -246,7 +238,8 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 4
     },
     {
         "category": "팬츠",
@@ -267,7 +260,8 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 4
     },
     {
         "category": "티셔츠",
@@ -288,7 +282,8 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 5
     },
     {
         "category": "WOMEN",
@@ -309,7 +304,8 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 5
     },
     {
         "category": "스커트",
@@ -330,7 +326,8 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 5
     },
     {
         "category": "WOMEN",
@@ -351,7 +348,8 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 6
     },
     {
         "category": "WOMEN",
@@ -372,7 +370,8 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 6
     },
     {
         "category": "NEW",
@@ -393,7 +392,8 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 6
     },
     {
         "category": "점퍼",
@@ -414,7 +414,8 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 7
     },
     {
         "category": "티셔츠",
@@ -435,7 +436,8 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 7
     },
     {
         "category": "스커트",
@@ -456,7 +458,8 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 7
     },
     {
         "category": "남성",
@@ -477,7 +480,8 @@
                 "신상품"
             ]
         ],
-        "acc": true
+        "acc": true,
+        "bestDisplay": 8
     },
     {
         "category": "MEN",
@@ -498,7 +502,8 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 8
     },
     {
         "category": "쇼츠",
@@ -519,7 +524,8 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 8
     },
     {
         "category": "NEW",
@@ -540,7 +546,8 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 9
     },
     {
         "category": "스웨터",
@@ -561,7 +568,8 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 9
     },
     {
         "category": "NEW",
@@ -582,7 +590,8 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 9
     },
     {
         "category": "NEW",
@@ -603,7 +612,8 @@
                 "신상품"
             ]
         ],
-        "acc": true
+        "acc": true,
+        "bestDisplay": 10
     },
     {
         "category": "MEN",
@@ -624,7 +634,8 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 10
     },
     {
         "category": "팬츠",
@@ -645,6 +656,7 @@
                 "신상품"
             ]
         ],
-        "acc": false
+        "acc": false,
+        "bestDisplay": 10
     }
 ]
