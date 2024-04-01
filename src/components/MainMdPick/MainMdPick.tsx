@@ -71,7 +71,7 @@ const MainMdPick = () => {
                     ))} */}
                     {coordinationData.map((coordi, index) => (
                         <SwiperSlide key={index}>
-                            <MdPickContent data={coordi} index={index} />
+                            <MdPickContent coordi={coordi} index={index} />
                         </SwiperSlide>
                     ))}
                 </Swiper>

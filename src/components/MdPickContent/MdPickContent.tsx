@@ -1,6 +1,4 @@
 import React from 'react';
-// data
-// import productsData from '../../data/json/products_home.json';
 
 import ProductCard from '../ProductCard/ProductCard';
 
@@ -8,8 +6,11 @@ interface MdPickContentProps {
     data: CoordinationItem[];
 }
 
-// const MdPickContent: React.FC<MdPickContentProps> = ({ data }) => {
-const MdPickContent: React.FC<MdPickContentProps> = ({ data, index }) => {
+// const MdPickContent: React.FC<MdPickContentProps> = ({ coordi }) => {
+const MdPickContent: React.FC<MdPickContentProps> = ({ coordi, index }) => {
+    // const product = coordinationData;
+
+    // console.log('**cor', product);
     // return (
     //     <>
     //         {data.map((coordi, index) => (
@@ -42,20 +43,22 @@ const MdPickContent: React.FC<MdPickContentProps> = ({ data, index }) => {
         <>
             <li key={index} className="md-pick-content">
                 <div className="md-pick-thumb">
-                    <img src={data.imageSrc} alt={data.imageAlt} />
+                    <img src={coordi.imageSrc} alt={coordi.imageAlt} />
                 </div>
                 <div className="md-pick-product">
                     <div className="goods-list main-wrap-21">
                         <div className="goods-list-tit">
-                            <h3>{data.title}</h3>
+                            <h3>{coordi.title}</h3>
                         </div>
                         <div className="goods-list-content goods-content-21">
                             <div className="item-gallery-type">
                                 <ul>
-                                    {/* <ProductCard product={product} />
-                                    <ProductCard product={product} />
-                                    <ProductCard product={product} /> */}
-                                    {/* <ProductCard product={data} /> */}
+                                    {coordi.products.map((product, index) => (
+                                        <ProductCard
+                                            key={index}
+                                            product={product}
+                                        />
+                                    ))}
                                 </ul>
                             </div>
                         </div>
