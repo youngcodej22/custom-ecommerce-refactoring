@@ -11,7 +11,7 @@
   padding-bottom: 37px;
 }
 .main-md-pick .md-pick-wrap ul.swiper-wrapper .md-pick-content {
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -183,5 +183,5 @@
   margin-right: 15px;
 }
 .main-md-pick .md-pick-wrap .swiper .swiper-pagination-bullets .swiper-pagination-bullet-active {
-  background-color: #0AD09C;
+  background-color: #0ad09c;
 }/*# sourceMappingURL=MainMdPick.css.map */

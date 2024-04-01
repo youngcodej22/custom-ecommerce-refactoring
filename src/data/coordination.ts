@@ -45,10 +45,21 @@ import labelMen from '/assets/label/label-men.png';
 import labelMile from '/assets/label/label-mile.png';
 import labelNew from '/assets/label/label-new.png';
 
+// data
+import coordinationData from '../data/json/coordination.json';
+
+const filteredCoordination = coordinationData.filter((item) => item.bestCoordination === true);
+
+const display_1 = filteredCoordination.filter((item) => item.bestDisplay === 1);
+const display_2 = filteredCoordination.filter((item) => item.bestDisplay === 2);
+const display_3 = filteredCoordination.filter((item) => item.bestDisplay === 3);
+
+
 interface CoordinationItem {
     title: string;
     imageAlt: string;
     imageSrc: string;
+    products: object[]
 }
 
 const coordination: CoordinationItem[] = [
@@ -56,16 +67,19 @@ const coordination: CoordinationItem[] = [
         title: '코디네이션 1번',
         imageAlt: 'MD선정 코디 1번',
         imageSrc: md_pick_1,
+        products: display_1
     },
     {
         title: '코디네이션 2번',
         imageAlt: 'MD선정 코디 2번',
         imageSrc: md_pick_2,
+        products: display_2,
     },
     {
         title: '코디네이션 3번',
         imageAlt: 'MD선정 코디 3번',
         imageSrc: md_pick_3,
+        products: display_3
     },
 ]
 
