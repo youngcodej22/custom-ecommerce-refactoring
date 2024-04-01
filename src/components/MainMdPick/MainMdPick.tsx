@@ -26,7 +26,7 @@ const MainMdPick = () => {
 
     // const coordinationChunks = chunkArray(coordinationData, 2);
 
-    console.log('**', coordinationData);
+    // console.log('**', coordinationData);
 
     // Home > Best Coordination
     // const filteredCoordination = coordinationData.filter(

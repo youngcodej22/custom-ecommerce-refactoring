@@ -1,26 +1,21 @@
 import React from 'react';
+// data
+import newProductData from '../../data/json/product_new.json';
+// component
+import ProductCard from '../../components/ProductCard/ProductCard';
+
+import './ProductList.scss';
+
 import iconFilter from '/assets/icon/icon-filter.png';
 import iconFilterSet from '/assets/icon/icon-filter-set.png';
 import iconNext from '/assets/icon/icon-pagination-next.png';
 import iconLast from '/assets/icon/icon-pagination-last.png';
-
 import iconBasket from '/assets/icon/icon-basket.png';
 import iconBasketGet from '/assets/icon/icon-basket-get.png';
 
-import labelMen from '/assets/label/label-men.png';
-import labelMile from '/assets/label/label-mile.png';
-import labelNew from '/assets/label/label-new.png';
-import labelSale from '/assets/label/label-sale.png';
-import labelWomen from '/assets/label/label-women.png';
-
-import product_women_1 from '/assets/product/women/01.jpg';
-import product_women_2 from '/assets/product/women/02.jpg';
-import product_women_3 from '/assets/product/women/03.jpg';
-import product_women_4 from '/assets/product/women/04.jpg';
-
-import './ProductList.scss';
-
 const ProductList = () => {
+    console.log('**', newProductData);
+
     return (
         <div className="productlist">
             <div className="sub_content">
@@ -1083,7 +1078,7 @@ const ProductList = () => {
                                 <div className="goods_list_cont">
                                     <div className="item_basket_type">
                                         <ul>
-                                            <li>
+                                            {/* <li>
                                                 <div className="dn"></div>
                                                 <div className="item_cont">
                                                     <div className="item_photo_box">
@@ -1166,259 +1161,15 @@ const ProductList = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </li>
-                                            <li>
-                                                <div className="dn"></div>
-                                                <div className="item_cont">
-                                                    <div className="item_photo_box">
-                                                        <a href="">
-                                                            <img
-                                                                src={
-                                                                    product_women_2
-                                                                }
-                                                                alt=""
-                                                            />
-                                                            <div className="item_link">
-                                                                <button
-                                                                    type="button"
-                                                                    className="btn_basket_get btn_add_wish"
-                                                                >
-                                                                    <img
-                                                                        src={
-                                                                            iconBasketGet
-                                                                        }
-                                                                        alt="찜하기"
-                                                                    />
-                                                                </button>
-                                                                <button
-                                                                    type="button"
-                                                                    className="btn_basket_cart btn_add_cart_ btn_open_layer"
-                                                                >
-                                                                    <img
-                                                                        src={
-                                                                            iconBasket
-                                                                        }
-                                                                        alt="장바구니"
-                                                                    />
-                                                                </button>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div className="item_info_cont">
-                                                        <div className="item_tit_box">
-                                                            <span className="cate_name">
-                                                                <a href="../goods/goods_list.php?cateCd=001">
-                                                                    NEW
-                                                                </a>
-                                                            </span>
-                                                            <a href="../goods/goods_view.php?goodsNo=1000005851">
-                                                                <strong className="item_name">
-                                                                    24 개더
-                                                                    플리츠
-                                                                    스커트
-                                                                    베이지
-                                                                    MDW1PC615
-                                                                    LBE
-                                                                </strong>
-                                                            </a>
-                                                        </div>
-                                                        <div className="item_money_box">
-                                                            <div>
-                                                                <strong className="item_price 3">
-                                                                    <span>
-                                                                        430,000
-                                                                    </span>
-                                                                </strong>
-                                                            </div>
-                                                        </div>
-                                                        <div className="item_icon_box">
-                                                            <img
-                                                                src={labelWomen}
-                                                                alt="여성용"
-                                                                className="middle"
-                                                            />{' '}
-                                                            <img
-                                                                src={labelMile}
-                                                                alt="두배적립"
-                                                                className="middle"
-                                                            />{' '}
-                                                            <img
-                                                                src={labelNew}
-                                                                alt="신상품"
-                                                                className="middle"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="dn"></div>
-                                                <div className="item_cont">
-                                                    <div className="item_photo_box">
-                                                        <a href="">
-                                                            <img
-                                                                src={
-                                                                    product_women_3
-                                                                }
-                                                                alt=""
-                                                            />
-                                                            <div className="item_link">
-                                                                <button
-                                                                    type="button"
-                                                                    className="btn_basket_get btn_add_wish"
-                                                                >
-                                                                    <img
-                                                                        src={
-                                                                            iconBasketGet
-                                                                        }
-                                                                        alt="찜하기"
-                                                                    />
-                                                                </button>
-                                                                <button
-                                                                    type="button"
-                                                                    className="btn_basket_cart btn_add_cart_ btn_open_layer"
-                                                                >
-                                                                    <img
-                                                                        src={
-                                                                            iconBasket
-                                                                        }
-                                                                        alt="장바구니"
-                                                                    />
-                                                                </button>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div className="item_info_cont">
-                                                        <div className="item_tit_box">
-                                                            <span className="cate_name">
-                                                                <a href="../goods/goods_list.php?cateCd=001">
-                                                                    NEW
-                                                                </a>
-                                                            </span>
-                                                            <a href="../goods/goods_view.php?goodsNo=1000005851">
-                                                                <strong className="item_name">
-                                                                    24 개더
-                                                                    플리츠
-                                                                    스커트
-                                                                    베이지
-                                                                    MDW1PC615
-                                                                    LBE
-                                                                </strong>
-                                                            </a>
-                                                        </div>
-                                                        <div className="item_money_box">
-                                                            <div>
-                                                                <strong className="item_price 3">
-                                                                    <span>
-                                                                        430,000
-                                                                    </span>
-                                                                </strong>
-                                                            </div>
-                                                        </div>
-                                                        <div className="item_icon_box">
-                                                            <img
-                                                                src={labelWomen}
-                                                                alt="여성용"
-                                                                className="middle"
-                                                            />{' '}
-                                                            <img
-                                                                src={labelMile}
-                                                                alt="두배적립"
-                                                                className="middle"
-                                                            />{' '}
-                                                            <img
-                                                                src={labelNew}
-                                                                alt="신상품"
-                                                                className="middle"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="dn"></div>
-                                                <div className="item_cont">
-                                                    <div className="item_photo_box">
-                                                        <a href="">
-                                                            <img
-                                                                src={
-                                                                    product_women_4
-                                                                }
-                                                                alt=""
-                                                            />
-                                                            <div className="item_link">
-                                                                <button
-                                                                    type="button"
-                                                                    className="btn_basket_get btn_add_wish"
-                                                                >
-                                                                    <img
-                                                                        src={
-                                                                            iconBasketGet
-                                                                        }
-                                                                        alt="찜하기"
-                                                                    />
-                                                                </button>
-                                                                <button
-                                                                    type="button"
-                                                                    className="btn_basket_cart btn_add_cart_ btn_open_layer"
-                                                                >
-                                                                    <img
-                                                                        src={
-                                                                            iconBasket
-                                                                        }
-                                                                        alt="장바구니"
-                                                                    />
-                                                                </button>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div className="item_info_cont">
-                                                        <div className="item_tit_box">
-                                                            <span className="cate_name">
-                                                                <a href="../goods/goods_list.php?cateCd=001">
-                                                                    NEW
-                                                                </a>
-                                                            </span>
-                                                            <a href="../goods/goods_view.php?goodsNo=1000005851">
-                                                                <strong className="item_name">
-                                                                    24 개더
-                                                                    플리츠
-                                                                    스커트
-                                                                    베이지
-                                                                    MDW1PC615
-                                                                    LBE
-                                                                </strong>
-                                                            </a>
-                                                        </div>
-                                                        <div className="item_money_box">
-                                                            <div>
-                                                                <strong className="item_price 3">
-                                                                    <span>
-                                                                        430,000
-                                                                    </span>
-                                                                </strong>
-                                                            </div>
-                                                        </div>
-                                                        <div className="item_icon_box">
-                                                            <img
-                                                                src={labelWomen}
-                                                                alt="여성용"
-                                                                className="middle"
-                                                            />{' '}
-                                                            <img
-                                                                src={labelMile}
-                                                                alt="두배적립"
-                                                                className="middle"
-                                                            />{' '}
-                                                            <img
-                                                                src={labelNew}
-                                                                alt="신상품"
-                                                                className="middle"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                            </li> */}
+                                            {newProductData.map(
+                                                (product, index) => (
+                                                    <ProductCard
+                                                        key={index}
+                                                        product={product}
+                                                    />
+                                                ),
+                                            )}
                                         </ul>
                                     </div>
                                 </div>
