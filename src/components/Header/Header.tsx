@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logoBlackPC from '/assets/logo/logo_black_pc.png';
 import logoWhitePC from '/assets/logo/logo_white_pc.png';
 import btnClose from '/assets/icon/icon-close.png';
@@ -192,18 +192,35 @@ const Header: React.FC = () => {
         }
     };
 
+    const navigate = useNavigate();
+
+    // const handleNavigate = useCallback(() => {
+    //     if (location.pathname.startsWith('/productlist/new')) {
+    //         navigate('/productlist/new?page=1');
+    //     } else if (location.pathname.startsWith('/productlist/women')) {
+    //         navigate('/productlist/women?page=1');
+    //     }
+    // }, [location, navigate]);
+    const handleNavigate = e => {
+        if (e.target.href.includes('new')) {
+            navigate('/productlist/new?page=1');
+        } else if (e.target.href.includes('women')) {
+            navigate('/productlist/women?page=1');
+        }
+    };
+
     return (
         <>
             {/* <header id="header-nav" className={(isOn && scrollY > 0) || isOn ? 'on' : ''}> */}
             <header id="header-nav" className={isOn ? 'on' : ''}>
                 <div className="logo">
-                    <a href="/">
+                    <Link to="/">
                         {isOn ? (
                             <img src={logoBlackPC} alt="로고" />
                         ) : (
                             <img src={logoWhitePC} alt="로고" />
                         )}
-                    </a>
+                    </Link>
                 </div>
                 <div className="gnb">
                     <ul
@@ -226,9 +243,9 @@ const Header: React.FC = () => {
                             {/* <Link className="gnb-link" to="/brand">
                                 BRAND
                             </Link> */}
-                            <a className="gnb-link" href="/brand">
+                            <Link to="/brand" className="gnb-link">
                                 BRAND
-                            </a>
+                            </Link>
                             {/* <div className="gnb-deps1"> */}
                             <div
                                 className={
@@ -239,18 +256,20 @@ const Header: React.FC = () => {
                             >
                                 <ul>
                                     <li>
-                                        <a href="/brand/lookbook">LOOKBOOK</a>
+                                        <Link to="/brand/lookbook">
+                                            LOOKBOOK
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/brand/coordination">
+                                        <Link to="/brand/coordination">
                                             COORDINATION
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/brand">HISTORY</a>
+                                        <Link to="/brand">HISTORY</Link>
                                     </li>
                                     <li>
-                                        <a href="/brand/news">BRAND NEWS</a>
+                                        <Link to="/brand/news">BRAND NEWS</Link>
                                     </li>
                                 </ul>
                             </div>
@@ -261,9 +280,13 @@ const Header: React.FC = () => {
                             onMouseLeave={handleMouseLeave}
                             ref={el => (tabsliRef.current[1] = el)}
                         >
-                            <a className="gnb-link" href="/productlist">
+                            <Link
+                                className="gnb-link"
+                                to="/productlist/new"
+                                onClick={e => handleNavigate(e)}
+                            >
                                 NEW
-                            </a>
+                            </Link>
                             <div
                                 className={
                                     isActive === 1
@@ -273,60 +296,60 @@ const Header: React.FC = () => {
                             >
                                 <ul>
                                     <li>
-                                        <a href="">겨울 컬렉션</a>
+                                        <Link to="">겨울 컬렉션</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <a href="">씨슬 시그니처</a>
+                                                <Link to="">씨슬 시그니처</Link>
                                             </li>
                                             <li>
-                                                <a href="">할리 스티븐슨</a>
+                                                <Link to="">할리 스티븐슨</Link>
                                             </li>
                                             <li>
-                                                <a href="">해리스 트위드</a>
+                                                <Link to="">해리스 트위드</Link>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="">여성</a>
+                                        <Link to="">여성</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <a href="">상의</a>
+                                                <Link to="">상의</Link>
                                             </li>
                                             <li>
-                                                <a href="">하의</a>
+                                                <Link to="">하의</Link>
                                             </li>
                                             <li>
-                                                <a href="">아우터</a>
+                                                <Link to="">아우터</Link>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="">남성</a>
+                                        <Link to="">남성</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <a href="">상의</a>
+                                                <Link to="">상의</Link>
                                             </li>
                                             <li>
-                                                <a href="">하의</a>
+                                                <Link to="">하의</Link>
                                             </li>
                                             <li>
-                                                <a href="">아우터</a>
+                                                <Link to="">아우터</Link>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="">액세서리</a>
+                                        <Link to="">액세서리</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <a href="">남성</a>
+                                                <Link to="">남성</Link>
                                             </li>
                                             <li>
-                                                <a href="">여성</a>
+                                                <Link to="">여성</Link>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="">온라인 상품권</a>
+                                        <Link to="">온라인 상품권</Link>
                                     </li>
                                 </ul>
                             </div>
@@ -337,9 +360,13 @@ const Header: React.FC = () => {
                             onMouseLeave={handleMouseLeave}
                             ref={el => (tabsliRef.current[2] = el)}
                         >
-                            <a className="gnb-link" href="/productlist">
+                            <Link
+                                className="gnb-link"
+                                to="/productlist/women"
+                                onClick={e => handleNavigate(e)}
+                            >
                                 WOMEN
-                            </a>
+                            </Link>
                             <div
                                 className={
                                     isActive === 2
@@ -349,47 +376,47 @@ const Header: React.FC = () => {
                             >
                                 <ul>
                                     <li>
-                                        <a href="">상의</a>
+                                        <Link to="">상의</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <a href="">티셔츠</a>
+                                                <Link to="">티셔츠</Link>
                                             </li>
                                             <li>
-                                                <a href="">스웨터</a>
+                                                <Link to="">스웨터</Link>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="">하의</a>
+                                        <Link to="">하의</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <a href="">팬츠</a>
+                                                <Link to="">팬츠</Link>
                                             </li>
                                             <li>
-                                                <a href="">쇼츠</a>
+                                                <Link to="">쇼츠</Link>
                                             </li>
                                             <li>
-                                                <a href="">스커트</a>
+                                                <Link to="">스커트</Link>
                                             </li>
                                             <li>
-                                                <a href="">원피스</a>
+                                                <Link to="">원피스</Link>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="">아우터</a>
+                                        <Link to="">아우터</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <a href="">점퍼</a>
+                                                <Link to="">점퍼</Link>
                                             </li>
                                             <li>
-                                                <a href="">다운/패딩</a>
+                                                <Link to="">다운/패딩</Link>
                                             </li>
                                             <li>
-                                                <a href="">베스트</a>
+                                                <Link to="">베스트</Link>
                                             </li>
                                             <li>
-                                                <a href="">가디건</a>
+                                                <Link to="">가디건</Link>
                                             </li>
                                         </ul>
                                     </li>
@@ -402,9 +429,9 @@ const Header: React.FC = () => {
                             onMouseLeave={handleMouseLeave}
                             ref={el => (tabsliRef.current[3] = el)}
                         >
-                            <a className="gnb-link" href="">
+                            <Link className="gnb-link" to="/productlist/men">
                                 MEN
-                            </a>
+                            </Link>
                             <div
                                 className={
                                     isActive === 3
@@ -414,41 +441,41 @@ const Header: React.FC = () => {
                             >
                                 <ul>
                                     <li>
-                                        <a href="">상의</a>
+                                        <Link to="">상의</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <a href="">티셔츠</a>
+                                                <Link to="">티셔츠</Link>
                                             </li>
                                             <li>
-                                                <a href="">스웨터</a>
+                                                <Link to="">스웨터</Link>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="">하의</a>
+                                        <Link to="">하의</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <a href="">팬츠</a>
+                                                <Link to="">팬츠</Link>
                                             </li>
                                             <li>
-                                                <a href="">쇼츠</a>
+                                                <Link to="">쇼츠</Link>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="">아우터</a>
+                                        <Link to="">아우터</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <a href="">점퍼</a>
+                                                <Link to="">점퍼</Link>
                                             </li>
                                             <li>
-                                                <a href="">다운/패딩</a>
+                                                <Link to="">다운/패딩</Link>
                                             </li>
                                             <li>
-                                                <a href="">베스트</a>
+                                                <Link to="">베스트</Link>
                                             </li>
                                             <li>
-                                                <a href="">가디건</a>
+                                                <Link to="">가디건</Link>
                                             </li>
                                         </ul>
                                     </li>
@@ -461,9 +488,9 @@ const Header: React.FC = () => {
                             onMouseLeave={handleMouseLeave}
                             ref={el => (tabsliRef.current[4] = el)}
                         >
-                            <a className="gnb-link" href="">
+                            <Link className="gnb-link" to="/productlist/acc">
                                 ACC
-                            </a>
+                            </Link>
                             <div
                                 className={
                                     isActive === 4
@@ -473,67 +500,67 @@ const Header: React.FC = () => {
                             >
                                 <ul>
                                     <li>
-                                        <a href="">모자</a>
+                                        <Link to="">모자</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <a href="">볼캡</a>
+                                                <Link to="">볼캡</Link>
                                             </li>
                                             <li>
-                                                <a href="">바이저</a>
+                                                <Link to="">바이저</Link>
                                             </li>
                                             <li>
-                                                <a href="">버킷햇</a>
+                                                <Link to="">버킷햇</Link>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="">양말</a>
+                                        <Link to="">양말</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <a href="">단목</a>
+                                                <Link to="">단목</Link>
                                             </li>
                                             <li>
-                                                <a href="">반목</a>
+                                                <Link to="">반목</Link>
                                             </li>
                                             <li>
-                                                <a href="">종목</a>
+                                                <Link to="">종목</Link>
                                             </li>
                                             <li>
-                                                <a href="">니삭스</a>
+                                                <Link to="">니삭스</Link>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="">가방</a>
+                                        <Link to="">가방</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <a href="">볼파우치</a>
+                                                <Link to="">볼파우치</Link>
                                             </li>
                                             <li>
-                                                <a href="">파우치</a>
+                                                <Link to="">파우치</Link>
                                             </li>
                                             <li>
-                                                <a href="">보스턴백</a>
+                                                <Link to="">보스턴백</Link>
                                             </li>
                                             <li>
-                                                <a href="">캐디백</a>
+                                                <Link to="">캐디백</Link>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="">기타</a>
+                                        <Link to="">기타</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <a href="">골프화</a>
+                                                <Link to="">골프화</Link>
                                             </li>
                                             <li>
-                                                <a href="">장갑</a>
+                                                <Link to="">장갑</Link>
                                             </li>
                                             <li>
-                                                <a href="">벨트</a>
+                                                <Link to="">벨트</Link>
                                             </li>
                                             <li>
-                                                <a href="">기타</a>
+                                                <Link to="">기타</Link>
                                             </li>
                                         </ul>
                                     </li>
@@ -546,9 +573,9 @@ const Header: React.FC = () => {
                             onMouseLeave={handleMouseLeave}
                             ref={el => (tabsliRef.current[5] = el)}
                         >
-                            <a className="gnb-link" href="">
+                            <Link className="gnb-link" to="/productlist/outlet">
                                 OUTLET
-                            </a>
+                            </Link>
                             <div
                                 className={
                                     isActive === 5
@@ -558,41 +585,41 @@ const Header: React.FC = () => {
                             >
                                 <ul>
                                     <li>
-                                        <a href="">여성</a>
+                                        <Link to="">여성</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <a href="">아우터</a>
+                                                <Link to="">아우터</Link>
                                             </li>
                                             <li>
-                                                <a href="">상의</a>
+                                                <Link to="">상의</Link>
                                             </li>
                                             <li>
-                                                <a href="">하의</a>
+                                                <Link to="">하의</Link>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="">남성</a>
+                                        <Link to="">남성</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <a href="">아우터</a>
+                                                <Link to="">아우터</Link>
                                             </li>
                                             <li>
-                                                <a href="">상의</a>
+                                                <Link to="">상의</Link>
                                             </li>
                                             <li>
-                                                <a href="">하의</a>
+                                                <Link to="">하의</Link>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="">액세서리</a>
+                                        <Link to="">액세서리</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <a href="">남성</a>
+                                                <Link to="">남성</Link>
                                             </li>
                                             <li>
-                                                <a href="">여성</a>
+                                                <Link to="">여성</Link>
                                             </li>
                                         </ul>
                                     </li>
@@ -600,34 +627,34 @@ const Header: React.FC = () => {
                             </div>
                         </li>
                         <li className="gnb-li promotion">
-                            <a
+                            <Link
                                 className="gnb-link"
-                                href="/promotion"
+                                to="/promotion"
                                 onMouseEnter={handleMouseEnterNoIdx}
                                 onMouseLeave={handleMouseLeaveNoIdx}
                             >
                                 PROMOTION
-                            </a>
+                            </Link>
                         </li>
                         <li className="gnb-li review">
-                            <a
+                            <Link
                                 className="gnb-link"
-                                href=""
+                                to=""
                                 onMouseEnter={handleMouseEnterNoIdx}
                                 onMouseLeave={handleMouseLeaveNoIdx}
                             >
                                 REVIEW
-                            </a>
+                            </Link>
                         </li>
                         <li className="gnb-li store">
-                            <a
+                            <Link
                                 className="gnb-link"
-                                href=""
+                                to=""
                                 onMouseEnter={handleMouseEnterNoIdx}
                                 onMouseLeave={handleMouseLeaveNoIdx}
                             >
                                 STORE
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
@@ -643,44 +670,44 @@ const Header: React.FC = () => {
                             <span>검색</span>
                         </li>
                         <li>
-                            <a href="" className="btn-login">
+                            <Link to="" className="btn-login">
                                 {isOn ? (
                                     <img src={btnLoginBlack} alt="검색" />
                                 ) : (
                                     <img src={btnLogin} alt="검색" />
                                 )}
                                 <span>로그인</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="" className="btn-mypage">
+                            <Link to="" className="btn-mypage">
                                 {isOn ? (
                                     <img src={btnMypageBlack} alt="검색" />
                                 ) : (
                                     <img src={btnMypage} alt="검색" />
                                 )}
                                 <span>마이페이지</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="/cart" className="btn-cart">
+                            <Link to="/cart" className="btn-cart">
                                 {isOn ? (
                                     <img src={btnCartBlack} alt="검색" />
                                 ) : (
                                     <img src={btnCart} alt="검색" />
                                 )}
                                 <span>장바구니</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="" className="btn-service">
+                            <Link to="" className="btn-service">
                                 {isOn ? (
                                     <img src={btnServiceBlack} alt="검색" />
                                 ) : (
                                     <img src={btnService} alt="검색" />
                                 )}
                                 <span>고객센터</span>
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
@@ -748,7 +775,7 @@ const Header: React.FC = () => {
                                         <dd>
                                             <ul>
                                                 <li>
-                                                    <a href=""></a>
+                                                    <Link to=""></Link>
                                                 </li>
                                                 <li></li>
                                                 <li></li>

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 // data
 import newProductData from '../../data/json/products_new.json';
+import womenProductData from '../../data/json/products_women.json';
+
 // component
 import ProductCard from '../../components/ProductCard/ProductCard';
 
@@ -16,7 +18,16 @@ import iconLast from '/assets/icon/icon-pagination-last.png';
 import iconBasket from '/assets/icon/icon-basket.png';
 import iconBasketGet from '/assets/icon/icon-basket-get.png';
 
-const ProductList = () => {
+// combine datas
+const combinedProductsData = [...newProductData, ...womenProductData];
+
+interface ProductListProps {
+    category?: string; // Assuming category is optional
+}
+
+const ProductList: React.FC<ProductListProps> = () => {
+    const { category } = useParams();
+
     // react-router-dom
     const navigate = useNavigate();
     const location = useLocation();
@@ -25,19 +36,35 @@ const ProductList = () => {
     // pagination
     const itemsPerPage = 20;
     const [currentPage, setCurrentPage] = useState(page);
+
+    // const indexOfLastItem = currentPage * itemsPerPage;
+    // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    // const currentItems = newProductData.slice(
+    //     indexOfFirstItem,
+    //     indexOfLastItem,
+    // );
+    // const totalPages = Math.ceil(newProductData.length / itemsPerPage);
+
+    // Filter products based on category
+    const filteredProducts = combinedProductsData.filter(
+        product => product.category.toLowerCase() === category.toLowerCase(),
+    );
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = newProductData.slice(
+    const currentItems = filteredProducts.slice(
         indexOfFirstItem,
         indexOfLastItem,
     );
-    // Calculate total pages
-    const totalPages = Math.ceil(newProductData.length / itemsPerPage);
+    const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
     // Replace history.push with navigate
+    // useEffect(() => {
+    //     navigate(`/productlist?page=${currentPage}`);
+    // }, [currentPage, navigate]);
     useEffect(() => {
-        navigate(`/productlist?page=${currentPage}`);
-    }, [currentPage, navigate]);
+        navigate(`/productlist/${category}?page=${currentPage}`);
+    }, [currentPage, navigate, category]);
+
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
