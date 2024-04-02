@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
 import defaultImage from '/assets/product/default_image.png';
+import labelRecommend from '/assets/label/label-recommend.gif';
 
 import './ProductCard.scss';
 
 const ProductCard = ({ product }) => {
     const onErrorImg = e => {
         e.target.src = defaultImage;
+    };
+
+    const onErrorLabel = e => {
+        // 다른 라벨로 else if로 추가 하자
+        if (e.target.alt === '추천상품') {
+            e.target.src = labelRecommend;
+        }
     };
 
     return (
@@ -47,7 +55,12 @@ const ProductCard = ({ product }) => {
                     </div>
                     <div className="item-icon-box">
                         {product.labels.map((label, index) => (
-                            <img key={index} src={label[0]} alt={label[1]} />
+                            <img
+                                key={index}
+                                src={label[0]}
+                                alt={label[1]}
+                                onError={onErrorLabel}
+                            />
                         ))}
                     </div>
                 </div>
