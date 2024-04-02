@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 // data
-import newProductData from '../../data/json/product_new.json';
+import newProductData from '../../data/json/products_new.json';
 // component
 import ProductCard from '../../components/ProductCard/ProductCard';
 
@@ -8,13 +9,50 @@ import './ProductList.scss';
 
 import iconFilter from '/assets/icon/icon-filter.png';
 import iconFilterSet from '/assets/icon/icon-filter-set.png';
+import iconPrev from '/assets/icon/icon-pagination-prev.png';
 import iconNext from '/assets/icon/icon-pagination-next.png';
+import iconFirst from '/assets/icon/icon-pagination-first.png';
 import iconLast from '/assets/icon/icon-pagination-last.png';
 import iconBasket from '/assets/icon/icon-basket.png';
 import iconBasketGet from '/assets/icon/icon-basket-get.png';
 
 const ProductList = () => {
-    console.log('**', newProductData);
+    // react-router-dom
+    const navigate = useNavigate();
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const page = parseInt(searchParams.get('page') || '1', 10);
+    // pagination
+    const itemsPerPage = 20;
+    const [currentPage, setCurrentPage] = useState(page);
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = newProductData.slice(
+        indexOfFirstItem,
+        indexOfLastItem,
+    );
+    // Calculate total pages
+    const totalPages = Math.ceil(newProductData.length / itemsPerPage);
+
+    // Replace history.push with navigate
+    useEffect(() => {
+        navigate(`/productlist?page=${currentPage}`);
+    }, [currentPage, navigate]);
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+
+    const nextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    // Function to move to the previous page
+    const prevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
 
     return (
         <div className="productlist">
@@ -70,10 +108,7 @@ const ProductList = () => {
                     </div>
                     <div className="list_top_box">
                         <div className="list_info_box">
-                            <a
-                                href="javascript:void(0)"
-                                className="filter_open_btn on"
-                            >
+                            <a href="" className="filter_open_btn on">
                                 <img src={iconFilterSet} alt="필터" />
                                 <span>필터 닫기</span>
                             </a>
@@ -1037,7 +1072,7 @@ const ProductList = () => {
                                                             <div
                                                                 className="noUi-handle noUi-handle-upper"
                                                                 data-handle="1"
-                                                                tabindex="0"
+                                                                tabIndex={0}
                                                                 role="slider"
                                                                 aria-orientation="horizontal"
                                                                 aria-valuemin="0.0"
@@ -1078,91 +1113,15 @@ const ProductList = () => {
                                 <div className="goods_list_cont">
                                     <div className="item_basket_type">
                                         <ul>
-                                            {/* <li>
-                                                <div className="dn"></div>
-                                                <div className="item_cont">
-                                                    <div className="item_photo_box">
-                                                        <a href="/productdetail">
-                                                            <img
-                                                                src={
-                                                                    product_women_1
-                                                                }
-                                                                alt=""
-                                                            />
-                                                            <div className="item_link">
-                                                                <button
-                                                                    type="button"
-                                                                    className="btn_basket_get btn_add_wish"
-                                                                >
-                                                                    <img
-                                                                        src={
-                                                                            iconBasketGet
-                                                                        }
-                                                                        alt="찜하기"
-                                                                    />
-                                                                </button>
-                                                                <button
-                                                                    type="button"
-                                                                    className="btn_basket_cart btn_add_cart_ btn_open_layer"
-                                                                >
-                                                                    <img
-                                                                        src={
-                                                                            iconBasket
-                                                                        }
-                                                                        alt="장바구니"
-                                                                    />
-                                                                </button>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div className="item_info_cont">
-                                                        <div className="item_tit_box">
-                                                            <span className="cate_name">
-                                                                <a href="/productdetail">
-                                                                    NEW
-                                                                </a>
-                                                            </span>
-                                                            <a href="/productdetail">
-                                                                <strong className="item_name">
-                                                                    24 개더
-                                                                    플리츠
-                                                                    스커트
-                                                                    베이지
-                                                                    MDW1PC615
-                                                                    LBE
-                                                                </strong>
-                                                            </a>
-                                                        </div>
-                                                        <div className="item_money_box">
-                                                            <div>
-                                                                <strong className="item_price 3">
-                                                                    <span>
-                                                                        430,000
-                                                                    </span>
-                                                                </strong>
-                                                            </div>
-                                                        </div>
-                                                        <div className="item_icon_box">
-                                                            <img
-                                                                src={labelWomen}
-                                                                alt="여성용"
-                                                                className="middle"
-                                                            />{' '}
-                                                            <img
-                                                                src={labelMile}
-                                                                alt="두배적립"
-                                                                className="middle"
-                                                            />{' '}
-                                                            <img
-                                                                src={labelNew}
-                                                                alt="신상품"
-                                                                className="middle"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li> */}
-                                            {newProductData.map(
+                                            {/* {newProductData.map(
+                                                (product, index) => (
+                                                    <ProductCard
+                                                        key={index}
+                                                        product={product}
+                                                    />
+                                                ),
+                                            )} */}
+                                            {currentItems.map(
                                                 (product, index) => (
                                                     <ProductCard
                                                         key={index}
@@ -1179,32 +1138,67 @@ const ProductList = () => {
 
                     <div className="pagination">
                         <ul>
-                            <li>
-                                <a href="#">1</a>
+                            {/* {currentPage > 1 && (
+                                <li className="btn_page btn_page_prev">
+                                    <button
+                                        onClick={prevPage}
+                                        disabled={currentPage <= 1}
+                                    >
+                                        <img src={iconPrev} alt="이전" />
+                                        <span className="text">이전</span>
+                                    </button>
+                                </li>
+                            )} */}
+                            {/* <li className="btn_page btn_page_prev"> */}
+                            <li
+                                className={
+                                    currentPage > 1
+                                        ? 'btn_page btn_page_prev usable'
+                                        : 'btn_page btn_page_prev'
+                                }
+                            >
+                                <button onClick={prevPage}>
+                                    <img src={iconPrev} alt="이전" />
+                                    <span className="text">이전</span>
+                                </button>
                             </li>
-                            <li>
-                                <a href="#">2</a>
-                            </li>
-                            <li>
-                                <a href="#">3</a>
-                            </li>
-                            <li>
-                                <a href="#">4</a>
-                            </li>
-                            <li>
-                                <a href="#">5</a>
-                            </li>
-                            <li className="btn_page btn_page_next">
-                                <a href="#">
-                                    <img src={iconNext} alt="" />
-                                    다음
-                                </a>
-                            </li>
-                            <li className="btn_page btn_page_last">
-                                <a href="#">
-                                    <img src={iconLast} alt="" />
-                                    다음
-                                </a>
+
+                            {Array.from({ length: totalPages }, (_, index) => (
+                                <li
+                                    key={index}
+                                    className={
+                                        currentPage === index + 1
+                                            ? 'btn_page active'
+                                            : 'btn_page'
+                                    }
+                                >
+                                    <button onClick={() => paginate(index + 1)}>
+                                        {index + 1}
+                                    </button>
+                                </li>
+                            ))}
+                            {/* {currentPage < totalPages && (
+                                <li className="btn_page btn_page_next">
+                                    <button
+                                        onClick={nextPage}
+                                        disabled={currentPage >= totalPages}
+                                    >
+                                        <img src={iconNext} alt="다음" />
+                                        <span className="text">다음</span>
+                                    </button>
+                                </li>
+                            )} */}
+                            <li
+                                className={
+                                    currentPage < totalPages
+                                        ? 'btn_page btn_page_next usable'
+                                        : 'btn_page btn_page_next'
+                                }
+                            >
+                                <button onClick={nextPage}>
+                                    <img src={iconNext} alt="다음" />
+                                    <span className="text">다음</span>
+                                </button>
                             </li>
                         </ul>
                     </div>

@@ -736,51 +736,88 @@
             }
 
             .pagination {
-                margin: 20px 0 0 0;
+                margin: 60px 0;
 
                 ul {
-                    padding: 20px 0 0;
                     text-align: center;
 
                     li {
                         display: inline-block;
                         vertical-align: middle;
 
-                        a {
-                            display: block;
-                            padding: 0;
+                        button {
+                            position: relative;
+                            border: none;
+                            background-color: transparent;
                             height: 30px;
                             width: 30px;
                             color: #242424;
                             font-size: 16px;
-                            line-height: 30px;
-                            vertical-align: middle;
+
+                            &:focus {
+                                outline: none;
+                            }
+
+                            // 텍스트 숨시고, web accessibility는 가능
+                            .text {
+                                position: absolute;
+                                width: 1px;
+                                height: 1px;
+                                margin: -1px;
+                                padding: 0;
+                                overflow: hidden;
+                                clip: rect(0, 0, 0, 0);
+                                border: 0;
+                            }
                         }
                     }
 
                     .btn_page {
+                        margin-right: 10px;
                         min-width: 15px;
                         height: 30xp;
 
-                        a {
+                        button {
                             min-width: 15px;
-                            width: auto;
-                            font-size: 0;
+                        }
+
+                        &.active {
+                            button {
+                                border-radius: 50%;
+                                background-color: #006c68;
+                                color: #fff;
+                            }
+                        }
+
+                        &:hover {
+                            button {
+                                border-radius: 50%;
+                                background-color: rgba(0, 108, 104, 0.3);
+                                color: #fff;
+                            }
+                        }
+                    }
+                    .btn_page_prev,
+                    .btn_page_next {
+                        button {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding: 5px 10px;
+                            border-radius: 5px;
+
+                            &:hover {
+                                background-color: darken(#f0f0f0, 10%);
+                            }
 
                             img {
-                                display: none;
+                                display: inline;
                             }
                         }
-                    }
-                    .btn_page_next {
-                        a {
-                            img {
-                            }
-                        }
-                    }
-                    .btn_page_last {
-                        a {
-                            img {
+
+                        &.usable {
+                            button {
+                                background-color: #ececec;
                             }
                         }
                     }
