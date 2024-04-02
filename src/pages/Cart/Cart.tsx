@@ -59,7 +59,7 @@ const Cart = () => {
                                 method="post"
                                 target="ifrmProcess"
                             >
-                                <input type="hidden" name="mode" value="" />
+                                <input type="hidden" name="mode" />
                                 <input
                                     type="hidden"
                                     name="cart[cartSno]"

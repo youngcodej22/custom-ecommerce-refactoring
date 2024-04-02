@@ -695,7 +695,7 @@ const Header: React.FC = () => {
                         <span className="btn-close">
                             <img src={btnClose} alt="검색 닫기" />
                         </span>
-                        <input type="hidden" name="adUrl" value="" />
+                        <input type="hidden" name="adUrl" />
                         <fieldset>
                             <legend>검색폼</legend>
                             <div className="search-wrap">
