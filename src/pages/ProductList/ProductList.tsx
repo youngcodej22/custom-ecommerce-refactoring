@@ -3,6 +3,9 @@ import { useNavigate, useLocation, useParams } from 'react-router-dom';
 // data
 import newProductData from '../../data/json/products_new.json';
 import womenProductData from '../../data/json/products_women.json';
+import menProductData from '../../data/json/products_men.json';
+import accProductData from '../../data/json/products_acc.json';
+import outletProductData from '../../data/json/products_outlet.json';
 
 // component
 import ProductCard from '../../components/ProductCard/ProductCard';
@@ -19,31 +22,30 @@ import iconBasket from '/assets/icon/icon-basket.png';
 import iconBasketGet from '/assets/icon/icon-basket-get.png';
 
 // combine datas
-const combinedProductsData = [...newProductData, ...womenProductData];
+const combinedProductsData = [
+    ...newProductData,
+    ...womenProductData,
+    ...menProductData,
+    ...accProductData,
+    ...outletProductData,
+];
 
 interface ProductListProps {
     category?: string; // Assuming category is optional
 }
 
 const ProductList: React.FC<ProductListProps> = () => {
-    const { category } = useParams();
-
     // react-router-dom
+    const { category } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
-    const page = parseInt(searchParams.get('page') || '1', 10);
     // pagination
     const itemsPerPage = 20;
+    const page = parseInt(searchParams.get('page') || '1', 10);
     const [currentPage, setCurrentPage] = useState(page);
-
-    // const indexOfLastItem = currentPage * itemsPerPage;
-    // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    // const currentItems = newProductData.slice(
-    //     indexOfFirstItem,
-    //     indexOfLastItem,
-    // );
-    // const totalPages = Math.ceil(newProductData.length / itemsPerPage);
+    // State to keep track of visible page range
+    const [visiblePages, setVisiblePages] = useState<number[]>([]);
 
     // Filter products based on category
     const filteredProducts = combinedProductsData.filter(
@@ -55,26 +57,66 @@ const ProductList: React.FC<ProductListProps> = () => {
         indexOfFirstItem,
         indexOfLastItem,
     );
+
     const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
     // Replace history.push with navigate
     // useEffect(() => {
-    //     navigate(`/productlist?page=${currentPage}`);
-    // }, [currentPage, navigate]);
+    //     navigate(`/productlist/${category}?page=${currentPage}`);
+    // }, [currentPage, navigate, category]);
+
+    // useEffect(() => {
+    //     // Calculate the range of pages to display
+    //     const startPage = Math.max(1, currentPage - 4);
+    //     const endPage = Math.min(totalPages, startPage + 9);
+    //     const pages = Array.from(
+    //         { length: endPage - startPage + 1 },
+    //         (_, i) => startPage + i,
+    //     );
+    //     setVisiblePages(pages);
+
+    //     // Update the URL
+    //     navigate(`/productlist/${category}?page=${currentPage}`);
+    // }, [currentPage, totalPages, navigate, category]);
+
     useEffect(() => {
+        // Calculate the start of the current pagination window
+        const paginationWindowStart =
+            Math.floor((currentPage - 1) / 10) * 10 + 1;
+
+        // Calculate the end of the current pagination window
+        const endPage = Math.min(totalPages, paginationWindowStart + 9);
+
+        // Generate the array of page numbers for the current window
+        const pages = Array.from(
+            { length: endPage - paginationWindowStart + 1 },
+            (_, i) => paginationWindowStart + i,
+        );
+
+        setVisiblePages(pages);
+
+        // Update the URL
         navigate(`/productlist/${category}?page=${currentPage}`);
-    }, [currentPage, navigate, category]);
+    }, [currentPage, totalPages, navigate, category]);
 
     // Change page
-    const paginate = pageNumber => setCurrentPage(pageNumber);
+    const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+    // const nextPage = () =>
+    //     setCurrentPage(currentPage => Math.min(totalPages, currentPage + 1));
+    // const prevPage = () =>
+    //     setCurrentPage(currentPage => Math.max(1, currentPage - 1));
 
+    const firstPage = () => {
+        setCurrentPage(1);
+    };
+    const lastPage = () => {
+        setCurrentPage(totalPages);
+    };
     const nextPage = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
         }
     };
-
-    // Function to move to the previous page
     const prevPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
@@ -1179,6 +1221,18 @@ const ProductList: React.FC<ProductListProps> = () => {
                             {/* <li className="btn_page btn_page_prev"> */}
                             <li
                                 className={
+                                    currentPage !== 1
+                                        ? 'btn_page btn_page_next usable'
+                                        : 'btn_page btn_page_next'
+                                }
+                            >
+                                <button onClick={firstPage}>
+                                    <img src={iconFirst} alt="맨앞" />
+                                    <span className="text">맨앞</span>
+                                </button>
+                            </li>
+                            <li
+                                className={
                                     currentPage > 1
                                         ? 'btn_page btn_page_prev usable'
                                         : 'btn_page btn_page_prev'
@@ -1190,7 +1244,7 @@ const ProductList: React.FC<ProductListProps> = () => {
                                 </button>
                             </li>
 
-                            {Array.from({ length: totalPages }, (_, index) => (
+                            {/* {Array.from({ length: totalPages }, (_, index) => (
                                 <li
                                     key={index}
                                     className={
@@ -1201,6 +1255,21 @@ const ProductList: React.FC<ProductListProps> = () => {
                                 >
                                     <button onClick={() => paginate(index + 1)}>
                                         {index + 1}
+                                    </button>
+                                </li>
+                            ))} */}
+
+                            {visiblePages.map(page => (
+                                <li
+                                    key={page}
+                                    className={
+                                        currentPage === page
+                                            ? 'btn_page active'
+                                            : 'btn_page'
+                                    }
+                                >
+                                    <button onClick={() => paginate(page)}>
+                                        {page}
                                     </button>
                                 </li>
                             ))}
@@ -1225,6 +1294,18 @@ const ProductList: React.FC<ProductListProps> = () => {
                                 <button onClick={nextPage}>
                                     <img src={iconNext} alt="다음" />
                                     <span className="text">다음</span>
+                                </button>
+                            </li>
+                            <li
+                                className={
+                                    currentPage !== totalPages
+                                        ? 'btn_page btn_page_next usable'
+                                        : 'btn_page btn_page_next'
+                                }
+                            >
+                                <button onClick={lastPage}>
+                                    <img src={iconLast} alt="맨끝" />
+                                    <span className="text">맨끝</span>
                                 </button>
                             </li>
                         </ul>
