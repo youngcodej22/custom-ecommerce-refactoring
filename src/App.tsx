@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 // context
-import { TabsContext, useTabState } from './context/context';
+// import { TabsContext, useTabState } from './context/context';
+import {
+    TabsContext,
+    useTabState,
+    PaginationContext,
+    usePagination,
+} from './context/context';
 // pages
 import Layout from './layout/Layout';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
@@ -78,10 +84,15 @@ const router = createBrowserRouter([
 
 function App() {
     const { isTabTitleOn, isTabBoxOn, handleClick } = useTabState();
+    // const { currentPage, setCurrentPage, category } = usePagination();
+    const { currentPage, setCurrentPage } = usePagination();
 
     return (
         <TabsContext.Provider value={{ isTabTitleOn, isTabBoxOn, handleClick }}>
-            <RouterProvider router={router} />
+            {/* <PaginationContext.Provider value={{ context }}> */}
+            <PaginationContext.Provider value={{ currentPage, setCurrentPage }}>
+                <RouterProvider router={router} />
+            </PaginationContext.Provider>
         </TabsContext.Provider>
     );
 }

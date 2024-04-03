@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 // data
 import newProductData from '../../data/json/products_new.json';
@@ -20,6 +20,7 @@ import iconFirst from '/assets/icon/icon-pagination-first.png';
 import iconLast from '/assets/icon/icon-pagination-last.png';
 import iconBasket from '/assets/icon/icon-basket.png';
 import iconBasketGet from '/assets/icon/icon-basket-get.png';
+import { PaginationContext } from '../../context/context';
 
 // combine datas
 const combinedProductsData = [
@@ -35,6 +36,9 @@ interface ProductListProps {
 }
 
 const ProductList: React.FC<ProductListProps> = () => {
+    // ! useState 대신 사용
+    const { currentPage, setCurrentPage } = useContext(PaginationContext);
+
     // react-router-dom
     const { category } = useParams();
     const navigate = useNavigate();
@@ -43,7 +47,13 @@ const ProductList: React.FC<ProductListProps> = () => {
     // pagination
     const itemsPerPage = 20;
     const page = parseInt(searchParams.get('page') || '1', 10);
-    const [currentPage, setCurrentPage] = useState(page);
+    // const [currentPage, setCurrentPage] = useState(page);
+
+    // * 초기화
+    useEffect(() => {
+        setCurrentPage(page);
+    }, []);
+
     // State to keep track of visible page range
     const [visiblePages, setVisiblePages] = useState<number[]>([]);
 
@@ -61,10 +71,6 @@ const ProductList: React.FC<ProductListProps> = () => {
     const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
     // Replace history.push with navigate
-    // useEffect(() => {
-    //     navigate(`/productlist/${category}?page=${currentPage}`);
-    // }, [currentPage, navigate, category]);
-
     // useEffect(() => {
     //     // Calculate the range of pages to display
     //     const startPage = Math.max(1, currentPage - 4);
@@ -105,7 +111,6 @@ const ProductList: React.FC<ProductListProps> = () => {
     //     setCurrentPage(currentPage => Math.min(totalPages, currentPage + 1));
     // const prevPage = () =>
     //     setCurrentPage(currentPage => Math.max(1, currentPage - 1));
-
     const firstPage = () => {
         setCurrentPage(1);
     };
@@ -122,6 +127,16 @@ const ProductList: React.FC<ProductListProps> = () => {
             setCurrentPage(currentPage - 1);
         }
     };
+
+    // useEffect(() => {
+    //     // Reset currentPage to 1 when category changes
+    //     setCurrentPage(1);
+    //     // Update the URL to reflect the reset to page 1
+    //     navigate(`/productlist/${category}?page=1`);
+
+    //     console.log('cate::', category);
+    //     console.log('page::', currentPage);
+    // }, [category, navigate]);
 
     return (
         <div className="productlist">

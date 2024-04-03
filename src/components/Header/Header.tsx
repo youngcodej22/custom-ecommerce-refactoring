@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logoBlackPC from '/assets/logo/logo_black_pc.png';
 import logoWhitePC from '/assets/logo/logo_white_pc.png';
@@ -15,12 +15,16 @@ import btnServiceBlack from '/assets/icon/icon-service-black.png';
 import btnService from '/assets/icon/icon-service.png';
 
 import './Header.scss';
+import { PaginationContext } from '../../context/context';
+// import { usePagination } from '../../context/context';
 
 // const Header: React.FC<{ isOn: boolean, setIsOn: React.Dispatch<React.SetStateAction<boolean>> }> = ({
 //     isOn,
 //     setIsOn,
 // }) => {
 const Header: React.FC = () => {
+    const { currentPage, setCurrentPage } = useContext(PaginationContext);
+
     const location = useLocation();
     const [isOn, setIsOn] = useState(false);
     const [isActiveBg, setIsActiveBg] = useState(false);
@@ -192,7 +196,7 @@ const Header: React.FC = () => {
         }
     };
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     // const handleNavigate = useCallback(() => {
     //     if (location.pathname.startsWith('/productlist/new')) {
@@ -201,14 +205,14 @@ const Header: React.FC = () => {
     //         navigate('/productlist/women?page=1');
     //     }
     // }, [location, navigate]);
-    const handleNavigate = e => {
-        if (e.target.href.includes('new')) {
-            navigate('/productlist/new?page=1');
-        } else if (e.target.href.includes('women')) {
-            navigate('/productlist/women?page=1');
-        }
-    };
 
+    // const handleNavigate = path => {
+    //     navigate(`${path}?page=1`);
+    // };
+    // * ProductList에 있는 currentPage를 context로 받아와서 처리
+    const handleNavigate = () => {
+        setCurrentPage(1);
+    };
     return (
         <>
             {/* <header id="header-nav" className={(isOn && scrollY > 0) || isOn ? 'on' : ''}> */}
@@ -282,8 +286,9 @@ const Header: React.FC = () => {
                         >
                             <Link
                                 className="gnb-link"
+                                // to="/productlist/new"
                                 to="/productlist/new"
-                                onClick={e => handleNavigate(e)}
+                                onClick={() => handleNavigate()}
                             >
                                 NEW
                             </Link>
@@ -362,8 +367,9 @@ const Header: React.FC = () => {
                         >
                             <Link
                                 className="gnb-link"
+                                // to="/productlist/women"
                                 to="/productlist/women"
-                                onClick={e => handleNavigate(e)}
+                                onClick={() => handleNavigate()}
                             >
                                 WOMEN
                             </Link>
@@ -429,7 +435,11 @@ const Header: React.FC = () => {
                             onMouseLeave={handleMouseLeave}
                             ref={el => (tabsliRef.current[3] = el)}
                         >
-                            <Link className="gnb-link" to="/productlist/men">
+                            <Link
+                                className="gnb-link"
+                                to="/productlist/men"
+                                onClick={() => handleNavigate()}
+                            >
                                 MEN
                             </Link>
                             <div
@@ -488,7 +498,11 @@ const Header: React.FC = () => {
                             onMouseLeave={handleMouseLeave}
                             ref={el => (tabsliRef.current[4] = el)}
                         >
-                            <Link className="gnb-link" to="/productlist/acc">
+                            <Link
+                                className="gnb-link"
+                                to="/productlist/acc"
+                                onClick={() => handleNavigate()}
+                            >
                                 ACC
                             </Link>
                             <div
@@ -573,7 +587,11 @@ const Header: React.FC = () => {
                             onMouseLeave={handleMouseLeave}
                             ref={el => (tabsliRef.current[5] = el)}
                         >
-                            <Link className="gnb-link" to="/productlist/outlet">
+                            <Link
+                                className="gnb-link"
+                                to="/productlist/outlet"
+                                onClick={() => handleNavigate()}
+                            >
                                 OUTLET
                             </Link>
                             <div
