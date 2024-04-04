@@ -32,7 +32,7 @@ const combinedProductsData = [
 ];
 
 interface ProductListProps {
-    category?: string; // Assuming category is optional
+    category: string;
 }
 
 const ProductList: React.FC<ProductListProps> = () => {
