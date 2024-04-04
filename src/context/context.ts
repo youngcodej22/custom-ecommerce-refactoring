@@ -1,13 +1,12 @@
 import { createContext, useState } from 'react';
-
+/**
+ * * Tabs.tsx - Tabs
+ */
 interface TabContextType {
     isTabTitleOn: number;
     isTabBoxOn: number;
     handleClick: (index: number) => void;
 }
-
-// export const TabsContext = createContext<User | undefined>(0);
-// export const TabsContext = createContext(undefined);
 
 export const TabsContext = createContext<TabContextType>({
     isTabTitleOn: 0,
@@ -30,56 +29,26 @@ export const useTabState = () => {
     return { isTabTitleOn, isTabBoxOn, handleClick };
 };
 
-// ------
-interface PaginationContextType {
+/**
+ * * ProductList.tsx - Pagination, Breadcrumb
+ */
+interface ProductListContextType {
     currentPage: number;
     // setCurrentPage: (page: number) => void;
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-    // category: string;
 }
 
-export const PaginationContext = createContext<PaginationContextType>({
+export interface CategoryType {
+    category?: string | undefined;
+}
+
+export const ProductListContext = createContext<ProductListContextType>({
     currentPage: 1,
-    setCurrentPage: () => {},
-    // category: '',
+    setCurrentPage: () => { },
 });
 
 export const usePagination = () => {
-    // const context = useContext(PaginationContext);
-    // if (context === undefined) {
-    //     throw new Error(
-    //         'usePagination must be used within a PaginationProvider',
-    //     );
-    // }
-    // return { context };
-
-    // const { category } = useParams();
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState<number>(1);
 
     return { currentPage, setCurrentPage };
 };
-
-// type PaginationProviderProps = {
-//     children: ReactNode;
-// };
-
-// export const PaginationProvider: React.FC<PaginationProviderProps> = ({
-//     children,
-// }) => {
-//     const { category } = useParams<{ category: string }>();
-//     const [currentPage, setCurrentPage] = useState(1);
-//     const navigate = useNavigate();
-
-//     useEffect(() => {
-//         // Navigate when category or currentPage changes
-//         navigate(`/productlist/${category}?page=${currentPage}`);
-//     }, [category, currentPage, navigate]);
-
-//     return (
-//         <PaginationContext.Provider
-//             value={{ currentPage, setCurrentPage, category }}
-//         >
-//             {children}
-//         </PaginationContext.Provider>
-//     );
-// };

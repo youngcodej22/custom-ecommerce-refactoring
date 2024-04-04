@@ -1,11 +1,10 @@
-import { useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 // context
 // import { TabsContext, useTabState } from './context/context';
 import {
     TabsContext,
     useTabState,
-    PaginationContext,
+    ProductListContext,
     usePagination,
 } from './context/context';
 // pages
@@ -89,10 +88,12 @@ function App() {
 
     return (
         <TabsContext.Provider value={{ isTabTitleOn, isTabBoxOn, handleClick }}>
-            {/* <PaginationContext.Provider value={{ context }}> */}
-            <PaginationContext.Provider value={{ currentPage, setCurrentPage }}>
+            {/* <ProductListContext.Provider value={{ context }}> */}
+            <ProductListContext.Provider
+                value={{ currentPage, setCurrentPage }}
+            >
                 <RouterProvider router={router} />
-            </PaginationContext.Provider>
+            </ProductListContext.Provider>
         </TabsContext.Provider>
     );
 }

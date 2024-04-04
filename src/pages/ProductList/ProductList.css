@@ -95,6 +95,8 @@
   padding-bottom: 30px;
 }
 .productlist .sub_content .content .list_top_box .list_info_box {
+  display: flex;
+  align-items: center;
   font-size: 16px;
 }
 .productlist .sub_content .content .list_top_box .list_info_box .filter_open_btn {
@@ -103,17 +105,23 @@
 }
 .productlist .sub_content .content .list_top_box .list_info_box .filter_open_btn img {
   margin-right: 15px;
+  vertical-align: sub;
 }
 .productlist .sub_content .content .list_top_box .list_info_box .filter_open_btn span {
   color: #242424;
   margin: 0;
   font-weight: 400;
+  font-size: 16px;
 }
 .productlist .sub_content .content .list_top_box .list_info_box span {
   display: inline-block;
   color: #888888;
   margin-left: 25px;
   font-weight: 300;
+  font-size: 16px;
+}
+.productlist .sub_content .content .list_top_box .list_info_box span strong {
+  font-weight: 600;
 }
 .productlist .sub_content .content .list_top_box .goods_pick_list form input:-moz-read-only {
   background: #f9f9f9;
@@ -164,21 +172,24 @@
   min-width: 280px;
   padding-right: 80px;
 }
+.productlist .sub_content .content .goods_list_flex .side_cont.hidden {
+  display: none;
+}
 .productlist .sub_content .content .goods_list_flex .side_cont .sub_search_box form #frmSearchDetail .depth1_cate_box {
   border-bottom: 1px solid #e5e5e5;
-  padding-bottom: 35px;
+  padding-bottom: 14px;
   margin-bottom: 35px;
 }
-.productlist .sub_content .content .goods_list_flex .side_cont .sub_search_box form #frmSearchDetail .depth1_cate_box .cate_box:first-child {
-  margin: 0;
+.productlist .sub_content .content .goods_list_flex .side_cont .sub_search_box form #frmSearchDetail .depth1_cate_box .cate_box {
+  margin-bottom: 10px;
 }
 .productlist .sub_content .content .goods_list_flex .side_cont .sub_search_box form #frmSearchDetail .depth1_cate_box .cate_box dt {
   font-size: 30px;
   font-weight: 700;
-  padding-bottom: 13px;
+  padding: 10px 0 13px 0;
 }
 .productlist .sub_content .content .goods_list_flex .side_cont .sub_search_box form #frmSearchDetail .depth1_cate_box .cate_box dd {
-  padding-bottom: 20px;
+  padding: 14px 0 20px 0;
 }
 .productlist .sub_content .content .goods_list_flex .side_cont .sub_search_box form #frmSearchDetail .depth1_cate_box .cate_box dd .cate_list ul {
   margin-left: 30px;

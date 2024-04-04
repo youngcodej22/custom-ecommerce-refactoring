@@ -15,7 +15,7 @@ import btnServiceBlack from '/assets/icon/icon-service-black.png';
 import btnService from '/assets/icon/icon-service.png';
 
 import './Header.scss';
-import { PaginationContext } from '../../context/context';
+import { ProductListContext } from '../../context/context';
 // import { usePagination } from '../../context/context';
 
 // const Header: React.FC<{ isOn: boolean, setIsOn: React.Dispatch<React.SetStateAction<boolean>> }> = ({
@@ -23,7 +23,7 @@ import { PaginationContext } from '../../context/context';
 //     setIsOn,
 // }) => {
 const Header: React.FC = () => {
-    const { currentPage, setCurrentPage } = useContext(PaginationContext);
+    const { setCurrentPage } = useContext(ProductListContext);
 
     const location = useLocation();
     const [isOn, setIsOn] = useState(false);
@@ -301,8 +301,8 @@ const Header: React.FC = () => {
                             >
                                 <ul>
                                     <li>
-                                        <Link to="">겨울 컬렉션</Link>
-                                        <ul className="gnb-deps2">
+                                        <Link to="">24S/S 컬렉션</Link>
+                                        {/* <ul className="gnb-deps2">
                                             <li>
                                                 <Link to="">씨슬 시그니처</Link>
                                             </li>
@@ -312,9 +312,9 @@ const Header: React.FC = () => {
                                             <li>
                                                 <Link to="">해리스 트위드</Link>
                                             </li>
-                                        </ul>
+                                        </ul> */}
                                     </li>
-                                    <li>
+                                    {/* <li>
                                         <Link to="">여성</Link>
                                         <ul className="gnb-deps2">
                                             <li>
@@ -355,7 +355,7 @@ const Header: React.FC = () => {
                                     </li>
                                     <li>
                                         <Link to="">온라인 상품권</Link>
-                                    </li>
+                                    </li> */}
                                 </ul>
                             </div>
                         </li>
@@ -390,6 +390,9 @@ const Header: React.FC = () => {
                                             <li>
                                                 <Link to="">스웨터</Link>
                                             </li>
+                                            <li>
+                                                <Link to="">원피스</Link>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li>
@@ -399,13 +402,10 @@ const Header: React.FC = () => {
                                                 <Link to="">팬츠</Link>
                                             </li>
                                             <li>
-                                                <Link to="">쇼츠</Link>
+                                                <Link to="">반바지</Link>
                                             </li>
                                             <li>
                                                 <Link to="">스커트</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="">원피스</Link>
                                             </li>
                                         </ul>
                                     </li>
@@ -416,13 +416,7 @@ const Header: React.FC = () => {
                                                 <Link to="">점퍼</Link>
                                             </li>
                                             <li>
-                                                <Link to="">다운/패딩</Link>
-                                            </li>
-                                            <li>
                                                 <Link to="">베스트</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="">가디건</Link>
                                             </li>
                                         </ul>
                                     </li>
@@ -468,7 +462,7 @@ const Header: React.FC = () => {
                                                 <Link to="">팬츠</Link>
                                             </li>
                                             <li>
-                                                <Link to="">쇼츠</Link>
+                                                <Link to="">반바지</Link>
                                             </li>
                                         </ul>
                                     </li>
@@ -479,13 +473,7 @@ const Header: React.FC = () => {
                                                 <Link to="">점퍼</Link>
                                             </li>
                                             <li>
-                                                <Link to="">다운/패딩</Link>
-                                            </li>
-                                            <li>
                                                 <Link to="">베스트</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="">가디건</Link>
                                             </li>
                                         </ul>
                                     </li>
@@ -514,64 +502,30 @@ const Header: React.FC = () => {
                             >
                                 <ul>
                                     <li>
-                                        <Link to="">모자</Link>
-                                        <ul className="gnb-deps2">
-                                            <li>
-                                                <Link to="">볼캡</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="">바이저</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="">버킷햇</Link>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <Link to="">양말</Link>
-                                        <ul className="gnb-deps2">
-                                            <li>
-                                                <Link to="">단목</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="">반목</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="">종목</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="">니삭스</Link>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
                                         <Link to="">가방</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <Link to="">볼파우치</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="">파우치</Link>
+                                                <Link to="">캐디백</Link>
                                             </li>
                                             <li>
                                                 <Link to="">보스턴백</Link>
                                             </li>
                                             <li>
-                                                <Link to="">캐디백</Link>
+                                                <Link to="">파우치</Link>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <Link to="">기타</Link>
+                                        <Link to="">용품</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <Link to="">골프화</Link>
+                                                <Link to="">모자</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="">양말</Link>
                                             </li>
                                             <li>
                                                 <Link to="">장갑</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="">벨트</Link>
                                             </li>
                                             <li>
                                                 <Link to="">기타</Link>
@@ -606,13 +560,13 @@ const Header: React.FC = () => {
                                         <Link to="">여성</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <Link to="">아우터</Link>
-                                            </li>
-                                            <li>
                                                 <Link to="">상의</Link>
                                             </li>
                                             <li>
                                                 <Link to="">하의</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="">아우터</Link>
                                             </li>
                                         </ul>
                                     </li>
@@ -620,13 +574,13 @@ const Header: React.FC = () => {
                                         <Link to="">남성</Link>
                                         <ul className="gnb-deps2">
                                             <li>
-                                                <Link to="">아우터</Link>
-                                            </li>
-                                            <li>
                                                 <Link to="">상의</Link>
                                             </li>
                                             <li>
                                                 <Link to="">하의</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="">아우터</Link>
                                             </li>
                                         </ul>
                                     </li>
