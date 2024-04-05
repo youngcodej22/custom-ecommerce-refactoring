@@ -101,6 +101,7 @@
 }
 .productlist .sub_content .content .list_top_box .list_info_box .filter_open_btn {
   display: inline-block;
+  padding-left: 0;
   padding-right: 5px;
 }
 .productlist .sub_content .content .list_top_box .list_info_box .filter_open_btn img {

@@ -8,6 +8,7 @@ interface ProductListFilterType {
     toggleFilterVisibility: () => void;
     isFilterVisible: boolean;
     countProducts: number;
+    onSortChange: (option: string) => void;
 }
 
 const pickList = [
@@ -29,7 +30,7 @@ const pickList = [
     {
         title: '판매순',
         id: 'sort2',
-        value: 'sellcnt',
+        value: 'sale',
     },
     {
         title: '선호도순',
@@ -42,7 +43,14 @@ const ProductListFilter = ({
     toggleFilterVisibility,
     isFilterVisible,
     countProducts,
+    onSortChange,
 }: ProductListFilterType) => {
+    const handleSortOptionChange = (
+        event: React.ChangeEvent<HTMLInputElement>,
+    ) => {
+        onSortChange(event.target.value);
+    };
+
     return (
         <div className="productlist-filter">
             <div className="list_top_box">
@@ -72,6 +80,7 @@ const ProductListFilter = ({
                                             className="radio"
                                             name="sort"
                                             value={pick.value}
+                                            onChange={handleSortOptionChange}
                                         />
                                         <label htmlFor={pick.id}>
                                             {pick.title}

@@ -42,6 +42,13 @@ const ProductList: React.FC = () => {
     // .filter_open_btn 누르면 .side_cont를 닫기
     const [isFilterVisible, setIsFilterVisible] = useState(false);
 
+    // ! input radio 선택 (ProductListFilter)
+    const [sortOption, setSortOption] = useState('');
+    const handleSortChange = (option: string) => {
+        setSortOption(option);
+    };
+
+    // button: 필터 ON / OFF
     const toggleFilterVisibility = () => {
         setIsFilterVisible(!isFilterVisible);
     };
@@ -53,28 +60,101 @@ const ProductList: React.FC = () => {
     const searchParams = new URLSearchParams(location.search);
 
     // Filter products based on category
-    const filteredProducts = combinedProductsData.filter(
-        product => product.category.toLowerCase() === category?.toLowerCase(),
-    );
-    const countProducts = filteredProducts.length;
+    // const filteredProducts = combinedProductsData.filter(
+    //     product => product.category.toLowerCase() === category?.toLowerCase(),
+    // );
+
+    // ! sort 2차 성공: 오름차순, 내림차순 동작 그리고 MEN, WOMEN 등 탭 바뀌어도 필터링 유지
+    const sortedAndFilteredProducts = React.useMemo(() => {
+        const filtered = combinedProductsData.filter(
+            product =>
+                product.category.toLowerCase() === category?.toLowerCase(),
+        );
+
+        // if (sortOption === 'price_asc') {
+        //     return filtered.sort(
+        //         (a, b) => parseInt(a.price) - parseInt(b.price),
+        //     );
+        // } else if (sortOption === 'price_dsc') {
+        //     return filtered.sort(
+        //         (a, b) => parseInt(b.price) - parseInt(a.price),
+        //     );
+        // }
+        // ? 문제: 오름차순해도 1,000,000원 상품이 가장 상단에 오는게 문제
+        // ! 해결: parseInt()는 ,에 관계 없이 첫자리 1에 대해서 정렬을 하기 때문에 ','를 제거하는 방법을 사용해야한다.
+        if (sortOption === 'price_asc') {
+            return filtered.sort((a, b) => {
+                // Remove commas before parsing as integer
+                const priceA = parseInt(a.price.replace(/,/g, ''), 10);
+                const priceB = parseInt(b.price.replace(/,/g, ''), 10);
+                return priceA - priceB;
+            });
+        } else if (sortOption === 'price_dsc') {
+            return filtered.sort((a, b) => {
+                // Remove commas before parsing as integer
+                const priceA = parseInt(a.price.replace(/,/g, ''), 10);
+                const priceB = parseInt(b.price.replace(/,/g, ''), 10);
+                return priceB - priceA;
+            });
+        } else if (sortOption === 'date') {
+            return filtered.sort((a, b) => {
+                const dateA = new Date(a.date);
+                const dateB = new Date(b.date);
+                return dateB.getTime() - dateA.getTime();
+            });
+        } else if (sortOption === 'like') {
+            return filtered.sort((a, b) => b.like - a.like);
+        } else if (sortOption === 'sale') {
+            return filtered.sort((a, b) => b.sale - a.sale);
+        }
+
+        return filtered;
+    }, [category, sortOption]);
+
+    // const countProducts = filteredProducts.length;
+    const countProducts = sortedAndFilteredProducts.length;
 
     // pagination
     const itemsPerPage = 20;
     const page = parseInt(searchParams.get('page') || '1', 10);
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = filteredProducts.slice(
+    // const currentItems = filteredProducts.slice(
+    //     indexOfFirstItem,
+    //     indexOfLastItem,
+    // );
+    // const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+    const currentItems = sortedAndFilteredProducts.slice(
         indexOfFirstItem,
         indexOfLastItem,
     );
-    const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+    const totalPages = Math.ceil(
+        sortedAndFilteredProducts.length / itemsPerPage,
+    );
+
+    // ! 첫 시도 sort 기능이 작동한다, but currentItems랑 바뀌지 않는다. 그리고 1,000,000 가장비싼 아이템이 제일 앞에 있는게 이상하다. 한개만
+    // useEffect(() => {
+    //     const sortedProducts = [...filteredProducts]; // Assuming filteredProducts is already defined
+
+    //     if (sortOption === 'price_asc') {
+    //         sortedProducts.sort(
+    //             (a, b) => parseInt(a.price) - parseInt(b.price),
+    //         );
+    //         console.log('**', sortedProducts);
+    //     } else if (sortOption === 'price_dsc') {
+    //         sortedProducts.sort(
+    //             (a, b) => parseInt(b.price) - parseInt(a.price),
+    //         );
+    //         console.log('@@', sortedProducts);
+    //     }
+    // }, [sortOption, filteredProducts, currentItems]);
 
     // * 초기화
     useEffect(() => {
         setCurrentPage(page);
     }, []);
 
-    // Replace history.push with navigate
+    // 페이지가 이동할 때마다 내가선택한 페이지를 중앙에 놓고 양옆에 4,5개 맞추는 방법, (내가 15번 페이지면 양쪽에 12 13 14 15 16 17... 이런식)
     // useEffect(() => {
     //     // Calculate the range of pages to display
     //     const startPage = Math.max(1, currentPage - 4);
@@ -107,7 +187,9 @@ const ProductList: React.FC = () => {
 
         // Update the URL
         navigate(`/productlist/${category}?page=${currentPage}`);
-    }, [currentPage, totalPages, navigate, category]);
+
+        // }, [currentPage, totalPages, navigate, category]);
+    }, [currentPage, navigate, category]);
 
     // Change page
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
@@ -132,16 +214,6 @@ const ProductList: React.FC = () => {
         }
     };
 
-    // useEffect(() => {
-    //     // Reset currentPage to 1 when category changes
-    //     setCurrentPage(1);
-    //     // Update the URL to reflect the reset to page 1
-    //     navigate(`/productlist/${category}?page=1`);
-
-    //     console.log('cate::', category);
-    //     console.log('page::', currentPage);
-    // }, [category, navigate]);
-
     return (
         <div className="productlist">
             <div className="sub_content">
@@ -154,6 +226,7 @@ const ProductList: React.FC = () => {
                         toggleFilterVisibility={toggleFilterVisibility}
                         isFilterVisible={isFilterVisible}
                         countProducts={countProducts}
+                        onSortChange={handleSortChange}
                     />
                     <div className="goods_list_flex">
                         <ProductListFilterSidebar

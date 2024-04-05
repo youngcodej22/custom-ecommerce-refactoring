@@ -34,9 +34,10 @@ li.product-card .item-cont .item-photo-box a::after {
   top: 0;
   bottom: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.026);
+  background: rgba(0, 0, 0, 0.03);
 }
 li.product-card .item-cont .item-photo-box a img {
+  display: block;
   width: 100%;
   transition: 0.6s;
 }
