@@ -287,7 +287,7 @@ const Header: React.FC = () => {
                             <Link
                                 className="gnb-link"
                                 // to="/productlist/new"
-                                to="/productlist/new"
+                                to="/productlist/new/all"
                                 onClick={() => handleNavigate()}
                             >
                                 NEW
@@ -368,7 +368,7 @@ const Header: React.FC = () => {
                             <Link
                                 className="gnb-link"
                                 // to="/productlist/women"
-                                to="/productlist/women"
+                                to="/productlist/women/all"
                                 onClick={() => handleNavigate()}
                             >
                                 WOMEN
@@ -431,7 +431,7 @@ const Header: React.FC = () => {
                         >
                             <Link
                                 className="gnb-link"
-                                to="/productlist/men"
+                                to="/productlist/men/all"
                                 onClick={() => handleNavigate()}
                             >
                                 MEN
@@ -488,7 +488,7 @@ const Header: React.FC = () => {
                         >
                             <Link
                                 className="gnb-link"
-                                to="/productlist/acc"
+                                to="/productlist/acc/all"
                                 onClick={() => handleNavigate()}
                             >
                                 ACC
@@ -543,7 +543,7 @@ const Header: React.FC = () => {
                         >
                             <Link
                                 className="gnb-link"
-                                to="/productlist/outlet"
+                                to="/productlist/outlet/all"
                                 onClick={() => handleNavigate()}
                             >
                                 OUTLET

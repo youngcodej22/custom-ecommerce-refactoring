@@ -52,7 +52,6 @@ header#header-nav .gnb .gnb-wrap .gnb-li .gnb-link {
   color: #fff;
   text-align: center;
   line-height: 49px;
-  letter-spacing: 1px;
 }
 @media (max-width: 1700px) {
   header#header-nav .gnb .gnb-wrap .gnb-li .gnb-link {

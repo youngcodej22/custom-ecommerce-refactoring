@@ -54,7 +54,7 @@ const ProductList: React.FC = () => {
     };
 
     // react-router-dom
-    const { category } = useParams();
+    const { category, subcategory, thirdcategory } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -183,13 +183,19 @@ const ProductList: React.FC = () => {
             (_, i) => paginationWindowStart + i,
         );
 
+        const thirdcategoryParam = thirdcategory ? thirdcategory : '';
+
         setVisiblePages(pages);
 
         // Update the URL
-        navigate(`/productlist/${category}?page=${currentPage}`);
+        // navigate(`/productlist/${category}?page=${currentPage}`);
+        // navigate(`/productlist/${category}/all?page=${currentPage}`);
+        navigate(
+            `/productlist/${category}/${subcategory}/${thirdcategoryParam}?page=${currentPage}`,
+        );
 
         // }, [currentPage, totalPages, navigate, category]);
-    }, [currentPage, navigate, category]);
+    }, [currentPage, navigate, category, subcategory, thirdcategory]);
 
     // Change page
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);

@@ -188,6 +188,12 @@
                                         cursor: pointer;
                                         color: #999999;
                                         font-weight: 300;
+
+                                        // 선호도순 default
+                                        &.on {
+                                            font-weight: 600;
+                                            color: #242424;
+                                        }
                                     }
                                 }
                             }
@@ -225,63 +231,6 @@
                                     border-bottom: 1px solid #e5e5e5;
                                     padding-bottom: 14px;
                                     margin-bottom: 35px;
-
-                                    .cate_box {
-                                        margin-bottom: 10px;
-
-                                        // &:first-child {
-                                        //     margin: 0;
-                                        // }
-
-                                        dt {
-                                            font-size: 30px;
-                                            font-weight: 700;
-                                            padding: 10px 0 13px 0;
-                                        }
-                                        dd {
-                                            padding: 14px 0 20px 0;
-
-                                            .cate_list {
-                                                ul {
-                                                    margin-left: 30px;
-
-                                                    li {
-                                                        a {
-                                                            display: block;
-                                                            padding: 12px 0;
-                                                            font-size: 18px;
-                                                            cursor: pointer;
-                                                            font-weight: 500;
-                                                        }
-
-                                                        span {
-                                                            display: block;
-                                                            padding: 12px 0;
-                                                            font-size: 18px;
-                                                            cursor: pointer;
-                                                            font-weight: 500;
-                                                        }
-
-                                                        ul {
-                                                            display: none;
-                                                            padding-bottom: 22px;
-
-                                                            li {
-                                                                a {
-                                                                    display: block;
-                                                                    color: #999999;
-                                                                    padding: 3px
-                                                                        0;
-                                                                    padding-left: 20px;
-                                                                    font-size: 16px;
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
                                 }
 
                                 .filter_tit {

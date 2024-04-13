@@ -40,13 +40,21 @@ const router = createBrowserRouter([
                 element: <ProductList />,
                 children: [
                     { index: true, element: <ProductList /> },
-                    { path: ':category', element: <ProductList /> },
                     {
-                        path: ':category',
+                        path: ':category/:subcategory/:thirdcategory',
                         element: <ProductList />,
                     },
-                    { path: ':category', element: <ProductList /> },
-                    { path: ':category', element: <ProductList /> },
+                    {
+                        path: ':category/:subcategory',
+                        element: <ProductList />,
+                    },
+                    // { path: ':category/all', element: <ProductList /> },
+                    // {
+                    //     path: ':category',
+                    //     element: <ProductList />,
+                    // },
+                    // { path: ':category/all', element: <ProductList /> },
+                    // { path: ':category/all', element: <ProductList /> },
                 ],
             },
             {

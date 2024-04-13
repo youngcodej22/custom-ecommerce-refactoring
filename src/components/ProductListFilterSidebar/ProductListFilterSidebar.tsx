@@ -120,7 +120,7 @@ const ProductListFilterSidebar = ({
                             <div className="depth1_cate_box">
                                 {cateBoxItems.map((categoryItem, index) => (
                                     <ProductListFilterCategoryBox
-                                        key={index}
+                                        id={index}
                                         categoryItem={categoryItem}
                                     />
                                 ))}

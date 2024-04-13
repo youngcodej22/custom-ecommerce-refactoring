@@ -163,6 +163,10 @@
   color: #999999;
   font-weight: 300;
 }
+.productlist .sub_content .content .list_top_box .goods_pick_list form .pick_list_box .pick_list li label.on {
+  font-weight: 600;
+  color: #242424;
+}
 .productlist .sub_content .content .goods_list_flex {
   display: flex;
   overflow: hidden;
@@ -180,45 +184,6 @@
   border-bottom: 1px solid #e5e5e5;
   padding-bottom: 14px;
   margin-bottom: 35px;
-}
-.productlist .sub_content .content .goods_list_flex .side_cont .sub_search_box form #frmSearchDetail .depth1_cate_box .cate_box {
-  margin-bottom: 10px;
-}
-.productlist .sub_content .content .goods_list_flex .side_cont .sub_search_box form #frmSearchDetail .depth1_cate_box .cate_box dt {
-  font-size: 30px;
-  font-weight: 700;
-  padding: 10px 0 13px 0;
-}
-.productlist .sub_content .content .goods_list_flex .side_cont .sub_search_box form #frmSearchDetail .depth1_cate_box .cate_box dd {
-  padding: 14px 0 20px 0;
-}
-.productlist .sub_content .content .goods_list_flex .side_cont .sub_search_box form #frmSearchDetail .depth1_cate_box .cate_box dd .cate_list ul {
-  margin-left: 30px;
-}
-.productlist .sub_content .content .goods_list_flex .side_cont .sub_search_box form #frmSearchDetail .depth1_cate_box .cate_box dd .cate_list ul li a {
-  display: block;
-  padding: 12px 0;
-  font-size: 18px;
-  cursor: pointer;
-  font-weight: 500;
-}
-.productlist .sub_content .content .goods_list_flex .side_cont .sub_search_box form #frmSearchDetail .depth1_cate_box .cate_box dd .cate_list ul li span {
-  display: block;
-  padding: 12px 0;
-  font-size: 18px;
-  cursor: pointer;
-  font-weight: 500;
-}
-.productlist .sub_content .content .goods_list_flex .side_cont .sub_search_box form #frmSearchDetail .depth1_cate_box .cate_box dd .cate_list ul li ul {
-  display: none;
-  padding-bottom: 22px;
-}
-.productlist .sub_content .content .goods_list_flex .side_cont .sub_search_box form #frmSearchDetail .depth1_cate_box .cate_box dd .cate_list ul li ul li a {
-  display: block;
-  color: #999999;
-  padding: 3px 0;
-  padding-left: 20px;
-  font-size: 16px;
 }
 .productlist .sub_content .content .goods_list_flex .side_cont .sub_search_box form #frmSearchDetail .filter_tit dt {
   display: flex;

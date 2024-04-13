@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 //assets
 import iconFilterSet from '/assets/icon/icon-filter-set.png';
 
@@ -45,10 +45,21 @@ const ProductListFilter = ({
     countProducts,
     onSortChange,
 }: ProductListFilterType) => {
+    // ? refresh후 re-render에서 다시 '선호도순'으로 되기 때문에 localstorage와 같은 것을 사용해보는 것을 고려
+    const [sortOption, setSortOption] = useState('sort1');
+
     const handleSortOptionChange = (
         event: React.ChangeEvent<HTMLInputElement>,
     ) => {
         onSortChange(event.target.value);
+    };
+
+    const handleSortOptionClick = (
+        event: React.MouseEvent<HTMLLabelElement>,
+    ) => {
+        const htmlForValue = event.currentTarget.getAttribute('for');
+        // nullish coalescing operator: 왼쪽이 null or undefined이면 오른쪽을 return
+        setSortOption(htmlForValue ?? '');
     };
 
     return (
@@ -82,7 +93,15 @@ const ProductListFilter = ({
                                             value={pick.value}
                                             onChange={handleSortOptionChange}
                                         />
-                                        <label htmlFor={pick.id}>
+                                        <label
+                                            htmlFor={pick.id}
+                                            className={
+                                                pick.id === sortOption
+                                                    ? 'on'
+                                                    : ''
+                                            }
+                                            onClick={handleSortOptionClick}
+                                        >
                                             {pick.title}
                                         </label>
                                     </li>
