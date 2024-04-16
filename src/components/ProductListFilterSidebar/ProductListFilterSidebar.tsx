@@ -38,7 +38,7 @@ const cateBoxItems = [
             },
             {
                 title: '하의',
-                subCategory: ['ALL', '팬츠', '반바지', '스커트'],
+                subCategory: ['ALL', '팬츠', '숏팬츠', '스커트'],
             },
             {
                 title: '아우터',
@@ -59,7 +59,7 @@ const cateBoxItems = [
             },
             {
                 title: '하의',
-                subCategory: ['ALL', '팬츠', '반바지'],
+                subCategory: ['ALL', '팬츠', '숏팬츠'],
             },
             {
                 title: '아우터',
