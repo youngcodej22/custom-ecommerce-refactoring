@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 // component
 import ProductListFilterCategoryBox from '../ProductListFilterCategoryBox/ProductListFilterCategoryBox';
 // assets
@@ -125,6 +124,7 @@ const ProductListFilterSidebar = ({
                                     />
                                 ))}
                             </div>
+                            {/* ! 상세 필터 기능 */}
                             <dl className="filter_tit">
                                 <dt>
                                     필터
