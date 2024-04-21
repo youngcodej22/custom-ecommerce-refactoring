@@ -1,4 +1,7 @@
 import { createContext, useState } from 'react';
+// data
+import { ProductType } from '../data/products'
+
 /**
  * * Tabs.tsx - Tabs
  */
@@ -36,6 +39,7 @@ interface ProductListContextType {
     currentPage: number;
     // setCurrentPage: (page: number) => void;
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+    combinedProductsData: ProductType[];
 }
 
 export interface CategoryType {
@@ -45,6 +49,7 @@ export interface CategoryType {
 export const ProductListContext = createContext<ProductListContextType>({
     currentPage: 1,
     setCurrentPage: () => { },
+    combinedProductsData: [] as ProductType[],
 });
 
 export const usePagination = () => {
@@ -52,3 +57,5 @@ export const usePagination = () => {
 
     return { currentPage, setCurrentPage };
 };
+
+

@@ -4,38 +4,6 @@ import { Link, useParams } from 'react-router-dom';
 import { ProductListContext } from '../../context/context';
 
 import './ProductListFilterCategoryBox.scss';
-
-// ! pages/ProductList 중복 제거하기
-// data
-import newProductData from '../../data/json/products_new.json';
-import womenProductData from '../../data/json/products_women.json';
-import menProductData from '../../data/json/products_men.json';
-import accProductData from '../../data/json/products_acc.json';
-import outletProductData from '../../data/json/products_outlet.json';
-
-interface Product {
-    category: string;
-    name: string;
-    price: string;
-    image: string;
-    labels: string[][];
-    acc: boolean;
-    subCategory?: string;
-    thirdCategory?: string;
-    date: string;
-    like: number;
-    sale: number;
-}
-
-// combine datas
-const combinedProductsData: Product[] = [
-    ...newProductData,
-    ...womenProductData,
-    ...menProductData,
-    ...accProductData,
-    ...outletProductData,
-];
-
 interface MainCategory {
     title: string;
     subCategory?: string[];
@@ -65,7 +33,8 @@ interface ActiveSelection {
 const ProductListFilterCategoryBox: React.FC<
     ProductListFilterCategoryBoxProps
 > = ({ id, categoryItem }) => {
-    const { setCurrentPage } = useContext(ProductListContext);
+    const { setCurrentPage, combinedProductsData } =
+        useContext(ProductListContext);
 
     // ! state를 쓰면 re-rendering 문제때문에 useEffect까지 써야하는데, 이는 문제가 있다고 판단, 그래서 useParams를 이용해서 현재 url로 판단해서 처리했다.
     const { category, subcategory, thirdcategory } = useParams<RouteParams>();
@@ -93,13 +62,6 @@ const ProductListFilterCategoryBox: React.FC<
     };
 
     const filteredProducts = React.useMemo(() => {
-        // const filtered = combinedProductsData.filter(
-        //     product =>
-        //         product.category.toLowerCase() === category?.toLowerCase(),
-        // );
-
-        // return filtered;
-
         let filtered;
 
         if (category && subcategory && thirdcategory) {
@@ -123,41 +85,10 @@ const ProductListFilterCategoryBox: React.FC<
                     subcategory?.toLowerCase(),
             ));
         }
-
-        //  else if (category) {
-        // If only category is specified, filter products based on the category
-        //     return combinedProductsData.filter(
-        //         product =>
-        //             product.category.toLowerCase() === category.toLowerCase(),
-        //     );
-        // } else if (thirdcategory === 'all') {
-        //     return combinedProductsData.filter(
-        //         product =>
-        //             product.subCategory?.toLowerCase() ===
-        //             thirdcategory.toLowerCase(),
-        //     );
-        // }
-
-        // Optionally, handle other cases, such as when neither category nor thirdcategory is specified
-        // This step depends on your application's requirements
         return filtered;
     }, [category, subcategory, thirdcategory]);
 
     console.log('*filteredProducts ', filteredProducts);
-
-    // useEffect(() => {
-    //     // Filter products based on the subcategory from the URL
-    //     if (subcategory) {
-    //         const filtered = combinedProductsData.filter(
-    //             product =>
-    //                 product.subCategory.toLowerCase() ===
-    //                 subcategory.toLowerCase(),
-    //         );
-    //         setFilteredProducts(filtered);
-    //     }
-
-    //     console.log('**filter:');
-    // }, [subcategory]);
 
     return (
         <dl className="product-list-filter-category-box cate_box">

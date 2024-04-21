@@ -19,6 +19,9 @@ import Cart from './pages/Cart/Cart';
 import Promotion from './pages/Promotion/Promotion';
 import Coordination from './pages/Coordination/Coordination';
 
+// data
+import { combinedProductsData } from './data/products';
+
 import './styles/components/style.css';
 
 const router = createBrowserRouter([
@@ -98,7 +101,11 @@ function App() {
         <TabsContext.Provider value={{ isTabTitleOn, isTabBoxOn, handleClick }}>
             {/* <ProductListContext.Provider value={{ context }}> */}
             <ProductListContext.Provider
-                value={{ currentPage, setCurrentPage }}
+                value={{
+                    currentPage,
+                    setCurrentPage,
+                    combinedProductsData,
+                }}
             >
                 <RouterProvider router={router} />
             </ProductListContext.Provider>
