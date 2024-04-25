@@ -15,12 +15,12 @@ const cateBoxItems = [
         title: 'NEW',
         mainCategory: [
             {
-                title: 'ALL',
-                subCategory: [],
+                subCategory: 'ALL',
+                thirdCategory: [],
             },
             {
-                title: '24S/S 컬렉션',
-                subCategory: [],
+                subCategory: '24S/S 컬렉션',
+                thirdCategory: [],
             },
         ],
     },
@@ -28,20 +28,20 @@ const cateBoxItems = [
         title: 'WOMEN',
         mainCategory: [
             {
-                title: 'ALL',
-                subCategory: [],
+                subCategory: 'ALL',
+                thirdCategory: [],
             },
             {
-                title: '상의',
-                subCategory: ['ALL', '티셔츠', '스웨터', '원피스'],
+                subCategory: '상의',
+                thirdCategory: ['ALL', '티셔츠', '스웨터', '원피스'],
             },
             {
-                title: '하의',
-                subCategory: ['ALL', '팬츠', '숏팬츠', '스커트'],
+                subCategory: '하의',
+                thirdCategory: ['ALL', '팬츠', '숏팬츠', '스커트'],
             },
             {
-                title: '아우터',
-                subCategory: ['ALL', '점퍼', '베스트'],
+                subCategory: '아우터',
+                thirdCategory: ['ALL', '점퍼', '베스트'],
             },
         ],
     },
@@ -49,20 +49,20 @@ const cateBoxItems = [
         title: 'MEN',
         mainCategory: [
             {
-                title: 'ALL',
-                subCategory: [],
+                subCategory: 'ALL',
+                thirdCategory: [],
             },
             {
-                title: '상의',
-                subCategory: ['ALL', '티셔츠', '스웨터'],
+                subCategory: '상의',
+                thirdCategory: ['ALL', '티셔츠', '스웨터'],
             },
             {
-                title: '하의',
-                subCategory: ['ALL', '팬츠', '숏팬츠'],
+                subCategory: '하의',
+                thirdCategory: ['ALL', '팬츠', '숏팬츠'],
             },
             {
-                title: '아우터',
-                subCategory: ['ALL', '점퍼', '베스트'],
+                subCategory: '아우터',
+                thirdCategory: ['ALL', '점퍼', '베스트'],
             },
         ],
     },
@@ -70,16 +70,16 @@ const cateBoxItems = [
         title: 'ACC',
         mainCategory: [
             {
-                title: 'ALL',
-                subCategory: [],
+                subCategory: 'ALL',
+                thirdCategory: [],
             },
             {
-                title: '가방',
-                subCategory: ['ALL', '캐디백', '보스턴백', '파우치'],
+                subCategory: '가방',
+                thirdCategory: ['ALL', '캐디백', '보스턴백', '파우치'],
             },
             {
-                title: '용품',
-                subCategory: ['ALL', '모자', '양말', '장갑', '기타'],
+                subCategory: '용품',
+                thirdCategory: ['ALL', '모자', '양말', '장갑', '기타'],
             },
         ],
     },
@@ -87,20 +87,20 @@ const cateBoxItems = [
         title: 'OUTLET',
         mainCategory: [
             {
-                title: 'ALL',
-                subCategory: [],
+                subCategory: 'ALL',
+                thirdCategory: [],
             },
             {
-                title: '여성',
-                subCategory: ['ALL', '상의', '하의', '아우터'],
+                subCategory: '여성',
+                thirdCategory: ['ALL', '상의', '하의', '아우터'],
             },
             {
-                title: '남성',
-                subCategory: ['ALL', '상의', '하의', '아우터'],
+                subCategory: '남성',
+                thirdCategory: ['ALL', '상의', '하의', '아우터'],
             },
             {
-                title: '악세서리',
-                subCategory: ['ALL', '남성', '여성'],
+                subCategory: '악세서리',
+                thirdCategory: ['ALL', '남성', '여성'],
             },
         ],
     },

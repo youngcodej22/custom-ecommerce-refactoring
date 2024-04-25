@@ -16,12 +16,14 @@ import iconLast from '/assets/icon/icon-pagination-last.png';
 // import iconBasketGet from '/assets/icon/icon-basket-get.png';
 // state management
 import { ProductListContext } from '../../context/context';
+import useFilteredProducts from '../../hooks/useFilteredProducts';
 
 const ProductList: React.FC = () => {
     // ! useState 대신 사용
     // const [currentPage, setCurrentPage] = useState(page);
-    const { currentPage, setCurrentPage, combinedProductsData } =
-        useContext(ProductListContext);
+    // const { currentPage, setCurrentPage, combinedProductsData } =
+    // useContext(ProductListContext);
+    const { currentPage, setCurrentPage } = useContext(ProductListContext);
 
     // State to keep track of visible page range
     const [visiblePages, setVisiblePages] = useState<number[]>([]);
@@ -45,12 +47,52 @@ const ProductList: React.FC = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
 
+    const filteredProducts = useFilteredProducts();
+
     // ! sort 2차 성공: 오름차순, 내림차순 동작 그리고 MEN, WOMEN 등 탭 바뀌어도 필터링 유지
+    // const sortedAndFilteredProducts = React.useMemo(() => {
+    //     const filtered = combinedProductsData.filter(
+    //         product =>
+    //             product.category.toLowerCase() === category?.toLowerCase(),
+    //     );
+
+    //     // ? 문제: 오름차순해도 1,000,000원 상품이 가장 상단에 오는게 문제
+    //     // ! 해결: parseInt()는 ,에 관계 없이 첫자리 1에 대해서 정렬을 하기 때문에 ','를 제거하는 방법을 사용해야한다.
+    //     if (sortOption === 'price_asc') {
+    //         return filtered.sort((a, b) => {
+    //             // Remove commas before parsing as integer
+    //             const priceA = parseInt(a.price.replace(/,/g, ''), 10);
+    //             const priceB = parseInt(b.price.replace(/,/g, ''), 10);
+    //             return priceA - priceB;
+    //         });
+    //     } else if (sortOption === 'price_dsc') {
+    //         return filtered.sort((a, b) => {
+    //             // Remove commas before parsing as integer
+    //             const priceA = parseInt(a.price.replace(/,/g, ''), 10);
+    //             const priceB = parseInt(b.price.replace(/,/g, ''), 10);
+    //             return priceB - priceA;
+    //         });
+    //     } else if (sortOption === 'date') {
+    //         return filtered.sort((a, b) => {
+    //             const dateA = new Date(a.date);
+    //             const dateB = new Date(b.date);
+    //             return dateB.getTime() - dateA.getTime();
+    //         });
+    //     } else if (sortOption === 'like') {
+    //         return filtered.sort((a, b) => b.like - a.like);
+    //     } else if (sortOption === 'sale') {
+    //         return filtered.sort((a, b) => b.sale - a.sale);
+    //     }
+
+    //     return filtered;
+    // }, [category, sortOption]);
+
     const sortedAndFilteredProducts = React.useMemo(() => {
-        const filtered = combinedProductsData.filter(
-            product =>
-                product.category.toLowerCase() === category?.toLowerCase(),
-        );
+        // const filtered = combinedProductsData.filter(
+        //     product =>
+        //         product.category.toLowerCase() === category?.toLowerCase(),
+        // );
+        const filtered = filteredProducts;
 
         // ? 문제: 오름차순해도 1,000,000원 상품이 가장 상단에 오는게 문제
         // ! 해결: parseInt()는 ,에 관계 없이 첫자리 1에 대해서 정렬을 하기 때문에 ','를 제거하는 방법을 사용해야한다.

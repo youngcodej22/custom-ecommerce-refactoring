@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import { ProductListContext } from '../../context/context';
@@ -6,7 +6,8 @@ import { ProductListContext } from '../../context/context';
 import './ProductListFilterCategoryBox.scss';
 interface MainCategory {
     title: string;
-    subCategory?: string[];
+    subCategory: string;
+    thirdCategory?: string[];
 }
 
 interface ProductListFilterCategoryBoxProps {
@@ -14,12 +15,10 @@ interface ProductListFilterCategoryBoxProps {
         title: string;
         mainCategory: MainCategory[];
     };
-    // category: string;
-    // subcategory: string;
-    // thirdcategory: string;
 }
 
 interface RouteParams {
+    [key: string]: string | undefined;
     category?: string;
     subcategory?: string;
     thirdcategory?: string;
@@ -28,24 +27,22 @@ interface RouteParams {
 interface ActiveSelection {
     mainCategory: string | null;
     subCategory: string | null;
+    thirdCategory: string | null;
 }
 
 const ProductListFilterCategoryBox: React.FC<
     ProductListFilterCategoryBoxProps
 > = ({ id, categoryItem }) => {
-    const { setCurrentPage, combinedProductsData } =
-        useContext(ProductListContext);
+    const { setCurrentPage } = useContext(ProductListContext);
 
     // ! state를 쓰면 re-rendering 문제때문에 useEffect까지 써야하는데, 이는 문제가 있다고 판단, 그래서 useParams를 이용해서 현재 url로 판단해서 처리했다.
-    const { category, subcategory, thirdcategory } = useParams<RouteParams>();
+    const { category, thirdcategory } = useParams<RouteParams>();
     const [openSubCate, setOpenSubCate] = useState<null | number>(null);
-
-    // ! 사이드바 tab 클릭 시 > subcategory 필터링
-    // const [filteredProducts, setFilteredProducts] = useState([]);
 
     const [activeSelection, setActiveSelection] = useState<ActiveSelection>({
         mainCategory: null,
         subCategory: null,
+        thirdCategory: null,
     });
 
     const handleNavigate = () => {
@@ -61,34 +58,34 @@ const ProductListFilterCategoryBox: React.FC<
         });
     };
 
-    const filteredProducts = React.useMemo(() => {
-        let filtered;
+    // const filteredProducts = React.useMemo(() => {
+    //     let filtered;
 
-        if (category && subcategory && thirdcategory) {
-            return (filtered = combinedProductsData.filter(
-                product =>
-                    product.category.toLowerCase() === category.toLowerCase() &&
-                    product.subCategory?.toLowerCase() ===
-                        subcategory.toLowerCase() &&
-                    product.thirdCategory?.toLowerCase() ===
-                        thirdcategory.toLowerCase(),
-            ));
-        } else if (subcategory === 'all') {
-            return (filtered = combinedProductsData.filter(
-                product =>
-                    product.category.toLowerCase() === category?.toLowerCase(),
-            ));
-        } else if (thirdcategory === 'all') {
-            return (filtered = combinedProductsData.filter(
-                product =>
-                    product.subCategory?.toLowerCase() ===
-                    subcategory?.toLowerCase(),
-            ));
-        }
-        return filtered;
-    }, [category, subcategory, thirdcategory]);
+    //     if (category && subcategory && thirdcategory) {
+    //         return (filtered = combinedProductsData.filter(
+    //             product =>
+    //                 product.category.toLowerCase() === category.toLowerCase() &&
+    //                 product.subCategory?.toLowerCase() ===
+    //                     subcategory.toLowerCase() &&
+    //                 product.thirdCategory?.toLowerCase() ===
+    //                     thirdcategory.toLowerCase(),
+    //         ));
+    //     } else if (subcategory === 'all') {
+    //         return (filtered = combinedProductsData.filter(
+    //             product =>
+    //                 product.category.toLowerCase() === category?.toLowerCase(),
+    //         ));
+    //     } else if (thirdcategory === 'all') {
+    //         return (filtered = combinedProductsData.filter(
+    //             product =>
+    //                 product.subCategory?.toLowerCase() ===
+    //                 subcategory?.toLowerCase(),
+    //         ));
+    //     }
+    //     return filtered;
+    // }, [category, subcategory, thirdcategory]);
 
-    console.log('*filteredProducts ', filteredProducts);
+    // console.log('*filteredProducts ', filteredProducts);
 
     return (
         <dl className="product-list-filter-category-box cate_box">
@@ -102,7 +99,7 @@ const ProductListFilterCategoryBox: React.FC<
                                     key={mainIndex}
                                     className="cate-list-li-deps-1"
                                 >
-                                    {mainCat.subCategory?.length === 0 ? (
+                                    {mainCat.thirdCategory?.length === 0 ? (
                                         <Link
                                             to={`/productlist/${categoryItem.title.toLowerCase()}/all`}
                                             className={
@@ -117,18 +114,19 @@ const ProductListFilterCategoryBox: React.FC<
                                                 setActiveSelection({
                                                     mainCategory: null,
                                                     subCategory: null,
+                                                    thirdCategory: null,
                                                 });
                                                 setOpenSubCate(null);
                                             }}
                                         >
-                                            {mainCat.title}
+                                            {mainCat.subCategory}
                                         </Link>
                                     ) : (
                                         <span
                                             className={
                                                 openSubCate === mainIndex &&
-                                                activeSelection.mainCategory ===
-                                                    mainCat.title.toLowerCase()
+                                                activeSelection.subCategory ===
+                                                    mainCat.subCategory.toLowerCase()
                                                     ? 'on'
                                                     : ''
                                             }
@@ -138,16 +136,18 @@ const ProductListFilterCategoryBox: React.FC<
                                                 );
                                                 setActiveSelection({
                                                     mainCategory:
-                                                        mainCat.title.toLowerCase(),
-                                                    subCategory: null,
+                                                        categoryItem.title.toLowerCase(),
+                                                    subCategory:
+                                                        mainCat.subCategory.toLowerCase(),
+                                                    thirdCategory: null,
                                                 });
                                             }}
                                         >
-                                            {mainCat.title}
+                                            {mainCat.subCategory}
                                         </span>
                                     )}
                                     {mainCat.subCategory &&
-                                        mainCat.subCategory.length > 0 && (
+                                        mainCat.thirdCategory?.length > 0 && (
                                             <ul
                                                 className={
                                                     openSubCate === mainIndex
@@ -155,18 +155,18 @@ const ProductListFilterCategoryBox: React.FC<
                                                         : 'cate-list-ul-deps-2'
                                                 }
                                             >
-                                                {mainCat.subCategory.map(
-                                                    (subCat, subIndex) => (
+                                                {mainCat.thirdCategory?.map(
+                                                    (thirdCat, subIndex) => (
                                                         <li
                                                             key={subIndex}
                                                             className="cate-list-li-deps-2"
                                                         >
                                                             <Link
-                                                                to={`/productlist/${categoryItem.title.toLowerCase()}/${mainCat.title.toLowerCase()}/${subCat.toLowerCase()}`}
+                                                                to={`/productlist/${categoryItem.title.toLowerCase()}/${mainCat.subCategory.toLowerCase()}/${thirdCat.toLowerCase()}`}
                                                                 className={
                                                                     thirdcategory ===
-                                                                        subCat.toLowerCase() &&
-                                                                    activeSelection.subCategory !==
+                                                                        thirdCat.toLowerCase() &&
+                                                                    activeSelection.thirdCategory !==
                                                                         null
                                                                         ? 'on'
                                                                         : ''
@@ -175,14 +175,16 @@ const ProductListFilterCategoryBox: React.FC<
                                                                     setActiveSelection(
                                                                         {
                                                                             mainCategory:
-                                                                                mainCat.title.toLowerCase(),
+                                                                                categoryItem.title.toLowerCase(),
                                                                             subCategory:
-                                                                                subCat.toLowerCase(),
+                                                                                mainCat.subCategory.toLowerCase(),
+                                                                            thirdCategory:
+                                                                                thirdCat.toLowerCase(),
                                                                         },
                                                                     );
                                                                 }}
                                                             >
-                                                                {subCat}
+                                                                {thirdCat}
                                                             </Link>
                                                         </li>
                                                     ),
