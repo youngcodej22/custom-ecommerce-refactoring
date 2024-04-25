@@ -158,6 +158,17 @@ git push -f origin ${수정할 remote branch}
 
 <br />
 
+### 6. React, re-render 조건. (useFilteredProduct.tsx)
+
+1.  컴포넌트의 state가 변경되었을 때
+2.  컴포넌트가 상속받은 props가 변경되었을 때
+3.  부모 컴포넌트가 리렌더링이 된 경우 자식 컴포넌트는 모두 리렌더링
+4.  그외, 강제로 `forceUpdate()`를 사용할 수 있다.(최대한 사용 금지)
+
+### 7. useMemo vs useCallback (memoization)
+
+-   memoization은 값비싼 함수 호출의 결과를 캐싱하고 동일한 입력이 다시 발생할 때 캐싱된 결과를 반환하는 프로그래밍 기술이다
+
 ---
 
 ### Reference
