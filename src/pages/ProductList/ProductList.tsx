@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 // component
 import ProductCard from '../../components/ProductCard/ProductCard';
@@ -43,6 +43,9 @@ const ProductList: React.FC = () => {
 
     // react-router-dom
     const { category, subcategory, thirdcategory } = useParams();
+    // console.log('🚀 ~ category:', category);
+    // console.log('🚀 ~ subcategory:', subcategory);
+    // console.log('🚀 ~ thirdcategory:', thirdcategory);
     const navigate = useNavigate();
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -87,11 +90,41 @@ const ProductList: React.FC = () => {
     //     return filtered;
     // }, [category, sortOption]);
 
-    const sortedAndFilteredProducts = React.useMemo(() => {
-        // const filtered = combinedProductsData.filter(
-        //     product =>
-        //         product.category.toLowerCase() === category?.toLowerCase(),
-        // );
+    // const sortedAndFilteredProducts = useMemo(() => {
+    //     const filtered = filteredProducts;
+
+    //     // ? 문제: 오름차순해도 1,000,000원 상품이 가장 상단에 오는게 문제
+    //     // ! 해결: parseInt()는 ,에 관계 없이 첫자리 1에 대해서 정렬을 하기 때문에 ','를 제거하는 방법을 사용해야한다.
+    //     if (sortOption === 'price_asc') {
+    //         return filtered.sort((a, b) => {
+    //             // Remove commas before parsing as integer
+    //             const priceA = parseInt(a.price.replace(/,/g, ''), 10);
+    //             const priceB = parseInt(b.price.replace(/,/g, ''), 10);
+    //             return priceA - priceB;
+    //         });
+    //     } else if (sortOption === 'price_dsc') {
+    //         return filtered.sort((a, b) => {
+    //             // Remove commas before parsing as integer
+    //             const priceA = parseInt(a.price.replace(/,/g, ''), 10);
+    //             const priceB = parseInt(b.price.replace(/,/g, ''), 10);
+    //             return priceB - priceA;
+    //         });
+    //     } else if (sortOption === 'date') {
+    //         return filtered.sort((a, b) => {
+    //             const dateA = new Date(a.date);
+    //             const dateB = new Date(b.date);
+    //             return dateB.getTime() - dateA.getTime();
+    //         });
+    //     } else if (sortOption === 'like') {
+    //         return filtered.sort((a, b) => b.like - a.like);
+    //     } else if (sortOption === 'sale') {
+    //         return filtered.sort((a, b) => b.sale - a.sale);
+    //     }
+
+    //     return filtered;
+    // }, [category, subcategory, thirdcategory, sortOption]);
+
+    const sortedAndFilteredProducts = () => {
         const filtered = filteredProducts;
 
         // ? 문제: 오름차순해도 1,000,000원 상품이 가장 상단에 오는게 문제
@@ -123,21 +156,22 @@ const ProductList: React.FC = () => {
         }
 
         return filtered;
-    }, [category, sortOption]);
+    };
 
-    const countProducts = sortedAndFilteredProducts.length;
+    const countProducts = sortedAndFilteredProducts().length;
 
     // pagination
     const itemsPerPage = 20;
     const page = parseInt(searchParams.get('page') || '1', 10);
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = sortedAndFilteredProducts.slice(
+    // const currentItems = sortedAndFilteredProducts.slice(
+    const currentItems = sortedAndFilteredProducts().slice(
         indexOfFirstItem,
         indexOfLastItem,
     );
     const totalPages = Math.ceil(
-        sortedAndFilteredProducts.length / itemsPerPage,
+        sortedAndFilteredProducts().length / itemsPerPage,
     );
 
     // * 초기화

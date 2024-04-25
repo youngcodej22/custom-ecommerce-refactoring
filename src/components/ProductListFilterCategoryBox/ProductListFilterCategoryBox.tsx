@@ -50,13 +50,18 @@ const ProductListFilterCategoryBox: React.FC<
     };
 
     const handleToggleSubCategory = (index: number) => {
+        console.log('index', index);
         setOpenSubCate(prev => {
-            return (
-                (prev === index ? null : index) ||
-                (categoryItem.title.toLowerCase() !== category ? null : index)
-            );
+            console.log('pre', prev, 'index', index);
+            // return (
+            //     (prev === index ? null : index) ||
+            //     (categoryItem.title.toLowerCase() !== category ? null : index)
+            // );
+            return prev === index ? null : index;
         });
     };
+
+    console.log('openSubCate', openSubCate);
 
     // const filteredProducts = React.useMemo(() => {
     //     let filtered;
@@ -123,10 +128,15 @@ const ProductListFilterCategoryBox: React.FC<
                                         </Link>
                                     ) : (
                                         <span
+                                            // className={
+                                            //     openSubCate === mainIndex &&
+                                            //     activeSelection.subCategory ===
+                                            //         mainCat.subCategory.toLowerCase()
+                                            //         ? 'on'
+                                            //         : ''
+                                            // }
                                             className={
-                                                openSubCate === mainIndex &&
-                                                activeSelection.subCategory ===
-                                                    mainCat.subCategory.toLowerCase()
+                                                openSubCate === mainIndex
                                                     ? 'on'
                                                     : ''
                                             }
@@ -172,6 +182,7 @@ const ProductListFilterCategoryBox: React.FC<
                                                                         : ''
                                                                 }
                                                                 onClick={() => {
+                                                                    handleNavigate();
                                                                     setActiveSelection(
                                                                         {
                                                                             mainCategory:
