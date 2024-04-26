@@ -50,47 +50,10 @@ const ProductListFilterCategoryBox: React.FC<
     };
 
     const handleToggleSubCategory = (index: number) => {
-        console.log('index', index);
         setOpenSubCate(prev => {
-            console.log('pre', prev, 'index', index);
-            // return (
-            //     (prev === index ? null : index) ||
-            //     (categoryItem.title.toLowerCase() !== category ? null : index)
-            // );
             return prev === index ? null : index;
         });
     };
-
-    console.log('openSubCate', openSubCate);
-
-    // const filteredProducts = React.useMemo(() => {
-    //     let filtered;
-
-    //     if (category && subcategory && thirdcategory) {
-    //         return (filtered = combinedProductsData.filter(
-    //             product =>
-    //                 product.category.toLowerCase() === category.toLowerCase() &&
-    //                 product.subCategory?.toLowerCase() ===
-    //                     subcategory.toLowerCase() &&
-    //                 product.thirdCategory?.toLowerCase() ===
-    //                     thirdcategory.toLowerCase(),
-    //         ));
-    //     } else if (subcategory === 'all') {
-    //         return (filtered = combinedProductsData.filter(
-    //             product =>
-    //                 product.category.toLowerCase() === category?.toLowerCase(),
-    //         ));
-    //     } else if (thirdcategory === 'all') {
-    //         return (filtered = combinedProductsData.filter(
-    //             product =>
-    //                 product.subCategory?.toLowerCase() ===
-    //                 subcategory?.toLowerCase(),
-    //         ));
-    //     }
-    //     return filtered;
-    // }, [category, subcategory, thirdcategory]);
-
-    // console.log('*filteredProducts ', filteredProducts);
 
     return (
         <dl className="product-list-filter-category-box cate_box">
@@ -128,13 +91,6 @@ const ProductListFilterCategoryBox: React.FC<
                                         </Link>
                                     ) : (
                                         <span
-                                            // className={
-                                            //     openSubCate === mainIndex &&
-                                            //     activeSelection.subCategory ===
-                                            //         mainCat.subCategory.toLowerCase()
-                                            //         ? 'on'
-                                            //         : ''
-                                            // }
                                             className={
                                                 openSubCate === mainIndex
                                                     ? 'on'

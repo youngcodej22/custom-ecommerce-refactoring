@@ -255,17 +255,26 @@
 
                                 .option_toggle_btn {
                                     cursor: pointer;
-                                    background: url(/assets/icon/icon-bottom.png)
+                                    background: url(/assets/icon/icon-filter-off.png)
                                         no-repeat 100% 12px;
                                     padding: 10px 0 24px 0;
                                     font-size: 16px;
                                     font-weight: 500;
+
+                                    &.on {
+                                        background: url(/assets/icon/icon-filter-on.png)
+                                            no-repeat 100% 12px;
+                                    }
+
+                                    &.on + dd {
+                                        display: block;
+                                    }
                                 }
 
-                                .gender {
+                                .button_list_wrap {
                                     dd {
                                         display: none;
-                                        padding: 20px;
+                                        padding-bottom: 20px;
 
                                         .button_list {
                                             display: flex;
@@ -297,9 +306,13 @@
                                     }
                                 }
 
+                                .gender {
+                                }
+
                                 .color {
                                     dd {
-                                        padding: 0;
+                                        display: none;
+                                        padding-bottom: 20px;
 
                                         .color_box {
                                             display: flex;
@@ -353,34 +366,14 @@
                                 }
 
                                 .size {
-                                    dd {
-                                        .button_list {
-                                            li {
-                                                input {
-                                                }
-                                                label {
-                                                }
-                                            }
-                                        }
-                                    }
                                 }
 
                                 .weather {
-                                    dd {
-                                        .button_list {
-                                            li {
-                                                input {
-                                                }
-                                                label {
-                                                }
-                                            }
-                                        }
-                                    }
                                 }
 
                                 .price_range_wrap {
                                     dd {
-                                        // display: none;
+                                        display: none;
                                         padding-bottom: 20px;
 
                                         #rangeSlider {
