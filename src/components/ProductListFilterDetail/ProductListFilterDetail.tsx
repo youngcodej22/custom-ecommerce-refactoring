@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
 // assets
 import iconFilter from '/assets/icon/icon-filter.png';
-
+import iconFilterDel from '/assets/icon/icon-filter-del.png';
+// data
+import { ColorPaletteType, colorPalette } from '../../data/colorPalette';
+// component
+import FilterColor from '../FilterColor/FilterColor';
+// style
 import './ProductListFilterDetail.scss';
+
+interface Filter {
+    label: string;
+    value: string;
+}
 
 const ProductListFilterDetail = () => {
     // const [isActive, setIsActive] = useState(false);
@@ -14,14 +24,52 @@ const ProductListFilterDetail = () => {
         price: false,
     });
 
+    const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
+
     // const toggleActive = () => {
     //     setIsActive(!isActive);
     // };
-    const toggleActive = section => {
+    const toggleActive = (section: keyof typeof activeSections) => {
         setActiveSections(prevState => ({
             ...prevState,
             [section]: !prevState[section],
         }));
+    };
+
+    const handleGenderFilter = (filter: Filter) => {
+        // if (!selectedFilters.some(f => f.value === filter.value)) {
+        //     setSelectedFilters(prevFilters => [...prevFilters, filter]);
+        // }
+
+        if (!selectedFilters.some(f => f.value === filter.value)) {
+            setSelectedFilters(prevFilters =>
+                prevFilters
+                    .filter(f => !['m', 'w', 'u'].includes(f.value))
+                    .concat(filter),
+            );
+        }
+    };
+
+    const handleSelectFilter = (filter: Filter) => {
+        // if (!selectedFilters.some(f => f.value === filter.value)) {
+        //     setSelectedFilters(prevFilters => [...prevFilters, filter]);
+        // }
+
+        const index = selectedFilters.findIndex(f => f.value === filter.value);
+        if (index > -1) {
+            // Filter is already selected, remove it
+            setSelectedFilters(prevFilters =>
+                prevFilters.filter((_, i) => i !== index),
+            );
+        } else {
+            setSelectedFilters(prevFilters => [...prevFilters, filter]);
+        }
+    };
+
+    const handleRemoveFilter = (index: number) => {
+        setSelectedFilters(prevFilters =>
+            prevFilters.filter((_, i) => i !== index),
+        );
     };
 
     return (
@@ -33,7 +81,23 @@ const ProductListFilterDetail = () => {
                         <img src={iconFilter} alt="필터" />
                     </button>
                 </dt>
-                <dd className="select_filter_wrap"></dd>
+                <dd className="select_filter_wrap">
+                    {selectedFilters.map((filter, index) => (
+                        <div
+                            key={index}
+                            className="select_filter"
+                            data-value={filter.value}
+                        >
+                            {filter.label}
+                            <span
+                                className="filter_del"
+                                onClick={() => handleRemoveFilter(index)}
+                            >
+                                <img src={iconFilterDel} alt="Remove" />
+                            </span>
+                        </div>
+                    ))}
+                </dd>
             </dl>
             <dl className="button_list_wrap gender">
                 {/* <dt
@@ -52,39 +116,142 @@ const ProductListFilterDetail = () => {
                 </dt>
                 <dd>
                     <ul className="button_list">
-                        <li>
+                        <li
+                            onClick={() =>
+                                handleGenderFilter({
+                                    label: '남성',
+                                    value: 'm',
+                                })
+                            }
+                        >
                             <input
                                 type="radio"
                                 id="searchSexm"
                                 value="m"
                                 data-text="남성"
                             />
-                            <label htmlFor="searchSexm" className="check-s">
+                            <label
+                                htmlFor="searchSexm"
+                                className={`${
+                                    selectedFilters.some(f => f.value === 'm')
+                                        ? 'check-s on'
+                                        : 'check-s'
+                                }`}
+                            >
                                 남성
                             </label>
                         </li>
-                        <li>
+                        <li
+                            onClick={() =>
+                                handleGenderFilter({
+                                    label: '여성',
+                                    value: 'w',
+                                })
+                            }
+                        >
                             <input
                                 type="radio"
                                 id="searchSexw"
                                 value="w"
                                 data-text="여성"
                             />
-                            <label htmlFor="searchSexw" className="check-s">
+                            <label
+                                htmlFor="searchSexw"
+                                className={`${
+                                    selectedFilters.some(f => f.value === 'w')
+                                        ? 'check-s on'
+                                        : 'check-s'
+                                }`}
+                            >
                                 여성
                             </label>
                         </li>
-                        <li>
+                        <li
+                            onClick={() =>
+                                handleGenderFilter({
+                                    label: '공용',
+                                    value: 'u',
+                                })
+                            }
+                        >
                             <input
                                 type="radio"
                                 id="searchSexu"
                                 value="u"
                                 data-text="공용"
                             />
-                            <label htmlFor="searchSexu" className="check-s">
+                            <label
+                                htmlFor="searchSexu"
+                                className={`${
+                                    selectedFilters.some(f => f.value === 'u')
+                                        ? 'check-s on'
+                                        : 'check-s'
+                                }`}
+                            >
                                 공용
                             </label>
                         </li>
+
+                        {/* <li
+                            onClick={() =>
+                                handleSelectFilter({
+                                    label: '남성',
+                                    value: 'm',
+                                })
+                            }
+                        >
+                            <input
+                                type="radio"
+                                id="searchSexm"
+                                value="m"
+                                checked={selectedFilters.some(
+                                    f => f.value === 'm',
+                                )}
+                            />
+                            <label htmlFor="searchSexm" className="check-s">
+                                남성
+                            </label>
+                        </li>
+                        <li
+                            onClick={() =>
+                                handleSelectFilter({
+                                    label: '여성',
+                                    value: 'w',
+                                })
+                            }
+                        >
+                            <input
+                                type="radio"
+                                id="searchSexw"
+                                value="w"
+                                checked={selectedFilters.some(
+                                    f => f.value === 'w',
+                                )}
+                            />
+                            <label htmlFor="searchSexw" className="check-s">
+                                여성
+                            </label>
+                        </li>
+                        <li
+                            onClick={() =>
+                                handleSelectFilter({
+                                    label: '공용',
+                                    value: 'u',
+                                })
+                            }
+                        >
+                            <input
+                                type="radio"
+                                id="searchSexu"
+                                value="u"
+                                checked={selectedFilters.some(
+                                    f => f.value === 'u',
+                                )}
+                            />
+                            <label htmlFor="searchSexu" className="check-s">
+                                공용
+                            </label>
+                        </li> */}
                     </ul>
                 </dd>
             </dl>
@@ -99,72 +266,13 @@ const ProductListFilterDetail = () => {
                 </dt>
                 <dd>
                     <ul className="color_box">
-                        <li>
-                            <input
-                                type="checkbox"
-                                id="searchColorFFFFFF"
-                                value="FFFFFF"
-                                data-text="화이트"
+                        {colorPalette.map((color: ColorPaletteType) => (
+                            <FilterColor
+                                key={color.inputId}
+                                color={color}
+                                onSelect={handleSelectFilter}
                             />
-                            <label
-                                htmlFor="searchColorFFFFFF"
-                                className="check-s"
-                                title="FFFFFF"
-                            >
-                                <div className="bg">
-                                    <span></span>
-                                </div>
-                                <p>화이트</p>
-                            </label>
-                        </li>
-                        <li>
-                            <input
-                                type="checkbox"
-                                id="searchColorFFFFFF"
-                                value="FFFFFF"
-                                data-text="화이트"
-                            />
-                            <label
-                                htmlFor="searchColorFFFFFF"
-                                className="check-s"
-                                title="FFFFFF"
-                            >
-                                <div className="bg"></div>
-                                <p>화이트</p>
-                            </label>
-                        </li>
-                        <li>
-                            <input
-                                type="checkbox"
-                                id="searchColorFFFFFF"
-                                value="FFFFFF"
-                                data-text="화이트"
-                            />
-                            <label
-                                htmlFor="searchColorFFFFFF"
-                                className="check-s"
-                                title="FFFFFF"
-                            >
-                                <div className="bg"></div>
-                                <p>화이트</p>
-                            </label>
-                        </li>
-                        <li>
-                            <input
-                                type="checkbox"
-                                id="searchColorFFFFFF"
-                                value="FFFFFF"
-                                data-text="화이트"
-                            />
-                            <label
-                                htmlFor="searchColorFFFFFF"
-                                className="check-s"
-                                title="FFFFFF"
-                            >
-                                <div className="bg"></div>
-                                <p>화이트</p>
-                            </label>
-                        </li>
+                        ))}
                     </ul>
                 </dd>
             </dl>
