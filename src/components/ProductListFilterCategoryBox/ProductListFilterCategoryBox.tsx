@@ -130,6 +130,8 @@ const ProductListFilterCategoryBox: React.FC<
                                                             <Link
                                                                 to={`/productlist/${categoryItem.title.toLowerCase()}/${mainCat.subCategory.toLowerCase()}/${thirdCat.toLowerCase()}`}
                                                                 className={
+                                                                    categoryItem.title.toLowerCase() ===
+                                                                        category &&
                                                                     thirdcategory ===
                                                                         thirdCat.toLowerCase() &&
                                                                     activeSelection.thirdCategory !==
