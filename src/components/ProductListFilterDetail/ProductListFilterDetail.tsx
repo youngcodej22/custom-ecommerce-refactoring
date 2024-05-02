@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 // assets
 import iconFilter from '/assets/icon/icon-filter.png';
 import iconFilterDel from '/assets/icon/icon-filter-del.png';
@@ -8,10 +8,12 @@ import { ColorPaletteType, colorPalette } from '../../data/colorPalette';
 import FilterColor from '../FilterColor/FilterColor';
 // style
 import './ProductListFilterDetail.scss';
+import { FilterColorContext } from '../../context/context';
 
 interface Filter {
     label: string;
     value: string;
+    id?: string | undefined;
 }
 
 const ProductListFilterDetail = () => {
@@ -25,6 +27,8 @@ const ProductListFilterDetail = () => {
     });
 
     const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
+
+    const { activeColors, toggleColorActive } = useContext(FilterColorContext);
 
     // const toggleActive = () => {
     //     setIsActive(!isActive);
@@ -67,6 +71,11 @@ const ProductListFilterDetail = () => {
     };
 
     const handleRemoveFilter = (index: number) => {
+        const filter = selectedFilters[index];
+        if (filter.id) {
+            toggleColorActive(filter.id);
+        }
+
         setSelectedFilters(prevFilters =>
             prevFilters.filter((_, i) => i !== index),
         );
@@ -191,67 +200,6 @@ const ProductListFilterDetail = () => {
                                 공용
                             </label>
                         </li>
-
-                        {/* <li
-                            onClick={() =>
-                                handleSelectFilter({
-                                    label: '남성',
-                                    value: 'm',
-                                })
-                            }
-                        >
-                            <input
-                                type="radio"
-                                id="searchSexm"
-                                value="m"
-                                checked={selectedFilters.some(
-                                    f => f.value === 'm',
-                                )}
-                            />
-                            <label htmlFor="searchSexm" className="check-s">
-                                남성
-                            </label>
-                        </li>
-                        <li
-                            onClick={() =>
-                                handleSelectFilter({
-                                    label: '여성',
-                                    value: 'w',
-                                })
-                            }
-                        >
-                            <input
-                                type="radio"
-                                id="searchSexw"
-                                value="w"
-                                checked={selectedFilters.some(
-                                    f => f.value === 'w',
-                                )}
-                            />
-                            <label htmlFor="searchSexw" className="check-s">
-                                여성
-                            </label>
-                        </li>
-                        <li
-                            onClick={() =>
-                                handleSelectFilter({
-                                    label: '공용',
-                                    value: 'u',
-                                })
-                            }
-                        >
-                            <input
-                                type="radio"
-                                id="searchSexu"
-                                value="u"
-                                checked={selectedFilters.some(
-                                    f => f.value === 'u',
-                                )}
-                            />
-                            <label htmlFor="searchSexu" className="check-s">
-                                공용
-                            </label>
-                        </li> */}
                     </ul>
                 </dd>
             </dl>

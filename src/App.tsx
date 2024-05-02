@@ -6,6 +6,8 @@ import {
     useTabState,
     ProductListContext,
     usePagination,
+    FilterColorContext,
+    useFilterColor,
 } from './context/context';
 // pages
 import Layout from './layout/Layout';
@@ -94,8 +96,9 @@ const router = createBrowserRouter([
 
 function App() {
     const { isTabTitleOn, isTabBoxOn, handleClick } = useTabState();
-    // const { currentPage, setCurrentPage, category } = usePagination();
     const { currentPage, setCurrentPage } = usePagination();
+    // const { isColorActive, setIsColorActive } = useFilterColor();
+    const { activeColors, toggleColorActive } = useFilterColor();
 
     return (
         <TabsContext.Provider value={{ isTabTitleOn, isTabBoxOn, handleClick }}>
@@ -107,7 +110,11 @@ function App() {
                     combinedProductsData,
                 }}
             >
-                <RouterProvider router={router} />
+                <FilterColorContext.Provider
+                    value={{ activeColors, toggleColorActive }}
+                >
+                    <RouterProvider router={router} />
+                </FilterColorContext.Provider>
             </ProductListContext.Provider>
         </TabsContext.Provider>
     );

@@ -58,4 +58,47 @@ export const usePagination = () => {
     return { currentPage, setCurrentPage };
 };
 
+/**
+ * * FilterColor.tsx - filtering of color
+ */
+
+// interface FilterColorContextType {
+//     isColorActive: boolean;
+//     setIsColorActive: React.Dispatch<React.SetStateAction<boolean>>;
+// }
+
+// export const FilterColorContext = createContext<FilterColorContextType>({
+//     isColorActive: false,
+//     setIsColorActive: () => { },
+// });
+
+// export const useFilterColor = () => {
+//      const [isColorActive, setIsColorActive] = useState(false);
+
+//     return { isColorActive, setIsColorActive };
+// };
+
+interface FilterColorContextType {
+    activeColors: { [key: string]: boolean };
+    toggleColorActive: (colorId: string) => void;
+}
+
+export const FilterColorContext = createContext<FilterColorContextType>({
+    activeColors: {},
+    toggleColorActive: () => {},
+});
+
+export const useFilterColor = () => {
+    const [activeColors, setActiveColors] = useState<{ [key: string]: boolean }>({});
+
+    const toggleColorActive = (colorId: string) => {
+        setActiveColors(prev => ({
+            ...prev,
+            [colorId]: !prev[colorId]
+        }));
+    };
+
+    return { activeColors, toggleColorActive };
+};
+
 
