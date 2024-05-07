@@ -7,7 +7,7 @@ export interface ColorPaletteType {
     title: string;
 }
 
-export const colorPalette = [
+export const colorPalette: ColorPaletteType[] = [
     {
         inputId: "searchColorFFFFFF",
         inputValue: "FFFFFF",

@@ -124,7 +124,7 @@ const Promotion = () => {
                                                         <div className="board_tit">
                                                             <a href="javascript:gd_btn_view('event',25 , 'y')">
                                                                 <strong>
-                                                                    2월 맥케이슨
+                                                                    맥케이슨
                                                                     신규 클랜원
                                                                     모집
                                                                 </strong>

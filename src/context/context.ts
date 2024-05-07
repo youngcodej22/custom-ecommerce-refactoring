@@ -78,18 +78,24 @@ export const usePagination = () => {
 //     return { isColorActive, setIsColorActive };
 // };
 
-interface FilterColorContextType {
+interface FilterContextType {
     activeColors: { [key: string]: boolean };
     toggleColorActive: (colorId: string) => void;
+    activeSizes: { [key: string]: boolean };
+    toggleSizeActive: (colorId: string) => void;
 }
 
-export const FilterColorContext = createContext<FilterColorContextType>({
+// export const FilterColorContext = createContext<FilterContextType>({
+export const FilterContext = createContext<FilterContextType>({
     activeColors: {},
     toggleColorActive: () => {},
+    activeSizes: {},
+    toggleSizeActive: () => {},
 });
 
-export const useFilterColor = () => {
+export const useFilter = () => {
     const [activeColors, setActiveColors] = useState<{ [key: string]: boolean }>({});
+    const [activeSizes, setActiveSizes] = useState<{ [key: string]: boolean }>({});
 
     const toggleColorActive = (colorId: string) => {
         setActiveColors(prev => ({
@@ -98,7 +104,14 @@ export const useFilterColor = () => {
         }));
     };
 
-    return { activeColors, toggleColorActive };
+    const toggleSizeActive = (colorId: string) => {
+        setActiveSizes(prev => ({
+            ...prev,
+            [colorId]: !prev[colorId]
+        }));
+    };
+
+    return { activeColors, toggleColorActive, activeSizes, toggleSizeActive };
 };
 
 

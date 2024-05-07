@@ -56,7 +56,7 @@ const MainVisual = () => {
                         <p>
                             MCKAYSON
                             <br />
-                            2월 신규 회원 혜택
+                            신규 회원 혜택
                         </p>
                         <span>DETAIL</span>
                     </div>

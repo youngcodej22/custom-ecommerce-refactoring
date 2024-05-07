@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 // type
 import { ColorPaletteType } from '../../data/colorPalette';
 // style
 import './FilterColor.scss';
-import { FilterColorContext } from '../../context/context';
+import { FilterContext } from '../../context/context';
 
 interface FilterColorProps {
     color: ColorPaletteType;
@@ -14,7 +14,7 @@ interface FilterColorProps {
 
 const FilterColor: React.FC<FilterColorProps> = ({ color, onSelect }) => {
     // const [isColorActive, setIsColorActive] = useState(false);
-    // const { isColorActive, setIsColorActive } = useContext(FilterColorContext);
+    // const { isColorActive, setIsColorActive } = useContext(FilterContext);
 
     // // ! bug: 이벤트 bubbling으로 onClick 이벤트가 두번 trigger 되서 아래 방법해결
     // const toggleClass = (event: React.MouseEvent) => {
@@ -22,7 +22,7 @@ const FilterColor: React.FC<FilterColorProps> = ({ color, onSelect }) => {
     //     setIsColorActive(!isColorActive);
     //     onSelect({ label: color.title, value: color.inputValue });
     // };
-    const { activeColors, toggleColorActive } = useContext(FilterColorContext);
+    const { activeColors, toggleColorActive } = useContext(FilterContext);
 
     const isColorActive = activeColors[color.inputId] || false;
 

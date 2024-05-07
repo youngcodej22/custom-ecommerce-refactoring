@@ -4,11 +4,13 @@ import iconFilter from '/assets/icon/icon-filter.png';
 import iconFilterDel from '/assets/icon/icon-filter-del.png';
 // data
 import { ColorPaletteType, colorPalette } from '../../data/colorPalette';
+import { SizeListType, sizeList } from '../../data/sizeList';
 // component
 import FilterColor from '../FilterColor/FilterColor';
+import FilterSize from '../FilterSize/FilterSize';
 // style
 import './ProductListFilterDetail.scss';
-import { FilterColorContext } from '../../context/context';
+import { FilterContext } from '../../context/context';
 
 interface Filter {
     label: string;
@@ -28,7 +30,8 @@ const ProductListFilterDetail = () => {
 
     const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
 
-    const { activeColors, toggleColorActive } = useContext(FilterColorContext);
+    const { activeColors, toggleColorActive, toggleSizeActive } =
+        useContext(FilterContext);
 
     // const toggleActive = () => {
     //     setIsActive(!isActive);
@@ -54,6 +57,18 @@ const ProductListFilterDetail = () => {
         }
     };
 
+    const handleSizeFilter = (filter: Filter) => {
+        const index = selectedFilters.findIndex(f => f.value === filter.value);
+        if (index > -1) {
+            // Filter is already selected, remove it
+            setSelectedFilters(prevFilters =>
+                prevFilters.filter((_, i) => i !== index),
+            );
+        } else {
+            setSelectedFilters(prevFilters => [...prevFilters, filter]);
+        }
+    };
+
     const handleSelectFilter = (filter: Filter) => {
         // if (!selectedFilters.some(f => f.value === filter.value)) {
         //     setSelectedFilters(prevFilters => [...prevFilters, filter]);
@@ -74,6 +89,9 @@ const ProductListFilterDetail = () => {
         const filter = selectedFilters[index];
         if (filter.id) {
             toggleColorActive(filter.id);
+        }
+        if (filter.id) {
+            toggleSizeActive(filter.id);
         }
 
         setSelectedFilters(prevFilters =>
@@ -235,36 +253,13 @@ const ProductListFilterDetail = () => {
                 </dt>
                 <dd>
                     <ul className="button_list">
-                        <li>
-                            <input
-                                type="checkbox"
-                                id="searchSize00L"
-                                data-text="00L"
+                        {sizeList.map((size: SizeListType) => (
+                            <FilterSize
+                                key={size.inputId}
+                                size={size}
+                                onSelect={handleSizeFilter}
                             />
-                            <label htmlFor="searchSize00L" className="check-s">
-                                00L
-                            </label>
-                        </li>
-                        <li>
-                            <input
-                                type="checkbox"
-                                id="searchSize00L"
-                                data-text="00L"
-                            />
-                            <label htmlFor="searchSize00L" className="check-s">
-                                00L
-                            </label>
-                        </li>
-                        <li>
-                            <input
-                                type="checkbox"
-                                id="searchSize00L"
-                                data-text="00L"
-                            />
-                            <label htmlFor="searchSize00L" className="check-s">
-                                00L
-                            </label>
-                        </li>
+                        ))}
                     </ul>
                 </dd>
             </dl>
