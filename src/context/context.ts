@@ -83,6 +83,8 @@ interface FilterContextType {
     toggleColorActive: (colorId: string) => void;
     activeSizes: { [key: string]: boolean };
     toggleSizeActive: (colorId: string) => void;
+    activeSeason: { [key: string]: boolean };
+    toggleSeasonActive: (colorId: string) => void;
 }
 
 // export const FilterColorContext = createContext<FilterContextType>({
@@ -90,12 +92,15 @@ export const FilterContext = createContext<FilterContextType>({
     activeColors: {},
     toggleColorActive: () => {},
     activeSizes: {},
-    toggleSizeActive: () => {},
+    toggleSizeActive: () => { },
+    activeSeason: {},
+    toggleSeasonActive: () => {},
 });
 
 export const useFilter = () => {
     const [activeColors, setActiveColors] = useState<{ [key: string]: boolean }>({});
     const [activeSizes, setActiveSizes] = useState<{ [key: string]: boolean }>({});
+    const [activeSeason, setActiveSeason] = useState<{ [key: string]: boolean }>({});
 
     const toggleColorActive = (colorId: string) => {
         setActiveColors(prev => ({
@@ -111,7 +116,14 @@ export const useFilter = () => {
         }));
     };
 
-    return { activeColors, toggleColorActive, activeSizes, toggleSizeActive };
+    const toggleSeasonActive = (colorId: string) => {
+        setActiveSeason(prev => ({
+            ...prev,
+            [colorId]: !prev[colorId]
+        }));
+    };
+
+    return { activeColors, toggleColorActive, activeSizes, toggleSizeActive, activeSeason, toggleSeasonActive };
 };
 
 

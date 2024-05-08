@@ -98,8 +98,14 @@ function App() {
     const { isTabTitleOn, isTabBoxOn, handleClick } = useTabState();
     const { currentPage, setCurrentPage } = usePagination();
     // const { isColorActive, setIsColorActive } = useFilter();
-    const { activeColors, toggleColorActive, activeSizes, toggleSizeActive } =
-        useFilter();
+    const {
+        activeColors,
+        toggleColorActive,
+        activeSizes,
+        toggleSizeActive,
+        activeSeason,
+        toggleSeasonActive,
+    } = useFilter();
 
     return (
         <TabsContext.Provider value={{ isTabTitleOn, isTabBoxOn, handleClick }}>
@@ -117,6 +123,8 @@ function App() {
                         toggleColorActive,
                         activeSizes,
                         toggleSizeActive,
+                        activeSeason,
+                        toggleSeasonActive,
                     }}
                 >
                     <RouterProvider router={router} />

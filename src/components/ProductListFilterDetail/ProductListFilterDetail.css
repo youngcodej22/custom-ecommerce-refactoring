@@ -27,18 +27,23 @@
   cursor: pointer;
   background: url(/assets/icon/icon-filter-off.png) no-repeat 100% 12px;
   padding: 10px 0 24px 0;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
 }
 .productlist-filter-detail .option_toggle_btn.on {
   background: url(/assets/icon/icon-filter-on.png) no-repeat 100% 12px;
 }
 .productlist-filter-detail .option_toggle_btn.on + dd {
-  display: block;
+  visibility: visible;
+}
+.productlist-filter-detail .button_list_wrap {
+  padding-bottom: 20px;
 }
 .productlist-filter-detail .button_list_wrap dd {
-  display: none;
-  padding-bottom: 20px;
+  overflow: hidden;
+  height: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
 }
 .productlist-filter-detail .button_list_wrap dd .button_list {
   display: flex;
@@ -69,19 +74,28 @@
   color: #006c68;
   border-color: #006c68;
 }
-.productlist-filter-detail .color dd {
-  display: none;
+.productlist-filter-detail .color {
   padding-bottom: 20px;
+}
+.productlist-filter-detail .color dd {
+  overflow: hidden;
+  height: 0;
+  visibility: hidden;
+  transition: height 0.3s ease-in-out;
 }
 .productlist-filter-detail .color dd .color_box {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: -6px;
+}
+.productlist-filter-detail .price_range_wrap {
+  padding-bottom: 20px;
 }
 .productlist-filter-detail .price_range_wrap dd {
-  display: none;
-  padding-bottom: 20px;
+  overflow: hidden;
+  height: 0;
+  visibility: hidden;
+  transition: height 0.3s ease-in-out;
 }
 .productlist-filter-detail .price_range_wrap dd #rangeSlider {
   height: 3px;

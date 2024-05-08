@@ -47,22 +47,37 @@
         cursor: pointer;
         background: url(/assets/icon/icon-filter-off.png) no-repeat 100% 12px;
         padding: 10px 0 24px 0;
-        font-size: 16px;
-        font-weight: 500;
+        font-size: 15px;
+        font-weight: 600;
 
         &.on {
             background: url(/assets/icon/icon-filter-on.png) no-repeat 100% 12px;
         }
 
         &.on + dd {
-            display: block;
+            // display: block;
+            // padding-bottom: 20px;
+            // max-height: 650px;
+            visibility: visible;
+            // transition: max-height 0.3s ease-in-out, visibility 0s linear 0s;
+            // transition: all 0.3s ease;
         }
     }
 
     .button_list_wrap {
+        padding-bottom: 20px;
+
         dd {
-            display: none;
-            padding-bottom: 20px;
+            // display: none;
+            // padding-bottom: 0px;
+            // animation
+            overflow: hidden;
+            // max-height: 0;
+            height: 0;
+            visibility: hidden;
+            // opacity: 0;
+            // transition: height 0.3s linear, visibility 0.3s linear 0.3s;
+            transition: all 0.3s ease;
 
             .button_list {
                 display: flex;
@@ -100,23 +115,36 @@
     }
 
     .color {
+        padding-bottom: 20px;
+
         dd {
-            display: none;
-            padding-bottom: 20px;
+            // display: none;
+            overflow: hidden;
+            height: 0;
+            visibility: hidden;
+            transition: height 0.3s ease-in-out;
 
             .color_box {
                 display: flex;
                 flex-wrap: wrap;
                 width: 100%;
-                margin-top: -6px;
+                // margin-top: -6px;
             }
         }
     }
 
     .price_range_wrap {
+        padding-bottom: 20px;
+
         dd {
-            display: none;
-            padding-bottom: 20px;
+            // display: none;
+            // padding-bottom: 20px;
+            // height: 100px;
+            // visibility: visible;
+            overflow: hidden;
+            height: 0;
+            visibility: hidden;
+            transition: height 0.3s ease-in-out;
 
             #rangeSlider {
                 height: 3px;

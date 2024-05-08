@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 // assets
 import iconFilter from '/assets/icon/icon-filter.png';
 import iconFilterDel from '/assets/icon/icon-filter-del.png';
@@ -11,6 +11,8 @@ import FilterSize from '../FilterSize/FilterSize';
 // style
 import './ProductListFilterDetail.scss';
 import { FilterContext } from '../../context/context';
+import FilterSeason from '../FilterSeason/FilterSeason';
+import { seasonList, SeasonListType } from '../../data/seasonList';
 
 interface Filter {
     label: string;
@@ -24,13 +26,42 @@ const ProductListFilterDetail = () => {
         gender: false,
         color: false,
         size: false,
-        weather: false,
+        season: false,
         price: false,
     });
+    const sectionRefs = useRef({
+        gender: null,
+        color: null,
+        size: null,
+        season: null,
+        price: null,
+    });
+
+    // useEffect(() => {
+    //     if (isActive && contentRef.current) {
+    //         contentRef.current.style.height = `${contentRef.current.scrollHeight}px`;
+    //     } else if (contentRef.current) {
+    //         contentRef.current.style.height = '0px';
+    //     }
+    // }, [isActive]);
+    useEffect(() => {
+        const adjustHeight = sectionKey => {
+            const section = sectionRefs.current[sectionKey];
+            if (section) {
+                section.style.height = activeSections[sectionKey]
+                    ? `${section.scrollHeight}px`
+                    : '0px';
+                console.log('**sec', section);
+            }
+        };
+
+        // Adjust height for all sections
+        Object.keys(activeSections).forEach(adjustHeight);
+    }, [activeSections]); // Depend on activeSections to re-run when it changes
 
     const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
 
-    const { activeColors, toggleColorActive, toggleSizeActive } =
+    const { toggleColorActive, toggleSizeActive, toggleSeasonActive } =
         useContext(FilterContext);
 
     // const toggleActive = () => {
@@ -69,6 +100,18 @@ const ProductListFilterDetail = () => {
         }
     };
 
+    const handleSeasonFilter = (filter: Filter) => {
+        const index = selectedFilters.findIndex(f => f.value === filter.value);
+        if (index > -1) {
+            // Filter is already selected, remove it
+            setSelectedFilters(prevFilters =>
+                prevFilters.filter((_, i) => i !== index),
+            );
+        } else {
+            setSelectedFilters(prevFilters => [...prevFilters, filter]);
+        }
+    };
+
     const handleSelectFilter = (filter: Filter) => {
         // if (!selectedFilters.some(f => f.value === filter.value)) {
         //     setSelectedFilters(prevFilters => [...prevFilters, filter]);
@@ -92,6 +135,9 @@ const ProductListFilterDetail = () => {
         }
         if (filter.id) {
             toggleSizeActive(filter.id);
+        }
+        if (filter.id) {
+            toggleSeasonActive(filter.id);
         }
 
         setSelectedFilters(prevFilters =>
@@ -127,12 +173,6 @@ const ProductListFilterDetail = () => {
                 </dd>
             </dl>
             <dl className="button_list_wrap gender">
-                {/* <dt
-                    className={`option_toggle_btn ${isActive ? 'on' : ''}`}
-                    onClick={toggleActive}
-                >
-                    성별
-                </dt> */}
                 <dt
                     className={`option_toggle_btn ${
                         activeSections.gender ? 'on' : ''
@@ -141,7 +181,7 @@ const ProductListFilterDetail = () => {
                 >
                     성별
                 </dt>
-                <dd>
+                <dd ref={el => (sectionRefs.current.gender = el)}>
                     <ul className="button_list">
                         <li
                             onClick={() =>
@@ -230,7 +270,7 @@ const ProductListFilterDetail = () => {
                 >
                     컬러
                 </dt>
-                <dd>
+                <dd ref={el => (sectionRefs.current.color = el)}>
                     <ul className="color_box">
                         {colorPalette.map((color: ColorPaletteType) => (
                             <FilterColor
@@ -251,7 +291,7 @@ const ProductListFilterDetail = () => {
                 >
                     사이즈
                 </dt>
-                <dd>
+                <dd ref={el => (sectionRefs.current.size = el)}>
                     <ul className="button_list">
                         {sizeList.map((size: SizeListType) => (
                             <FilterSize
@@ -263,37 +303,24 @@ const ProductListFilterDetail = () => {
                     </ul>
                 </dd>
             </dl>
-            <dl className="button_list_wrap weather">
+            <dl className="button_list_wrap season">
                 <dt
                     className={`option_toggle_btn ${
-                        activeSections.weather ? 'on' : ''
+                        activeSections.season ? 'on' : ''
                     }`}
-                    onClick={() => toggleActive('weather')}
+                    onClick={() => toggleActive('season')}
                 >
                     계절
                 </dt>
-                <dd>
+                <dd ref={el => (sectionRefs.current.season = el)}>
                     <ul className="button_list">
-                        <li>
-                            <input
-                                type="checkbox"
-                                id="searchWeather"
-                                data-text="봄"
+                        {seasonList.map((season: SeasonListType) => (
+                            <FilterSeason
+                                key={season.inputId}
+                                season={season}
+                                onSelect={handleSeasonFilter}
                             />
-                            <label htmlFor="searchWeather" className="check-s">
-                                봄
-                            </label>
-                        </li>
-                        <li>
-                            <input
-                                type="checkbox"
-                                id="searchWeather"
-                                data-text="여름"
-                            />
-                            <label htmlFor="searchWeather" className="check-s">
-                                여름
-                            </label>
-                        </li>
+                        ))}
                     </ul>
                 </dd>
             </dl>
@@ -306,7 +333,7 @@ const ProductListFilterDetail = () => {
                 >
                     가격
                 </dt>
-                <dd>
+                <dd ref={el => (sectionRefs.current.price = el)}>
                     <div id="rangeSlider">
                         <div className="noUi-base">
                             <div className="noUi-connects">

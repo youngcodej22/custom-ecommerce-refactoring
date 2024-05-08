@@ -8,10 +8,7 @@ interface FilterSizeProps {
 }
 
 const FilterSize: React.FC<FilterSizeProps> = ({ size, onSelect }) => {
-    // const [isSizeActive, setIsSizeActive] = useState(false);
-
     const { activeSizes, toggleSizeActive } = useContext(FilterContext);
-
     const isSizeActive = activeSizes[size.inputId] || false;
 
     const toggleClass = (event: React.MouseEvent) => {
