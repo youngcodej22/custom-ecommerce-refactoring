@@ -169,6 +169,12 @@ git push -f origin ${수정할 remote branch}
 
 -   memoization은 값비싼 함수 호출의 결과를 캐싱하고 동일한 입력이 다시 발생할 때 캐싱된 결과를 반환하는 프로그래밍 기술이다
 
+### 8. push 에러
+
+-   문제: 기존 사용 노트북이 아닌 다른 컴퓨터에서 작업하는데 `add, commit, push` 이후에 `push`단계에서 발생
+    `fatal: unable to access 'https://github.com/youngcodej22/custom-ecommerce-refactoring.git/': SSL certificate problem: EE certificate key too weak`
+-   해결: Gemini에 물어보니 '이전 Git 클라이언트는 GitHub의 SSL 인증서에서 사용되는 현재 보안 표준을 지원하지 않을 수 있습니다.', git을 최신업데이트하라고 하는데.. 다시 `push`해보니 해결?!
+
 ---
 
 ### Reference
