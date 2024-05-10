@@ -37,13 +37,6 @@ const ProductListFilterDetail = () => {
         price: null,
     });
 
-    // useEffect(() => {
-    //     if (isActive && contentRef.current) {
-    //         contentRef.current.style.height = `${contentRef.current.scrollHeight}px`;
-    //     } else if (contentRef.current) {
-    //         contentRef.current.style.height = '0px';
-    //     }
-    // }, [isActive]);
     useEffect(() => {
         const adjustHeight = sectionKey => {
             const section = sectionRefs.current[sectionKey];
@@ -51,7 +44,6 @@ const ProductListFilterDetail = () => {
                 section.style.height = activeSections[sectionKey]
                     ? `${section.scrollHeight}px`
                     : '0px';
-                console.log('**sec', section);
             }
         };
 
@@ -61,12 +53,15 @@ const ProductListFilterDetail = () => {
 
     const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
 
-    const { toggleColorActive, toggleSizeActive, toggleSeasonActive } =
-        useContext(FilterContext);
+    const {
+        toggleColorActive,
+        toggleSizeActive,
+        toggleSeasonActive,
+        resetColorActive,
+        resetSizeActive,
+        resetSeasonActive,
+    } = useContext(FilterContext);
 
-    // const toggleActive = () => {
-    //     setIsActive(!isActive);
-    // };
     const toggleActive = (section: keyof typeof activeSections) => {
         setActiveSections(prevState => ({
             ...prevState,
@@ -145,12 +140,34 @@ const ProductListFilterDetail = () => {
         );
     };
 
+    const handleResetFilter = (event: React.MouseEvent<HTMLButtonElement>) => {
+        // ! button 기본 submit으로 인해 refresh가 되니 preventDefault 해주자
+        event.preventDefault(); // Prevent the default form submission behavior
+        setSelectedFilters([]);
+
+        setActiveSections({
+            gender: false,
+            color: false,
+            size: false,
+            season: false,
+            price: false,
+        });
+
+        // ! 여기세엇 왜 is not a function Error 발생? 이유 App.tsx에 정의 안해서;;
+        resetColorActive();
+        resetSizeActive();
+        resetSeasonActive();
+    };
+
     return (
         <div className="productlist-filter-detail">
             <dl className="filter_tit">
                 <dt>
                     필터
-                    <button>
+                    <button
+                        className="filter-reset"
+                        onClick={handleResetFilter}
+                    >
                         <img src={iconFilter} alt="필터" />
                     </button>
                 </dt>

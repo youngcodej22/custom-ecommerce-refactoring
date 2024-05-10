@@ -105,6 +105,9 @@ function App() {
         toggleSizeActive,
         activeSeason,
         toggleSeasonActive,
+        resetColorActive,
+        resetSizeActive,
+        resetSeasonActive,
     } = useFilter();
 
     return (
@@ -125,6 +128,9 @@ function App() {
                         toggleSizeActive,
                         activeSeason,
                         toggleSeasonActive,
+                        resetColorActive,
+                        resetSizeActive,
+                        resetSeasonActive,
                     }}
                 >
                     <RouterProvider router={router} />

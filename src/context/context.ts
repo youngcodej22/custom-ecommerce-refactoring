@@ -80,11 +80,14 @@ export const usePagination = () => {
 
 interface FilterContextType {
     activeColors: { [key: string]: boolean };
-    toggleColorActive: (colorId: string) => void;
+    toggleColorActive: (id: string) => void;
     activeSizes: { [key: string]: boolean };
-    toggleSizeActive: (colorId: string) => void;
+    toggleSizeActive: (id: string) => void;
     activeSeason: { [key: string]: boolean };
-    toggleSeasonActive: (colorId: string) => void;
+    toggleSeasonActive: (id: string) => void;
+    resetColorActive: () => void;
+    resetSizeActive: () => void;
+    resetSeasonActive: () => void;
 }
 
 // export const FilterColorContext = createContext<FilterContextType>({
@@ -92,9 +95,12 @@ export const FilterContext = createContext<FilterContextType>({
     activeColors: {},
     toggleColorActive: () => {},
     activeSizes: {},
-    toggleSizeActive: () => { },
+    toggleSizeActive: () => {},
     activeSeason: {},
     toggleSeasonActive: () => {},
+    resetColorActive: () => {},
+    resetSizeActive: () => {},
+    resetSeasonActive: () => {},
 });
 
 export const useFilter = () => {
@@ -102,28 +108,53 @@ export const useFilter = () => {
     const [activeSizes, setActiveSizes] = useState<{ [key: string]: boolean }>({});
     const [activeSeason, setActiveSeason] = useState<{ [key: string]: boolean }>({});
 
-    const toggleColorActive = (colorId: string) => {
+    const toggleColorActive = (id: string) => {
         setActiveColors(prev => ({
-            ...prev,
-            [colorId]: !prev[colorId]
+            ...prev, [id]: !prev[id]
         }));
     };
 
-    const toggleSizeActive = (colorId: string) => {
+    const toggleSizeActive = (id: string) => {
         setActiveSizes(prev => ({
-            ...prev,
-            [colorId]: !prev[colorId]
+            ...prev, [id]: !prev[id]
         }));
     };
 
-    const toggleSeasonActive = (colorId: string) => {
+    const toggleSeasonActive = (id: string) => {
         setActiveSeason(prev => ({
-            ...prev,
-            [colorId]: !prev[colorId]
+            ...prev, [id]: !prev[id]
         }));
     };
 
-    return { activeColors, toggleColorActive, activeSizes, toggleSizeActive, activeSeason, toggleSeasonActive };
+    const resetColorActive = () => {
+        setActiveColors({});
+    };
+
+    const resetSizeActive = () => {
+        setActiveSizes({});
+    };
+
+    const resetSeasonActive = () => {
+        setActiveSeason({});
+    };
+
+    return { activeColors, toggleColorActive, activeSizes, toggleSizeActive, activeSeason, toggleSeasonActive, resetColorActive, resetSizeActive, resetSeasonActive };
 };
 
 
+// ! 아래로 리팩토링
+// const FilterContext = createContext<FilterContextType | null>(null);
+
+// const FilterProvider: React.FC = ({ children }) => {
+//     const [activeColors, setActiveColors] = useState<{ [key: string]: boolean }>({});
+
+//     const resetColorActive = () => {
+//         setActiveColors({});
+//     };
+
+//     return (
+//         <FilterContext.Provider value={{ activeColors, resetColorActive }}>
+//             {children}
+//         </FilterContext.Provider>
+//     );
+// };
