@@ -99,6 +99,8 @@ function App() {
     const { currentPage, setCurrentPage } = usePagination();
     // const { isColorActive, setIsColorActive } = useFilter();
     const {
+        activeGenders,
+        toggleGenderActive,
         activeColors,
         toggleColorActive,
         activeSizes,
@@ -122,6 +124,8 @@ function App() {
             >
                 <FilterContext.Provider
                     value={{
+                        activeGenders,
+                        toggleGenderActive,
                         activeColors,
                         toggleColorActive,
                         activeSizes,

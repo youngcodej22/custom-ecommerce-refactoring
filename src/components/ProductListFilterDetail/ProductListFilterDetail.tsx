@@ -3,16 +3,18 @@ import React, { useContext, useState, useRef, useEffect } from 'react';
 import iconFilter from '/assets/icon/icon-filter.png';
 import iconFilterDel from '/assets/icon/icon-filter-del.png';
 // data
+import { genderList, GenderListType } from '../../data/genderList';
 import { ColorPaletteType, colorPalette } from '../../data/colorPalette';
 import { SizeListType, sizeList } from '../../data/sizeList';
+import { seasonList, SeasonListType } from '../../data/seasonList';
 // component
+import FilterGender from '../FilterGender/FilterGender';
 import FilterColor from '../FilterColor/FilterColor';
 import FilterSize from '../FilterSize/FilterSize';
+import FilterSeason from '../FilterSeason/FilterSeason';
 // style
 import './ProductListFilterDetail.scss';
 import { FilterContext } from '../../context/context';
-import FilterSeason from '../FilterSeason/FilterSeason';
-import { seasonList, SeasonListType } from '../../data/seasonList';
 
 interface Filter {
     label: string;
@@ -54,6 +56,7 @@ const ProductListFilterDetail = () => {
     const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
 
     const {
+        toggleGenderActive,
         toggleColorActive,
         toggleSizeActive,
         toggleSeasonActive,
@@ -74,7 +77,27 @@ const ProductListFilterDetail = () => {
         //     setSelectedFilters(prevFilters => [...prevFilters, filter]);
         // }
 
-        if (!selectedFilters.some(f => f.value === filter.value)) {
+        // if (!selectedFilters.some(f => f.value === filter.value)) {
+        //     setSelectedFilters(prevFilters =>
+        //         prevFilters
+        //             .filter(f => !['m', 'w', 'u'].includes(f.value))
+        //             .concat(filter),
+        //     );
+        // } else {
+        //     setSelectedFilters(prevFilters => [...prevFilters, filter]);
+        // }
+
+        // Remove any existing gender filter
+        // const newFilters = selectedFilters.filter(
+        //     f => !['m', 'w', 'u'].includes(f.value),
+        // );
+
+        // Check if the clicked filter is already active
+        const isActive = selectedFilters.some(f => f.value === filter.value);
+
+        // If it's not active, add the new filter
+        if (!isActive) {
+            // newFilters.push(filter);
             setSelectedFilters(prevFilters =>
                 prevFilters
                     .filter(f => !['m', 'w', 'u'].includes(f.value))
@@ -108,10 +131,6 @@ const ProductListFilterDetail = () => {
     };
 
     const handleSelectFilter = (filter: Filter) => {
-        // if (!selectedFilters.some(f => f.value === filter.value)) {
-        //     setSelectedFilters(prevFilters => [...prevFilters, filter]);
-        // }
-
         const index = selectedFilters.findIndex(f => f.value === filter.value);
         if (index > -1) {
             // Filter is already selected, remove it
@@ -125,14 +144,19 @@ const ProductListFilterDetail = () => {
 
     const handleRemoveFilter = (index: number) => {
         const filter = selectedFilters[index];
-        if (filter.id) {
-            toggleColorActive(filter.id);
+        const filterId = filter.id;
+
+        if (filterId?.includes('gender')) {
+            toggleGenderActive(filterId, true);
         }
-        if (filter.id) {
-            toggleSizeActive(filter.id);
+        if (filterId?.includes('searchColor')) {
+            toggleColorActive(filterId);
         }
-        if (filter.id) {
-            toggleSeasonActive(filter.id);
+        if (filterId?.includes('searchSize')) {
+            toggleSizeActive(filterId);
+        }
+        if (filterId?.includes('searchSeason')) {
+            toggleSeasonActive(filterId);
         }
 
         setSelectedFilters(prevFilters =>
@@ -200,81 +224,13 @@ const ProductListFilterDetail = () => {
                 </dt>
                 <dd ref={el => (sectionRefs.current.gender = el)}>
                     <ul className="button_list">
-                        <li
-                            onClick={() =>
-                                handleGenderFilter({
-                                    label: '남성',
-                                    value: 'm',
-                                })
-                            }
-                        >
-                            <input
-                                type="radio"
-                                id="searchSexm"
-                                value="m"
-                                data-text="남성"
+                        {genderList.map((gender: GenderListType) => (
+                            <FilterGender
+                                key={gender.inputId}
+                                gender={gender}
+                                onSelect={handleGenderFilter}
                             />
-                            <label
-                                htmlFor="searchSexm"
-                                className={`${
-                                    selectedFilters.some(f => f.value === 'm')
-                                        ? 'check-s on'
-                                        : 'check-s'
-                                }`}
-                            >
-                                남성
-                            </label>
-                        </li>
-                        <li
-                            onClick={() =>
-                                handleGenderFilter({
-                                    label: '여성',
-                                    value: 'w',
-                                })
-                            }
-                        >
-                            <input
-                                type="radio"
-                                id="searchSexw"
-                                value="w"
-                                data-text="여성"
-                            />
-                            <label
-                                htmlFor="searchSexw"
-                                className={`${
-                                    selectedFilters.some(f => f.value === 'w')
-                                        ? 'check-s on'
-                                        : 'check-s'
-                                }`}
-                            >
-                                여성
-                            </label>
-                        </li>
-                        <li
-                            onClick={() =>
-                                handleGenderFilter({
-                                    label: '공용',
-                                    value: 'u',
-                                })
-                            }
-                        >
-                            <input
-                                type="radio"
-                                id="searchSexu"
-                                value="u"
-                                data-text="공용"
-                            />
-                            <label
-                                htmlFor="searchSexu"
-                                className={`${
-                                    selectedFilters.some(f => f.value === 'u')
-                                        ? 'check-s on'
-                                        : 'check-s'
-                                }`}
-                            >
-                                공용
-                            </label>
-                        </li>
+                        ))}
                     </ul>
                 </dd>
             </dl>
@@ -394,9 +350,9 @@ const ProductListFilterDetail = () => {
                         </div>
                     </div>
                     <div className="price_box">
-                        <input type="text" value="0" />
+                        <input type="text" defaultValue="0" />
                         <span>~</span>
-                        <input type="text" value="20000" />
+                        <input type="text" defaultValue="20000" />
                     </div>
                 </dd>
             </dl>

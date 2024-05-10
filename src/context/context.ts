@@ -79,6 +79,8 @@ export const usePagination = () => {
 // };
 
 interface FilterContextType {
+    activeGenders: { [key: string]: boolean };
+    toggleGenderActive: (id: string, isActive: boolean) => void;
     activeColors: { [key: string]: boolean };
     toggleColorActive: (id: string) => void;
     activeSizes: { [key: string]: boolean };
@@ -92,6 +94,8 @@ interface FilterContextType {
 
 // export const FilterColorContext = createContext<FilterContextType>({
 export const FilterContext = createContext<FilterContextType>({
+    activeGenders: {},
+    toggleGenderActive: () => {},
     activeColors: {},
     toggleColorActive: () => {},
     activeSizes: {},
@@ -104,9 +108,31 @@ export const FilterContext = createContext<FilterContextType>({
 });
 
 export const useFilter = () => {
+    const [activeGenders, setActiveGenders] = useState<{ [key: string]: boolean }>({});
     const [activeColors, setActiveColors] = useState<{ [key: string]: boolean }>({});
     const [activeSizes, setActiveSizes] = useState<{ [key: string]: boolean }>({});
     const [activeSeason, setActiveSeason] = useState<{ [key: string]: boolean }>({});
+
+    const toggleGenderActive = (id: string, removeActive: boolean) => {
+        setActiveGenders(prev => {
+            if (removeActive) {
+                return { ...prev, [id]: false };
+            }
+            // Check if the current gender is already active and it's the only one active
+            if (prev[id] && Object.keys(prev).filter(key => prev[key]).length === 1) {
+                return prev; // Return the current state if the same gender is clicked and it's the only active one
+            }
+            
+            // Set all genders to inactive and toggle the selected gender
+            return {
+                ...Object.keys(prev).reduce((acc, key) => {
+                    acc[key] = false; // Set all genders to inactive
+                    return acc;
+                }, {}),
+                [id]: !prev[id]// Set the selected gender to active
+            };
+        });
+    };
 
     const toggleColorActive = (id: string) => {
         setActiveColors(prev => ({
@@ -138,7 +164,7 @@ export const useFilter = () => {
         setActiveSeason({});
     };
 
-    return { activeColors, toggleColorActive, activeSizes, toggleSizeActive, activeSeason, toggleSeasonActive, resetColorActive, resetSizeActive, resetSeasonActive };
+    return { activeGenders, toggleGenderActive, activeColors, toggleColorActive, activeSizes, toggleSizeActive, activeSeason, toggleSeasonActive, resetColorActive, resetSizeActive, resetSeasonActive };
 };
 
 
