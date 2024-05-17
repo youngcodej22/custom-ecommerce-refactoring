@@ -137,90 +137,66 @@
         padding-bottom: 10px;
 
         dd {
-            // display: none;
-            // padding-bottom: 20px;
-            // height: 100px;
-            // visibility: visible;
             overflow: hidden;
             height: 0;
             visibility: hidden;
             transition: height 0.3s ease-in-out;
 
-            #rangeSlider {
-                height: 3px;
-                border: 0;
-                background: #999999;
+            .noUi-target {
+                height: 14px;
+                // border: 0;
+                // background: #999;
                 margin: 10px 0;
-                width: calc(100% - 7px);
-
-                border-radius: 4px;
-                box-shadow: inset 0 1px 1px #f0f0f0, 0 3px 6px -5px #bbbbbb;
-
-                .noUi-base {
-                    width: 100%;
-                    height: 100%;
-                    position: relative;
-                    z-index: 1;
-
-                    .noUi-connects {
-                        border-radius: 3px;
-                        overflow: hidden;
-                        z-index: 0;
-                        width: 100%;
-                        height: 100%;
-                        position: relative;
-
-                        .noUi-connnet {
-                            transform: translate(0%, 0px) scale(1, 1);
-                            background: #242424;
-                            // background: #3fb8af;
-
-                            will-change: transform;
-                            position: absolute;
-                            z-index: 1;
-                            top: 0;
-                            right: 0;
-                            height: 100%;
-                            width: 100%;
-                            transform-origin: 0 0;
-                            transform-style: flat;
-                        }
-                    }
-
-                    .noUi-origin {
-                        transform: translate(-100%, 0px);
-                        z-index: 5;
-                        width: calc(100% - 5px);
-                        height: 0;
-
-                        will-change: transform;
-                        position: absolute;
-                        z-index: 1;
-                        top: 0;
-                        right: 0;
-                        height: 100%;
-                        width: 100%;
-                        transform-origin: 0 0;
-                        transform-style: flat;
-
-                        .noUi-handle {
-                            width: 14px;
-                            height: 14px;
-                            box-shadow: none;
-                            background: #242424;
-                            border-radius: 50%;
-                            top: -5px;
-                            right: -8px;
-                            border: 1px solid #d9d9d9;
-
-                            .noUi-touch-area {
-                                height: 100%;
-                                width: 100%;
-                            }
-                        }
-                    }
-                }
+                // border-radius: 4px;
+                // width: calc(100% - 7px);
             }
+
+            .noUi-connect {
+                // transform: translate(0%, 0px) scale(1, 1);
+                background: #242424;
+                // // background: #3fb8af;
+
+                // will-change: transform;
+                // position: absolute;
+                // z-index: 1;
+                // top: 0;
+                // right: 0;
+                // height: 100%;
+                // width: 100%;
+                // transform-origin: 0 0;
+                // transform-style: flat;
+            }
+
+            .noUi-origin {
+                // width: calc(100% - 5px);
+            }
+
+            .noUi-handle {
+                // width: 14px;
+                // height: 14px;
+                // box-shadow: none;
+                // background: #242424;
+                // border-radius: 50%;
+                // top: -5px;
+                // right: -8px;
+
+                // border: 1px solid #d9d9d9;
+            }
+
+            .noUi-handle:hover {
+                // box-shadow: 0 0 3px #ccc; /* Darker shadow on hover */
+            }
+
+            .noUi-touch-area {
+                // height: 100%;
+                // width: 100%;
+            }
+
+            .noUi-tooltip {
+                // background-color: #009688; /* Teal tooltip background */
+                // color: #fff; /* White text color */
+            }
+
             .price_box {
                 margin: 30px 0 12px 0;
                 display: flex;

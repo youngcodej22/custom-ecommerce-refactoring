@@ -1,4 +1,7 @@
 import React, { useContext, useState, useRef, useEffect } from 'react';
+// library
+import Nouislider from 'nouislider-react';
+import 'nouislider/distribute/nouislider.css';
 // assets
 import iconFilter from '/assets/icon/icon-filter.png';
 import iconFilterDel from '/assets/icon/icon-filter-del.png';
@@ -15,6 +18,7 @@ import FilterSeason from '../FilterSeason/FilterSeason';
 // style
 import './ProductListFilterDetail.scss';
 import { FilterContext } from '../../context/context';
+import { throttle, debounce } from 'lodash';
 
 interface Filter {
     label: string;
@@ -38,6 +42,9 @@ const ProductListFilterDetail = () => {
         season: null,
         price: null,
     });
+
+    // const [priceRange, setPriceRange] = useState({ min: 0, max: 2000000 });
+    const [priceRange, setPriceRange] = useState([0, 2000000]);
 
     useEffect(() => {
         const adjustHeight = sectionKey => {
@@ -73,25 +80,6 @@ const ProductListFilterDetail = () => {
     };
 
     const handleGenderFilter = (filter: Filter) => {
-        // if (!selectedFilters.some(f => f.value === filter.value)) {
-        //     setSelectedFilters(prevFilters => [...prevFilters, filter]);
-        // }
-
-        // if (!selectedFilters.some(f => f.value === filter.value)) {
-        //     setSelectedFilters(prevFilters =>
-        //         prevFilters
-        //             .filter(f => !['m', 'w', 'u'].includes(f.value))
-        //             .concat(filter),
-        //     );
-        // } else {
-        //     setSelectedFilters(prevFilters => [...prevFilters, filter]);
-        // }
-
-        // Remove any existing gender filter
-        // const newFilters = selectedFilters.filter(
-        //     f => !['m', 'w', 'u'].includes(f.value),
-        // );
-
         // Check if the clicked filter is already active
         const isActive = selectedFilters.some(f => f.value === filter.value);
 
@@ -182,6 +170,53 @@ const ProductListFilterDetail = () => {
         resetSizeActive();
         resetSeasonActive();
     };
+
+    // const onUpdate = (values, handle, unencoded, tap, positions) => {
+    //     setPriceRange(values.map(value => Math.round(value)));
+    // };
+
+    // ! throttle 고민
+    // const handleSliderUpdate = throttle((values, handle) => {
+    //     const newValues = values.map(value => Math.trunc(value));
+    //     setPriceRange(newValues);
+    // }
+
+    // const handleSliderUpdate = (values, handle = 0) => {
+    const handleSliderUpdate = (values: number[]) => {
+        const newValues = values.map(value => Math.trunc(value));
+        // console.log('🚀 ~ handleSliderUpdate ~ newValues:', newValues);
+
+        setPriceRange(newValues);
+    };
+
+    const handlePriceChange = (value: number, type: 'min' | 'max') => {
+        // if (isNaN(value) || value < 0 || value > 2000000) {
+        //     return;
+        // } else if (type === 'min') {
+        //     setPriceRange(prev => [value, prev[1]]);
+        // } else if (type === 'max') {
+        //     setPriceRange(prev => [prev[0], value]);
+        // }
+        if (isNaN(value) || value < 0 || value > 2000000) {
+            return;
+        } else {
+            setPriceRange(prev => {
+                const newRange =
+                    type === 'min' ? [value, prev[1]] : [prev[0], value];
+                // Optionally, you can call handleSliderUpdate here if it does more complex operations
+                // handleSliderUpdate(newRange);
+                return newRange;
+            });
+            // handleSliderUpdate(priceRange);
+        }
+    };
+
+    // useEffect(() => {
+    // debounce(handleSliderUpdate, 500);
+    // setTimeout(() => {
+    //     handleSliderUpdate(priceRange);
+    // }, 500);
+    // }, [priceRange]);
 
     return (
         <div className="productlist-filter-detail">
@@ -307,52 +342,41 @@ const ProductListFilterDetail = () => {
                     가격
                 </dt>
                 <dd ref={el => (sectionRefs.current.price = el)}>
-                    <div id="rangeSlider">
-                        <div className="noUi-base">
-                            <div className="noUi-connects">
-                                <div className="noUi-connect"></div>
-                            </div>
-                            <div className="noUi-origin">
-                                <div
-                                    className="noUi-handle noUi-handle-lower"
-                                    data-handle="0"
-                                    role="slider"
-                                    aria-orientation="horizontal"
-                                    aria-valuemin="0.0"
-                                    aria-valuemax="2000000.0"
-                                    aria-valuenow="0.0"
-                                    aria-valuetext="0.00"
-                                >
-                                    <div className="noUi-touch-area"></div>
-                                </div>
-                            </div>
-                            <div
-                                className="noUi-origin"
-                                style={{
-                                    transform: 'translate(0%, 0px)',
-                                    zIndex: 4,
-                                }}
-                            >
-                                <div
-                                    className="noUi-handle noUi-handle-upper"
-                                    data-handle="1"
-                                    tabIndex={0}
-                                    role="slider"
-                                    aria-orientation="horizontal"
-                                    aria-valuemin="0.0"
-                                    aria-valuemax="2000000.0"
-                                    aria-valuenow="2000000.0"
-                                    aria-valuetext="2000000.00"
-                                >
-                                    <div className="noUi-touch-area"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <Nouislider
+                        range={{ min: 0, max: 2000000 }}
+                        // start={[priceRange.min, priceRange.max]}
+                        // ! 아래 state를 직접 넣으면 엄청 버벅거린다! 이거 오류 중요, 그래서 직접 숫자 기입, 대신 아래 input에서 숫자 기입하면 slider 실시간 변경 x
+                        // start={priceRange}
+                        // start={[priceRange[0], priceRange[1]]}
+                        start={[0, 2000000]}
+                        connect={true}
+                        // step={1}
+                        onUpdate={handleSliderUpdate}
+                    />
                     <div className="price_box">
-                        <input type="text" defaultValue="0" />
+                        <input
+                            type="text"
+                            value={priceRange[0]}
+                            // defaultValue={priceRange[0]}
+                            min="0"
+                            max="2000000"
+                            onChange={e =>
+                                handlePriceChange(Number(e.target.value), 'min')
+                            }
+                            aria-label="Minimum price"
+                        />
                         <span>~</span>
-                        <input type="text" defaultValue="20000" />
+                        <input
+                            type="text"
+                            value={priceRange[1]}
+                            // defaultValue={priceRange[1]}
+                            min="0"
+                            max="2000000"
+                            onChange={e =>
+                                handlePriceChange(Number(e.target.value), 'max')
+                            }
+                            aria-label="Maximum price"
+                        />
                     </div>
                 </dd>
             </dl>
