@@ -104,6 +104,23 @@
 .productlist-filter-detail .price_range_wrap dd .noUi-connect {
   background: #242424;
 }
+.productlist-filter-detail .price_range_wrap dd .noUi-handle {
+  width: 20px;
+  height: 20px;
+  box-shadow: none;
+  background: #242424;
+  border-radius: 50%;
+  top: -4px;
+}
+.productlist-filter-detail .price_range_wrap dd .noUi-handle::before, .productlist-filter-detail .price_range_wrap dd .noUi-handle::after {
+  display: none;
+}
+.productlist-filter-detail .price_range_wrap dd .noUi-handle[data-handle="0"] {
+  left: 26px;
+}
+.productlist-filter-detail .price_range_wrap dd .noUi-handle[data-handle="1"] {
+  right: -2px;
+}
 .productlist-filter-detail .price_range_wrap dd .price_box {
   margin: 30px 0 12px 0;
   display: flex;
