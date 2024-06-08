@@ -133,6 +133,9 @@
   width: calc(50% - 13px);
   padding: 0 10px;
   line-height: 38px;
+  font-size: 1rem;
+  color: #333333;
+  letter-spacing: 1px;
 }
 .productlist-filter-detail .price_range_wrap dd .price_box span {
   padding: 0 6px;
