@@ -7,8 +7,8 @@ import iconFilter from '/assets/icon/icon-filter.png';
 import iconFilterDel from '/assets/icon/icon-filter-del.png';
 // data
 import { genderList, GenderListType } from '../../data/genderList';
-import { ColorPaletteType, colorPalette } from '../../data/colorPalette';
-import { SizeListType, sizeList } from '../../data/sizeList';
+import { colorPalette, ColorPaletteType } from '../../data/colorPalette';
+import { sizeList, SizeListType } from '../../data/sizeList';
 import { seasonList, SeasonListType } from '../../data/seasonList';
 // component
 import FilterGender from '../FilterGender/FilterGender';
@@ -19,6 +19,8 @@ import FilterSeason from '../FilterSeason/FilterSeason';
 import './ProductListFilterDetail.scss';
 import { FilterContext } from '../../context/context';
 import { throttle, debounce } from 'lodash';
+
+import { combinedProductsData, ProductType } from '../../data/products';
 
 interface Filter {
     label: string;
@@ -61,6 +63,7 @@ const ProductListFilterDetail = () => {
     }, [activeSections]); // Depend on activeSections to re-run when it changes
 
     const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
+    // const { setFilteredProducts } = useContext(FilterContext);
 
     const {
         toggleGenderActive,
@@ -209,6 +212,54 @@ const ProductListFilterDetail = () => {
             });
             // handleSliderUpdate(priceRange);
         }
+    };
+
+    console.log('*selectedFilters*:', selectedFilters);
+
+    // const [filteredProducts, setFilteredProducts] = useState<ProductType[]>([]);
+
+    const filterProducts = () => {
+        let filtered = combinedProductsData;
+
+        selectedFilters.forEach(filter => {
+            switch (filter.id) {
+                case 'gender':
+                    filtered = filtered.filter(
+                        product => product.gender === filter.value,
+                    );
+                    break;
+                case 'color':
+                    filtered = filtered.filter(
+                        product => product.color === filter.value,
+                    );
+                    break;
+                case 'size':
+                    filtered = filtered.filter(
+                        product => product.size === filter.value,
+                    );
+                    break;
+                case 'season':
+                    filtered = filtered.filter(
+                        product => product.season === filter.value,
+                    );
+                    break;
+                default:
+                    break;
+            }
+        });
+
+        // Filter by price range
+        filtered = filtered.filter(
+            product =>
+                product.price >= priceRange[0] &&
+                product.price <= priceRange[1],
+        );
+
+        setFilteredProducts(filtered);
+    };
+
+    const handleSearch = () => {
+        filterProducts();
     };
 
     // useEffect(() => {
@@ -381,7 +432,7 @@ const ProductListFilterDetail = () => {
                 </dd>
             </dl>
             <div className="quick_btn">
-                <input type="button" value="상품 검색" />
+                <input type="button" value="상품 검색" onClick={handleSearch} />
             </div>
         </div>
     );

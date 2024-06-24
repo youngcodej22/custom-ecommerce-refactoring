@@ -74,7 +74,7 @@ const cateBoxItems = [
             },
             {
                 subCategory: '가방',
-                thirdCategory: ['ALL', '캐디백', '보스턴백', '파우치'],
+                thirdCategory: ['ALL', '캐디백', '보스턴백', '파우치', 'ETC'],
             },
             {
                 subCategory: '용품',

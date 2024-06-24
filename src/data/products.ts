@@ -11,12 +11,16 @@ export interface ProductType {
     price: string;
     image: string;
     labels: string[][];
+    color: string;
     acc: boolean;
     subCategory?: string;
     thirdCategory?: string;
     date: string;
     like: number;
     sale: number;
+    gender: string;
+    size: string[];
+    season: string[];
 }
 
 // combine datas
