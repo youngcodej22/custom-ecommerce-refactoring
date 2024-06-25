@@ -9,202 +9,202 @@ export interface ColorPaletteType {
 
 export const colorPalette: ColorPaletteType[] = [
     {
-        inputId: "searchColorFFFFFF",
+        inputId: "color_FFFFFF",
         inputValue: "FFFFFF",
         inputDataText: "화이트",
-        labelHtmlFor: "searchColorFFFFFF",
+        labelHtmlFor: "color_FFFFFF",
         labelTitle: "FFFFFF",
         title: "화이트"
     },
     {
-        inputId: "searchColor191919",
+        inputId: "color_191919",
         inputValue: "191919",
         inputDataText: "블랙",
-        labelHtmlFor: "searchColor191919",
+        labelHtmlFor: "color_191919",
         labelTitle: "191919",
         title: "블랙"
     }   ,
     {
-        inputId: "searchColor696969",
+        inputId: "color_696969",
         inputValue: "696969",
         inputDataText: "다크 그레이",
-        labelHtmlFor: "searchColor696969",
+        labelHtmlFor: "color_696969",
         labelTitle: "696969",
         title: "다크 그레이"
     }   ,
     {
-        inputId: "searchColord3d3d3",
+        inputId: "color_d3d3d3",
         inputValue: "d3d3d3",
         inputDataText: "라이트 그레이",
-        labelHtmlFor: "searchColord3d3d3",
+        labelHtmlFor: "color_d3d3d3",
         labelTitle: "d3d3d3",
         title: "라이트 그레이"
     }   ,
     {
-        inputId: "searchColora0a0a0",
+        inputId: "color_a0a0a0",
         inputValue: "a0a0a0",
         inputDataText: "그레이",
-        labelHtmlFor: "searchColora0a0a0",
+        labelHtmlFor: "color_a0a0a0",
         labelTitle: "a0a0a0",
         title: "그레이"
     }   ,
     {
-        inputId: "searchColorc0c0c0",
+        inputId: "color_c0c0c0",
         inputValue: "c0c0c0",
         inputDataText: "실버",
-        labelHtmlFor: "searchColorc0c0c0",
+        labelHtmlFor: "color_c0c0c0",
         labelTitle: "c0c0c0",
         title: "실버"
     }   ,
     {
-        inputId: "searchColor8f784b",
+        inputId: "color_8f784b",
         inputValue: "8f784b",
         inputDataText: "카키",
-        labelHtmlFor: "searchColor8f784b",
+        labelHtmlFor: "color_8f784b",
         labelTitle: "8f784b",
         title: "카키"
     }   ,
     {
-        inputId: "searchColor8E562E",
+        inputId: "color_8E562E",
         inputValue: "8E562E",
         inputDataText: "브라운",
-        labelHtmlFor: "searchColor8E562E",
+        labelHtmlFor: "color_8E562E",
         labelTitle: "8E562E",
         title: "브라운"
     }   ,
     {
-        inputId: "searchColorE91818",
+        inputId: "color_E91818",
         inputValue: "E91818",
         inputDataText: "레드",
-        labelHtmlFor: "searchColorE91818",
+        labelHtmlFor: "color_E91818",
         labelTitle: "E91818",
         title: "레드"
     }   ,
     {
-        inputId: "searchColor760c0c",
+        inputId: "color_760c0c",
         inputValue: "760c0c",
         inputDataText: "버건디",
-        labelHtmlFor: "searchColor760c0c",
+        labelHtmlFor: "color_760c0c",
         labelTitle: "760c0c",
         title: "버건디"
     }   ,
     {
-        inputId: "searchColor722f37",
+        inputId: "color_722f37",
         inputValue: "722f37",
         inputDataText: "와인",
-        labelHtmlFor: "searchColor722f37",
+        labelHtmlFor: "color_722f37",
         labelTitle: "722f37",
         title: "와인"
     }   ,
     {
-        inputId: "searchColorcf730e",
+        inputId: "color_cf730e",
         inputValue: "cf730e",
         inputDataText: "카멜",
-        labelHtmlFor: "searchColorcf730e",
+        labelHtmlFor: "color_cf730e",
         labelTitle: "cf730e",
         title: "카멜"
     }   ,
     {
-        inputId: "searchColorF4AA24",
+        inputId: "color_F4AA24",
         inputValue: "F4AA24",
         inputDataText: "오렌지",
-        labelHtmlFor: "searchColorF4AA24",
+        labelHtmlFor: "color_F4AA24",
         labelTitle: "F4AA24",
         title: "오렌지"
     }   ,
     {
-        inputId: "searchColorF4D324",
+        inputId: "color_F4D324",
         inputValue: "F4D324",
         inputDataText: "골드",
-        labelHtmlFor: "searchColorF4D324",
+        labelHtmlFor: "color_F4D324",
         labelTitle: "F4D324",
         title: "골드"
     }   ,
     {
-        inputId: "searchColorF2F325",
+        inputId: "color_F2F325",
         inputValue: "F2F325",
         inputDataText: "옐로우",
-        labelHtmlFor: "searchColorF2F325",
+        labelHtmlFor: "color_F2F325",
         labelTitle: "F2F325",
         title: "옐로우"
     }   ,
     {
-        inputId: "searchColorFDC4DA",
+        inputId: "color_FDC4DA",
         inputValue: "FDC4DA",
         inputDataText: "핑크",
-        labelHtmlFor: "searchColorFDC4DA",
+        labelHtmlFor: "color_FDC4DA",
         labelTitle: "FDC4DA",
         title: "핑크"
     }   ,
     {
-        inputId: "searchColord3f5d3",
+        inputId: "color_d3f5d3",
         inputValue: "d3f5d3",
         inputDataText: "라이트 그린",
-        labelHtmlFor: "searchColord3f5d3",
+        labelHtmlFor: "color_d3f5d3",
         labelTitle: "d3f5d3",
         title: "라이트 그린"
     }   ,
     {
-        inputId: "searchColor038606",
+        inputId: "color_038606",
         inputValue: "038606",
         inputDataText: "그린",
-        labelHtmlFor: "searchColor038606",
+        labelHtmlFor: "color_038606",
         labelTitle: "038606",
         title: "그린"
     }   ,
     {
-        inputId: "searchColor66ffff",
+        inputId: "color_66ffff",
         inputValue: "66ffff",
         inputDataText: "민트",
-        labelHtmlFor: "searchColor66ffff",
+        labelHtmlFor: "color_66ffff",
         labelTitle: "66ffff",
         title: "민트"
     }   ,
     {
-        inputId: "searchColor93c2df",
+        inputId: "color_93c2df",
         inputValue: "93c2df",
         inputDataText: "라이트 블루",
-        labelHtmlFor: "searchColor93c2df",
+        labelHtmlFor: "color_93c2df",
         labelTitle: "93c2df",
         title: "라이트 블루"
     }   ,
     {
-        inputId: "searchColor0406cb",
+        inputId: "color_0406cb",
         inputValue: "0406cb",
         inputDataText: "블루",
-        labelHtmlFor: "searchColor0406cb",
+        labelHtmlFor: "color_0406cb",
         labelTitle: "0406cb",
         title: "블루"
     }   ,
     {
-        inputId: "searchColor1E2C89",
+        inputId: "color_1E2C89",
         inputValue: "1E2C89",
         inputDataText: "네이비",
-        labelHtmlFor: "searchColor1E2C89",
+        labelHtmlFor: "color_1E2C89",
         labelTitle: "1E2C89",
         title: "네이비"
     }   ,
     {
-        inputId: "searchColorff00ff",
+        inputId: "color_ff00ff",
         inputValue: "ff00ff",
         inputDataText: "퍼플",
-        labelHtmlFor: "searchColorff00ff",
+        labelHtmlFor: "color_ff00ff",
         labelTitle: "ff00ff",
         title: "퍼플"
     }   ,
     {
-        inputId: "searchColorf5f5dc",
+        inputId: "color_f5f5dc",
         inputValue: "f5f5dc",
         inputDataText: "베이지",
-        labelHtmlFor: "searchColorf5f5dc",
+        labelHtmlFor: "color_f5f5dc",
         labelTitle: "f5f5dc",
         title: "베이지"
     }   ,
     {
-        inputId: "searchColorece6cc",
+        inputId: "color_ece6cc",
         inputValue: "ece6cc",
         inputDataText: "아이보리",
-        labelHtmlFor: "searchColorece6cc",
+        labelHtmlFor: "color_ece6cc",
         labelTitle: "ece6cc",
         title: "아이보리"
     }   

@@ -22,11 +22,11 @@ import { throttle, debounce } from 'lodash';
 
 import { combinedProductsData, ProductType } from '../../data/products';
 
-interface Filter {
-    label: string;
-    value: string;
-    id?: string | undefined;
-}
+// interface Filter {
+//     label: string;
+//     value: string;
+//     id?: string | undefined;
+// }
 
 const ProductListFilterDetail = () => {
     // const [isActive, setIsActive] = useState(false);
@@ -45,8 +45,10 @@ const ProductListFilterDetail = () => {
         price: null,
     });
 
+    // ! context이동
+    // const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
     // const [priceRange, setPriceRange] = useState({ min: 0, max: 2000000 });
-    const [priceRange, setPriceRange] = useState([0, 2000000]);
+    // const [priceRange, setPriceRange] = useState([0, 2000000]);
 
     useEffect(() => {
         const adjustHeight = sectionKey => {
@@ -62,9 +64,6 @@ const ProductListFilterDetail = () => {
         Object.keys(activeSections).forEach(adjustHeight);
     }, [activeSections]); // Depend on activeSections to re-run when it changes
 
-    const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
-    // const { setFilteredProducts } = useContext(FilterContext);
-
     const {
         toggleGenderActive,
         toggleColorActive,
@@ -73,6 +72,12 @@ const ProductListFilterDetail = () => {
         resetColorActive,
         resetSizeActive,
         resetSeasonActive,
+        // filteredProducts,
+        setFilteredProducts,
+        selectedFilters,
+        setSelectedFilters,
+        priceRange,
+        setPriceRange,
     } = useContext(FilterContext);
 
     const toggleActive = (section: keyof typeof activeSections) => {
@@ -91,7 +96,9 @@ const ProductListFilterDetail = () => {
             // newFilters.push(filter);
             setSelectedFilters(prevFilters =>
                 prevFilters
-                    .filter(f => !['m', 'w', 'u'].includes(f.value))
+                    .filter(
+                        f => !['여성용', '남성용', '공용'].includes(f.value),
+                    )
                     .concat(filter),
             );
         }
@@ -187,7 +194,6 @@ const ProductListFilterDetail = () => {
     // const handleSliderUpdate = (values, handle = 0) => {
     const handleSliderUpdate = (values: number[]) => {
         const newValues = values.map(value => Math.trunc(value));
-        // console.log('🚀 ~ handleSliderUpdate ~ newValues:', newValues);
 
         setPriceRange(newValues);
     };
@@ -214,48 +220,83 @@ const ProductListFilterDetail = () => {
         }
     };
 
-    console.log('*selectedFilters*:', selectedFilters);
-
-    // const [filteredProducts, setFilteredProducts] = useState<ProductType[]>([]);
-
     const filterProducts = () => {
-        let filtered = combinedProductsData;
+        let products = [...combinedProductsData];
+
+        // selectedFilters.forEach(filter => {
+        //     switch (filter.id) {
+        //         case 'gender':
+        //             products = products.filter(
+        //                 product => product.gender === filter.value,
+        //             );
+        //             break;
+        //         case 'color':
+        //             products = products.filter(
+        //                 product => product.color === filter.label,
+        //             );
+        //             break;
+        //         case 'size':
+        //             products = products.filter(product =>
+        //                 product.size.includes(filter.value),
+        //             );
+        //             break;
+        //         case 'season':
+        //             products = products.filter(product =>
+        //                 product.season.includes(filter.value),
+        //             );
+        //             break;
+        //         // case 'price':
+        //         //     products = products.filter(
+        //         //         product =>
+        //         //             Number(product.price) >= Number(priceRange[0]) &&
+        //         //             Number(product.price) <= Number(priceRange[1]),
+        //         //     );
+        //         //     break;
+        //         default:
+        //             // return products;
+        //             break;
+        //     }
+        // });
 
         selectedFilters.forEach(filter => {
-            switch (filter.id) {
-                case 'gender':
-                    filtered = filtered.filter(
-                        product => product.gender === filter.value,
-                    );
-                    break;
-                case 'color':
-                    filtered = filtered.filter(
-                        product => product.color === filter.value,
-                    );
-                    break;
-                case 'size':
-                    filtered = filtered.filter(
-                        product => product.size === filter.value,
-                    );
-                    break;
-                case 'season':
-                    filtered = filtered.filter(
-                        product => product.season === filter.value,
-                    );
-                    break;
-                default:
-                    break;
+            if (filter.id && filter.id.startsWith('gender')) {
+                products = products.filter(
+                    product => product.gender === filter.value,
+                );
+                console.log('Products after gender filter:', products);
+            } else if (filter.id && filter.id.startsWith('color')) {
+                products = products.filter(
+                    product => product.color === filter.label,
+                );
+                console.log('Products after color filter:', products);
+            } else if (filter.id && filter.id.startsWith('size')) {
+                products = products.filter(product =>
+                    product.size.includes(filter.value),
+                );
+                console.log('Products after size filter:', products);
+            } else if (filter.id && filter.id.startsWith('season')) {
+                products = products.filter(product =>
+                    product.season.includes(filter.value),
+                );
+                console.log('Products after season filter:', products);
             }
         });
 
-        // Filter by price range
-        filtered = filtered.filter(
-            product =>
-                product.price >= priceRange[0] &&
-                product.price <= priceRange[1],
-        );
+        // selectedFilters.forEach(filter => {
+        //     console.log('*filter: ', filter);
+        // });
 
-        setFilteredProducts(filtered);
+        // Filter by price range
+        // products = products.filter(
+        //     product =>
+        //         Number(product.price) >= Number(priceRange[0]) &&
+        //         Number(product.price) <= Number(priceRange[1]),
+        // );
+
+        console.log('*selectedFilters: ', selectedFilters);
+
+        // setSelectedFilters(products);
+        setFilteredProducts(products);
     };
 
     const handleSearch = () => {

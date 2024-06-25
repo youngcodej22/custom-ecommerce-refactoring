@@ -1,12 +1,16 @@
 import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { ProductListContext } from '../context/context';
+import { FilterContext, ProductListContext } from '../context/context';
 
 const useFilteredProducts = () => {
-    const { combinedProductsData } = useContext(ProductListContext);
+    // const { combinedProductsData } = useContext(ProductListContext);
+    const { filteredProducts } = useContext(FilterContext);
+    console.log('🚀 ~ filteredProducts:', filteredProducts);
+
     const { category, subcategory, thirdcategory } = useParams();
 
-    const filteredProducts = combinedProductsData.filter(product => {
+    // const orderFilteredProducts = combinedProductsData.filter(product => {
+    const orderFilteredProducts = filteredProducts.filter(product => {
         if (subcategory === 'all') {
             // console.log('product_cate ', product.category);
             return product.category.toLowerCase() === category?.toLowerCase();
@@ -29,7 +33,7 @@ const useFilteredProducts = () => {
         }
     });
 
-    return filteredProducts;
+    return orderFilteredProducts;
 };
 
 export default useFilteredProducts;

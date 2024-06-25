@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 // component
 import ProductCard from '../../components/ProductCard/ProductCard';
@@ -50,7 +50,7 @@ const ProductList: React.FC = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
 
-    const filteredProducts = useFilteredProducts();
+    const orderFilteredProducts = useFilteredProducts();
 
     // ! sort 2차 성공: 오름차순, 내림차순 동작 그리고 MEN, WOMEN 등 탭 바뀌어도 필터링 유지
     // const sortedAndFilteredProducts = React.useMemo(() => {
@@ -125,7 +125,7 @@ const ProductList: React.FC = () => {
     // }, [category, subcategory, thirdcategory, sortOption]);
 
     const sortedAndFilteredProducts = () => {
-        const filtered = filteredProducts;
+        const filtered = orderFilteredProducts;
 
         // ? 문제: 오름차순해도 1,000,000원 상품이 가장 상단에 오는게 문제
         // ! 해결: parseInt()는 ,에 관계 없이 첫자리 1에 대해서 정렬을 하기 때문에 ','를 제거하는 방법을 사용해야한다.

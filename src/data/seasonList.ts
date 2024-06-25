@@ -8,31 +8,38 @@ export interface SeasonListType {
 
 export const seasonList: SeasonListType[] = [
     {
-        inputId: "searchSeason1",
+        inputId: "season_1",
         inputValue: "봄",
         inputDataText: "봄",
-        labelHtmlFor: "searchSeason1",
+        labelHtmlFor: "season_1",
         text: "봄"
     },   
     {
-        inputId: "searchSeason2",
+        inputId: "season_2",
         inputValue: "여름",
         inputDataText: "여름",
-        labelHtmlFor: "searchSeason2",
+        labelHtmlFor: "season_2",
         text: "여름"
     },   
     {
-        inputId: "searchSeason3",
+        inputId: "season_3",
         inputValue: "가을",
         inputDataText: "가을",
-        labelHtmlFor: "searchSeason3",
+        labelHtmlFor: "season_3",
         text: "가을"
     },   
     {
-        inputId: "searchSeason4",
+        inputId: "season_4",
         inputValue: "겨울",
         inputDataText: "겨울",
-        labelHtmlFor: "searchSeason4",
+        labelHtmlFor: "season_4",
         text: "겨울"
-    },   
+    },
+    {
+        inputId: "season_5",
+        inputValue: "ALW",
+        inputDataText: "ALW",
+        labelHtmlFor: "season_5",
+        text: "ALW"
+    },
 ]

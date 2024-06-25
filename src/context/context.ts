@@ -1,6 +1,6 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 // data
-import { ProductType } from '../data/products'
+import { ProductType, FilterType } from '../data/products'
 
 /**
  * * Tabs.tsx - Tabs
@@ -90,6 +90,12 @@ interface FilterContextType {
     resetColorActive: () => void;
     resetSizeActive: () => void;
     resetSeasonActive: () => void;
+    filteredProducts: ProductType[];
+    setFilteredProducts: React.Dispatch<React.SetStateAction<ProductType[]>>;
+    selectedFilters: FilterType[];
+    setSelectedFilters: React.Dispatch<React.SetStateAction<FilterType[]>>;
+    priceRange: number[];
+    setPriceRange: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 // export const FilterColorContext = createContext<FilterContextType>({
@@ -104,14 +110,27 @@ export const FilterContext = createContext<FilterContextType>({
     toggleSeasonActive: () => {},
     resetColorActive: () => {},
     resetSizeActive: () => {},
-    resetSeasonActive: () => {},
+    resetSeasonActive: () => { },
+    filteredProducts: [],
+    setFilteredProducts: () => { },
+    selectedFilters: [],
+    setSelectedFilters: () => {},
+    priceRange: [0, 2000000],
+    setPriceRange: () => {},
 });
 
-export const useFilter = () => {
+export const useFilter = (combinedProductsData: ProductType[]) => {
     const [activeGenders, setActiveGenders] = useState<{ [key: string]: boolean }>({});
     const [activeColors, setActiveColors] = useState<{ [key: string]: boolean }>({});
     const [activeSizes, setActiveSizes] = useState<{ [key: string]: boolean }>({});
     const [activeSeason, setActiveSeason] = useState<{ [key: string]: boolean }>({});
+    const [filteredProducts, setFilteredProducts] = useState<ProductType[]>([]);
+    const [selectedFilters, setSelectedFilters] = useState<FilterType[]>([]);
+    const [priceRange, setPriceRange] = useState<number[]>([0, 2000000]);
+
+    useEffect(() => {
+        setFilteredProducts(combinedProductsData);
+    }, [combinedProductsData]);
 
     const toggleGenderActive = (id: string, removeActive: boolean) => {
         setActiveGenders(prev => {
@@ -164,7 +183,7 @@ export const useFilter = () => {
         setActiveSeason({});
     };
 
-    return { activeGenders, toggleGenderActive, activeColors, toggleColorActive, activeSizes, toggleSizeActive, activeSeason, toggleSeasonActive, resetColorActive, resetSizeActive, resetSeasonActive };
+    return { activeGenders, toggleGenderActive, activeColors, toggleColorActive, activeSizes, toggleSizeActive, activeSeason, toggleSeasonActive, resetColorActive, resetSizeActive, resetSeasonActive, filteredProducts, setFilteredProducts, selectedFilters, setSelectedFilters, priceRange, setPriceRange };
 };
 
 

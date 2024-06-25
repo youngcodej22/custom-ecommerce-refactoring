@@ -23,6 +23,12 @@ export interface ProductType {
     season: string[];
 }
 
+export interface FilterType {
+    label: string;
+    value: string;
+    id?: string | undefined;
+}
+
 // combine datas
 export const combinedProductsData: ProductType[] = [
     ...newProductData,

@@ -110,7 +110,13 @@ function App() {
         resetColorActive,
         resetSizeActive,
         resetSeasonActive,
-    } = useFilter();
+        filteredProducts,
+        setFilteredProducts,
+        selectedFilters,
+        setSelectedFilters,
+        priceRange,
+        setPriceRange,
+    } = useFilter(combinedProductsData);
 
     return (
         <TabsContext.Provider value={{ isTabTitleOn, isTabBoxOn, handleClick }}>
@@ -135,6 +141,12 @@ function App() {
                         resetColorActive,
                         resetSizeActive,
                         resetSeasonActive,
+                        filteredProducts,
+                        setFilteredProducts,
+                        selectedFilters,
+                        setSelectedFilters,
+                        priceRange,
+                        setPriceRange,
                     }}
                 >
                     <RouterProvider router={router} />
