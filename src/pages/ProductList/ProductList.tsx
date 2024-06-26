@@ -175,9 +175,12 @@ const ProductList: React.FC = () => {
     );
 
     // * 초기화
+    // useEffect(() => {
+    //     setCurrentPage(page);
+    // }, []);
     useEffect(() => {
         setCurrentPage(page);
-    }, []);
+    }, [page, setCurrentPage]);
 
     useEffect(() => {
         // Calculate the start of the current pagination window
@@ -201,7 +204,18 @@ const ProductList: React.FC = () => {
         navigate(
             `/productlist/${category}/${subcategory}/${thirdcategoryParam}?page=${currentPage}`,
         );
-    }, [currentPage, navigate, category, subcategory, thirdcategory]);
+    }, [
+        currentPage,
+        navigate,
+        category,
+        subcategory,
+        thirdcategory,
+        orderFilteredProducts,
+    ]);
+
+    // useEffect(() => {
+    //     setCurrentPage(1);
+    // }, [isFilterVisible, setCurrentPage]);
 
     // Change page
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
@@ -245,13 +259,27 @@ const ProductList: React.FC = () => {
                                 <div className="goods_list_cont">
                                     <div className="item_basket_type">
                                         <ul>
-                                            {currentItems.map(
-                                                (product, index) => (
-                                                    <ProductCard
-                                                        key={index}
-                                                        product={product}
-                                                    />
-                                                ),
+                                            {currentItems.length === 0 ? (
+                                                <li>
+                                                    <p
+                                                        style={{
+                                                            fontSize: '16px',
+                                                            paddingTop: '100px',
+                                                        }}
+                                                    >
+                                                        상품이 존재하지
+                                                        않습니다.
+                                                    </p>
+                                                </li>
+                                            ) : (
+                                                currentItems.map(
+                                                    (product, index) => (
+                                                        <ProductCard
+                                                            key={index}
+                                                            product={product}
+                                                        />
+                                                    ),
+                                                )
                                             )}
                                         </ul>
                                     </div>
@@ -260,9 +288,10 @@ const ProductList: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="pagination">
-                        <ul>
-                            {/* {currentPage > 1 && (
+                    {currentItems.length > 0 && (
+                        <div className="pagination">
+                            <ul>
+                                {/* {currentPage > 1 && (
                                 <li className="btn_page btn_page_prev">
                                     <button
                                         onClick={prevPage}
@@ -273,33 +302,33 @@ const ProductList: React.FC = () => {
                                     </button>
                                 </li>
                             )} */}
-                            {/* <li className="btn_page btn_page_prev"> */}
-                            <li
-                                className={
-                                    currentPage !== 1
-                                        ? 'btn_page btn_page_next usable'
-                                        : 'btn_page btn_page_next'
-                                }
-                            >
-                                <button onClick={firstPage}>
-                                    <img src={iconFirst} alt="맨앞" />
-                                    <span className="text">맨앞</span>
-                                </button>
-                            </li>
-                            <li
-                                className={
-                                    currentPage > 1
-                                        ? 'btn_page btn_page_prev usable'
-                                        : 'btn_page btn_page_prev'
-                                }
-                            >
-                                <button onClick={prevPage}>
-                                    <img src={iconPrev} alt="이전" />
-                                    <span className="text">이전</span>
-                                </button>
-                            </li>
+                                {/* <li className="btn_page btn_page_prev"> */}
+                                <li
+                                    className={
+                                        currentPage !== 1
+                                            ? 'btn_page btn_page_next usable'
+                                            : 'btn_page btn_page_next'
+                                    }
+                                >
+                                    <button onClick={firstPage}>
+                                        <img src={iconFirst} alt="맨앞" />
+                                        <span className="text">맨앞</span>
+                                    </button>
+                                </li>
+                                <li
+                                    className={
+                                        currentPage > 1
+                                            ? 'btn_page btn_page_prev usable'
+                                            : 'btn_page btn_page_prev'
+                                    }
+                                >
+                                    <button onClick={prevPage}>
+                                        <img src={iconPrev} alt="이전" />
+                                        <span className="text">이전</span>
+                                    </button>
+                                </li>
 
-                            {/* {Array.from({ length: totalPages }, (_, index) => (
+                                {/* {Array.from({ length: totalPages }, (_, index) => (
                                 <li
                                     key={index}
                                     className={
@@ -314,21 +343,21 @@ const ProductList: React.FC = () => {
                                 </li>
                             ))} */}
 
-                            {visiblePages.map(page => (
-                                <li
-                                    key={page}
-                                    className={
-                                        currentPage === page
-                                            ? 'btn_page active'
-                                            : 'btn_page'
-                                    }
-                                >
-                                    <button onClick={() => paginate(page)}>
-                                        {page}
-                                    </button>
-                                </li>
-                            ))}
-                            {/* {currentPage < totalPages && (
+                                {visiblePages.map(page => (
+                                    <li
+                                        key={page}
+                                        className={
+                                            currentPage === page
+                                                ? 'btn_page active'
+                                                : 'btn_page'
+                                        }
+                                    >
+                                        <button onClick={() => paginate(page)}>
+                                            {page}
+                                        </button>
+                                    </li>
+                                ))}
+                                {/* {currentPage < totalPages && (
                                 <li className="btn_page btn_page_next">
                                     <button
                                         onClick={nextPage}
@@ -339,32 +368,33 @@ const ProductList: React.FC = () => {
                                     </button>
                                 </li>
                             )} */}
-                            <li
-                                className={
-                                    currentPage < totalPages
-                                        ? 'btn_page btn_page_next usable'
-                                        : 'btn_page btn_page_next'
-                                }
-                            >
-                                <button onClick={nextPage}>
-                                    <img src={iconNext} alt="다음" />
-                                    <span className="text">다음</span>
-                                </button>
-                            </li>
-                            <li
-                                className={
-                                    currentPage !== totalPages
-                                        ? 'btn_page btn_page_next usable'
-                                        : 'btn_page btn_page_next'
-                                }
-                            >
-                                <button onClick={lastPage}>
-                                    <img src={iconLast} alt="맨끝" />
-                                    <span className="text">맨끝</span>
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
+                                <li
+                                    className={
+                                        currentPage < totalPages
+                                            ? 'btn_page btn_page_next usable'
+                                            : 'btn_page btn_page_next'
+                                    }
+                                >
+                                    <button onClick={nextPage}>
+                                        <img src={iconNext} alt="다음" />
+                                        <span className="text">다음</span>
+                                    </button>
+                                </li>
+                                <li
+                                    className={
+                                        currentPage !== totalPages
+                                            ? 'btn_page btn_page_next usable'
+                                            : 'btn_page btn_page_next'
+                                    }
+                                >
+                                    <button onClick={lastPage}>
+                                        <img src={iconLast} alt="맨끝" />
+                                        <span className="text">맨끝</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

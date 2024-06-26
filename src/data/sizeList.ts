@@ -128,13 +128,13 @@ export const sizeList: SizeListType[] = [
         labelHtmlFor: "size_78",
         text: "78"
     },
-    {
-        inputId: "size_80",
-        inputValue: "080",
-        inputDataText: "080",
-        labelHtmlFor: "size_80",
-        text: "80"
-    },
+    // {
+    //     inputId: "size_80",
+    //     inputValue: "080",
+    //     inputDataText: "080",
+    //     labelHtmlFor: "size_80",
+    //     text: "80"
+    // },
     {
         inputId: "size_82",
         inputValue: "082",
@@ -163,13 +163,13 @@ export const sizeList: SizeListType[] = [
         labelHtmlFor: "size_88",
         text: "88"
     },
-    {
-        inputId: "size_90",
-        inputValue: "090",
-        inputDataText: "090",
-        labelHtmlFor: "size_90",
-        text: "90"
-    },
+    // {
+    //     inputId: "size_90",
+    //     inputValue: "090",
+    //     inputDataText: "090",
+    //     labelHtmlFor: "size_90",
+    //     text: "90"
+    // },
     {
         inputId: "size_92",
         inputValue: "092",

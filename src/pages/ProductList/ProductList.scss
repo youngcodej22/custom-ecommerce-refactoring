@@ -255,9 +255,10 @@
 
                                 ul {
                                     display: flex;
+                                    justify-content: center;
                                     flex-wrap: wrap;
                                     width: 100%;
-                                    font-size: 0;
+                                    // font-size: 0;
 
                                     // li.product-card
                                     // li {
