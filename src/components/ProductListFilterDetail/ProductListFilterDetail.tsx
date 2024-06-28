@@ -1,4 +1,5 @@
 import React, { useContext, useState, useRef, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 // library
 import Nouislider from 'nouislider-react';
 import 'nouislider/distribute/nouislider.css';
@@ -17,7 +18,7 @@ import FilterSize from '../FilterSize/FilterSize';
 import FilterSeason from '../FilterSeason/FilterSeason';
 // style
 import './ProductListFilterDetail.scss';
-import { FilterContext } from '../../context/context';
+import { FilterContext, ProductListContext } from '../../context/context';
 import { throttle, debounce } from 'lodash';
 
 import { combinedProductsData, ProductType } from '../../data/products';
@@ -29,6 +30,24 @@ import { combinedProductsData, ProductType } from '../../data/products';
 // }
 
 const ProductListFilterDetail = () => {
+    const {
+        toggleGenderActive,
+        toggleColorActive,
+        toggleSizeActive,
+        toggleSeasonActive,
+        resetGenderActive,
+        resetColorActive,
+        resetSizeActive,
+        resetSeasonActive,
+        // filteredProducts,
+        setFilteredProducts,
+        selectedFilters,
+        setSelectedFilters,
+        priceRange,
+        setPriceRange,
+    } = useContext(FilterContext);
+    const { setCurrentPage } = useContext(ProductListContext);
+
     // const [isActive, setIsActive] = useState(false);
     const [activeSections, setActiveSections] = useState({
         gender: false,
@@ -45,40 +64,15 @@ const ProductListFilterDetail = () => {
         price: null,
     });
 
+    const { category, subcategory, thirdcategory } = useParams();
+    console.log('🚀 ~ category:', category);
+    console.log('🚀 ~ subcategory:', subcategory);
+    console.log('🚀 ~ thirdcategory:', thirdcategory);
+
     // ! context이동
     // const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
     // const [priceRange, setPriceRange] = useState({ min: 0, max: 2000000 });
     // const [priceRange, setPriceRange] = useState([0, 2000000]);
-
-    useEffect(() => {
-        const adjustHeight = sectionKey => {
-            const section = sectionRefs.current[sectionKey];
-            if (section) {
-                section.style.height = activeSections[sectionKey]
-                    ? `${section.scrollHeight}px`
-                    : '0px';
-            }
-        };
-
-        // Adjust height for all sections
-        Object.keys(activeSections).forEach(adjustHeight);
-    }, [activeSections]); // Depend on activeSections to re-run when it changes
-
-    const {
-        toggleGenderActive,
-        toggleColorActive,
-        toggleSizeActive,
-        toggleSeasonActive,
-        resetColorActive,
-        resetSizeActive,
-        resetSeasonActive,
-        // filteredProducts,
-        setFilteredProducts,
-        selectedFilters,
-        setSelectedFilters,
-        priceRange,
-        setPriceRange,
-    } = useContext(FilterContext);
 
     const toggleActive = (section: keyof typeof activeSections) => {
         setActiveSections(prevState => ({
@@ -175,7 +169,7 @@ const ProductListFilterDetail = () => {
             price: false,
         });
 
-        // ! 여기세엇 왜 is not a function Error 발생? 이유 App.tsx에 정의 안해서;;
+        resetGenderActive();
         resetColorActive();
         resetSizeActive();
         resetSeasonActive();
@@ -300,6 +294,7 @@ const ProductListFilterDetail = () => {
     };
 
     const handleSearch = () => {
+        setCurrentPage(1);
         filterProducts();
     };
 
@@ -309,6 +304,49 @@ const ProductListFilterDetail = () => {
     //     handleSliderUpdate(priceRange);
     // }, 500);
     // }, [priceRange]);
+
+    useEffect(() => {
+        const adjustHeight = sectionKey => {
+            const section = sectionRefs.current[sectionKey];
+            if (section) {
+                section.style.height = activeSections[sectionKey]
+                    ? `${section.scrollHeight}px`
+                    : '0px';
+            }
+        };
+
+        // Adjust height for all sections
+        Object.keys(activeSections).forEach(adjustHeight);
+    }, [activeSections]); // Depend on activeSections to re-run when it changes
+
+    // Reset selectedFilters when category, subcategory, or thirdcategory changes
+    useEffect(() => {
+        setSelectedFilters([]);
+
+        filterProducts();
+
+        // ! 이 이벤트 함수를 실행시 지속 적인 에러 발생, 그래서 선택된 필터링만 제거하도록한다
+        // handleResetFilter();
+        setActiveSections({
+            gender: false,
+            color: false,
+            size: false,
+            season: false,
+            price: false,
+        });
+
+        resetGenderActive();
+        resetColorActive();
+        resetSizeActive();
+        resetSeasonActive();
+
+        console.log('**useEffecet seleted', selectedFilters);
+    }, [category, subcategory, thirdcategory]);
+
+    // Re-filter products whenever selectedFilters changes
+    // useEffect(() => {
+    //     filterProducts();
+    // }, [selectedFilters]);
 
     return (
         <div className="productlist-filter-detail">

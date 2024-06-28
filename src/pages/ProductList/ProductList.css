@@ -203,9 +203,12 @@
 }
 .productlist .sub_content .content .goods_list_flex .goods_list_item .goods_list .goods_list_cont .item_basket_type ul {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
   width: 100%;
+}
+.productlist .sub_content .content .goods_list_flex .goods_list_item .goods_list .goods_list_cont .item_basket_type ul li:not(.product-card) {
+  width: 100%;
+  text-align: center;
 }
 .productlist .sub_content .content .pagination {
   margin: 60px 0;

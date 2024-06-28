@@ -263,7 +263,7 @@ const ProductList: React.FC = () => {
                                                 <li>
                                                     <p
                                                         style={{
-                                                            fontSize: '16px',
+                                                            fontSize: '20px',
                                                             paddingTop: '100px',
                                                         }}
                                                     >

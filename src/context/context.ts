@@ -87,6 +87,7 @@ interface FilterContextType {
     toggleSizeActive: (id: string) => void;
     activeSeason: { [key: string]: boolean };
     toggleSeasonActive: (id: string) => void;
+    resetGenderActive: () => void;
     resetColorActive: () => void;
     resetSizeActive: () => void;
     resetSeasonActive: () => void;
@@ -108,6 +109,7 @@ export const FilterContext = createContext<FilterContextType>({
     toggleSizeActive: () => {},
     activeSeason: {},
     toggleSeasonActive: () => {},
+    resetGenderActive: () => {},
     resetColorActive: () => {},
     resetSizeActive: () => {},
     resetSeasonActive: () => { },
@@ -171,6 +173,10 @@ export const useFilter = (combinedProductsData: ProductType[]) => {
         }));
     };
 
+    const resetGenderActive = () => {
+        setActiveGenders({});
+    };
+
     const resetColorActive = () => {
         setActiveColors({});
     };
@@ -183,7 +189,7 @@ export const useFilter = (combinedProductsData: ProductType[]) => {
         setActiveSeason({});
     };
 
-    return { activeGenders, toggleGenderActive, activeColors, toggleColorActive, activeSizes, toggleSizeActive, activeSeason, toggleSeasonActive, resetColorActive, resetSizeActive, resetSeasonActive, filteredProducts, setFilteredProducts, selectedFilters, setSelectedFilters, priceRange, setPriceRange };
+    return { activeGenders, toggleGenderActive, activeColors, toggleColorActive, activeSizes, toggleSizeActive, activeSeason, toggleSeasonActive, resetGenderActive, resetColorActive, resetSizeActive, resetSeasonActive, filteredProducts, setFilteredProducts, selectedFilters, setSelectedFilters, priceRange, setPriceRange };
 };
 
 

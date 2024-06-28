@@ -255,12 +255,15 @@
 
                                 ul {
                                     display: flex;
-                                    justify-content: center;
+                                    // justify-content: center;
                                     flex-wrap: wrap;
                                     width: 100%;
                                     // font-size: 0;
 
-                                    // li.product-card
+                                    li:not(.product-card) {
+                                        width: 100%;
+                                        text-align: center;
+                                    }
                                     // li {
                                     //     width: 25%;
                                     //     position: relative;
