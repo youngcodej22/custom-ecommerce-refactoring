@@ -137,17 +137,18 @@ const ProductListFilterDetail = () => {
     const handleRemoveFilter = (index: number) => {
         const filter = selectedFilters[index];
         const filterId = filter.id;
+        console.log('*filterId: ', filterId);
 
         if (filterId?.includes('gender')) {
             toggleGenderActive(filterId, true);
         }
-        if (filterId?.includes('searchColor')) {
+        if (filterId?.includes('color')) {
             toggleColorActive(filterId);
         }
-        if (filterId?.includes('searchSize')) {
+        if (filterId?.includes('size')) {
             toggleSizeActive(filterId);
         }
-        if (filterId?.includes('searchSeason')) {
+        if (filterId?.includes('season')) {
             toggleSeasonActive(filterId);
         }
 
@@ -287,15 +288,8 @@ const ProductListFilterDetail = () => {
         //         Number(product.price) <= Number(priceRange[1]),
         // );
 
-        console.log('*selectedFilters: ', selectedFilters);
-
         // setSelectedFilters(products);
         setFilteredProducts(products);
-    };
-
-    const handleSearch = () => {
-        setCurrentPage(1);
-        filterProducts();
     };
 
     // useEffect(() => {
@@ -319,11 +313,11 @@ const ProductListFilterDetail = () => {
         Object.keys(activeSections).forEach(adjustHeight);
     }, [activeSections]); // Depend on activeSections to re-run when it changes
 
+    const [shouldFilter, setShouldFilter] = useState(false);
     // Reset selectedFilters when category, subcategory, or thirdcategory changes
     useEffect(() => {
-        setSelectedFilters([]);
-
         filterProducts();
+        setSelectedFilters([]);
 
         // ! 이 이벤트 함수를 실행시 지속 적인 에러 발생, 그래서 선택된 필터링만 제거하도록한다
         // handleResetFilter();
@@ -340,13 +334,36 @@ const ProductListFilterDetail = () => {
         resetSizeActive();
         resetSeasonActive();
 
-        console.log('**useEffecet seleted', selectedFilters);
+        console.log('**useEffecet seleted 1', selectedFilters);
     }, [category, subcategory, thirdcategory]);
-
-    // Re-filter products whenever selectedFilters changes
     // useEffect(() => {
-    //     filterProducts();
-    // }, [selectedFilters]);
+    //     setSelectedFilters([]);
+    //     setActiveSections({
+    //         gender: false,
+    //         color: false,
+    //         size: false,
+    //         season: false,
+    //         price: false,
+    //     });
+
+    //     resetGenderActive();
+    //     resetColorActive();
+    //     resetSizeActive();
+    //     resetSeasonActive();
+    // }, [category, subcategory, thirdcategory]);
+
+    // useEffect(() => {
+    //     if (shouldFilter) {
+    //         filterProducts();
+    //         setShouldFilter(false); // Reset the flag after filtering
+    //     }
+    // }, [shouldFilter]);
+
+    const handleSearch = () => {
+        setCurrentPage(1);
+        filterProducts();
+        // setShouldFilter(true);
+    };
 
     return (
         <div className="productlist-filter-detail">
