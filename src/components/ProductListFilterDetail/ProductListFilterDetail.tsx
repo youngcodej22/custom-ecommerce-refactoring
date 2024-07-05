@@ -218,68 +218,25 @@ const ProductListFilterDetail = () => {
     const filterProducts = () => {
         let products = [...combinedProductsData];
 
-        // selectedFilters.forEach(filter => {
-        //     switch (filter.id) {
-        //         case 'gender':
-        //             products = products.filter(
-        //                 product => product.gender === filter.value,
-        //             );
-        //             break;
-        //         case 'color':
-        //             products = products.filter(
-        //                 product => product.color === filter.label,
-        //             );
-        //             break;
-        //         case 'size':
-        //             products = products.filter(product =>
-        //                 product.size.includes(filter.value),
-        //             );
-        //             break;
-        //         case 'season':
-        //             products = products.filter(product =>
-        //                 product.season.includes(filter.value),
-        //             );
-        //             break;
-        //         // case 'price':
-        //         //     products = products.filter(
-        //         //         product =>
-        //         //             Number(product.price) >= Number(priceRange[0]) &&
-        //         //             Number(product.price) <= Number(priceRange[1]),
-        //         //     );
-        //         //     break;
-        //         default:
-        //             // return products;
-        //             break;
-        //     }
-        // });
-
         selectedFilters.forEach(filter => {
             if (filter.id && filter.id.startsWith('gender')) {
                 products = products.filter(
                     product => product.gender === filter.value,
                 );
-                console.log('Products after gender filter:', products);
             } else if (filter.id && filter.id.startsWith('color')) {
                 products = products.filter(
                     product => product.color === filter.label,
                 );
-                console.log('Products after color filter:', products);
             } else if (filter.id && filter.id.startsWith('size')) {
                 products = products.filter(product =>
                     product.size.includes(filter.value),
                 );
-                console.log('Products after size filter:', products);
             } else if (filter.id && filter.id.startsWith('season')) {
                 products = products.filter(product =>
                     product.season.includes(filter.value),
                 );
-                console.log('Products after season filter:', products);
             }
         });
-
-        // selectedFilters.forEach(filter => {
-        //     console.log('*filter: ', filter);
-        // });
 
         // Filter by price range
         // products = products.filter(
@@ -288,7 +245,6 @@ const ProductListFilterDetail = () => {
         //         Number(product.price) <= Number(priceRange[1]),
         // );
 
-        // setSelectedFilters(products);
         setFilteredProducts(products);
     };
 
@@ -313,12 +269,8 @@ const ProductListFilterDetail = () => {
         Object.keys(activeSections).forEach(adjustHeight);
     }, [activeSections]); // Depend on activeSections to re-run when it changes
 
-    const [shouldFilter, setShouldFilter] = useState(false);
     // Reset selectedFilters when category, subcategory, or thirdcategory changes
     useEffect(() => {
-        filterProducts();
-        setSelectedFilters([]);
-
         // ! 이 이벤트 함수를 실행시 지속 적인 에러 발생, 그래서 선택된 필터링만 제거하도록한다
         // handleResetFilter();
         setActiveSections({
@@ -334,35 +286,16 @@ const ProductListFilterDetail = () => {
         resetSizeActive();
         resetSeasonActive();
 
+        // ! ProductListFilterCategoryBox에서 `setSelectedFilters([]);` 초기화를 직접했더니 해결되긴했지만, dependency가 왜 두번째에 적용되는가?
+        // setSelectedFilters([]);
+        filterProducts();
+
         console.log('**useEffecet seleted 1', selectedFilters);
     }, [category, subcategory, thirdcategory]);
-    // useEffect(() => {
-    //     setSelectedFilters([]);
-    //     setActiveSections({
-    //         gender: false,
-    //         color: false,
-    //         size: false,
-    //         season: false,
-    //         price: false,
-    //     });
-
-    //     resetGenderActive();
-    //     resetColorActive();
-    //     resetSizeActive();
-    //     resetSeasonActive();
-    // }, [category, subcategory, thirdcategory]);
-
-    // useEffect(() => {
-    //     if (shouldFilter) {
-    //         filterProducts();
-    //         setShouldFilter(false); // Reset the flag after filtering
-    //     }
-    // }, [shouldFilter]);
 
     const handleSearch = () => {
         setCurrentPage(1);
         filterProducts();
-        // setShouldFilter(true);
     };
 
     return (

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import { ProductListContext } from '../../context/context';
+import { FilterContext, ProductListContext } from '../../context/context';
 
 import './ProductListFilterCategoryBox.scss';
 interface MainCategory {
@@ -34,6 +34,7 @@ const ProductListFilterCategoryBox: React.FC<
     ProductListFilterCategoryBoxProps
 > = ({ id, categoryItem }) => {
     const { setCurrentPage } = useContext(ProductListContext);
+    const { setSelectedFilters } = useContext(FilterContext);
 
     // ! state를 쓰면 re-rendering 문제때문에 useEffect까지 써야하는데, 이는 문제가 있다고 판단, 그래서 useParams를 이용해서 현재 url로 판단해서 처리했다.
     const { category, thirdcategory } = useParams<RouteParams>();
@@ -85,6 +86,7 @@ const ProductListFilterCategoryBox: React.FC<
                                                     thirdCategory: null,
                                                 });
                                                 setOpenSubCate(null);
+                                                setSelectedFilters([]);
                                             }}
                                         >
                                             {mainCat.subCategory}
@@ -107,6 +109,7 @@ const ProductListFilterCategoryBox: React.FC<
                                                         mainCat.subCategory.toLowerCase(),
                                                     thirdCategory: null,
                                                 });
+                                                setSelectedFilters([]);
                                             }}
                                         >
                                             {mainCat.subCategory}
@@ -150,6 +153,9 @@ const ProductListFilterCategoryBox: React.FC<
                                                                             thirdCategory:
                                                                                 thirdCat.toLowerCase(),
                                                                         },
+                                                                    );
+                                                                    setSelectedFilters(
+                                                                        [],
                                                                     );
                                                                 }}
                                                             >

@@ -15,7 +15,7 @@ import btnServiceBlack from '/assets/icon/icon-service-black.png';
 import btnService from '/assets/icon/icon-service.png';
 
 import './Header.scss';
-import { ProductListContext } from '../../context/context';
+import { FilterContext, ProductListContext } from '../../context/context';
 // import { usePagination } from '../../context/context';
 
 // const Header: React.FC<{ isOn: boolean, setIsOn: React.Dispatch<React.SetStateAction<boolean>> }> = ({
@@ -24,6 +24,7 @@ import { ProductListContext } from '../../context/context';
 // }) => {
 const Header: React.FC = () => {
     const { setCurrentPage } = useContext(ProductListContext);
+    const { setSelectedFilters } = useContext(FilterContext);
 
     const location = useLocation();
     const [isOn, setIsOn] = useState(false);
@@ -212,6 +213,7 @@ const Header: React.FC = () => {
     // * ProductList에 있는 currentPage를 context로 받아와서 처리
     const handleNavigate = () => {
         setCurrentPage(1);
+        setSelectedFilters([]);
     };
     return (
         <>
