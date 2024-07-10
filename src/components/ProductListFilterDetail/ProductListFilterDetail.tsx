@@ -39,7 +39,6 @@ const ProductListFilterDetail = () => {
         resetColorActive,
         resetSizeActive,
         resetSeasonActive,
-        // filteredProducts,
         setFilteredProducts,
         selectedFilters,
         setSelectedFilters,
@@ -65,9 +64,6 @@ const ProductListFilterDetail = () => {
     });
 
     const { category, subcategory, thirdcategory } = useParams();
-    console.log('🚀 ~ category:', category);
-    console.log('🚀 ~ subcategory:', subcategory);
-    console.log('🚀 ~ thirdcategory:', thirdcategory);
 
     // ! context이동
     // const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
@@ -122,7 +118,7 @@ const ProductListFilterDetail = () => {
         }
     };
 
-    const handleSelectFilter = (filter: Filter) => {
+    const handleColorFilter = (filter: Filter) => {
         const index = selectedFilters.findIndex(f => f.value === filter.value);
         if (index > -1) {
             // Filter is already selected, remove it
@@ -137,7 +133,6 @@ const ProductListFilterDetail = () => {
     const handleRemoveFilter = (index: number) => {
         const filter = selectedFilters[index];
         const filterId = filter.id;
-        console.log('*filterId: ', filterId);
 
         if (filterId?.includes('gender')) {
             toggleGenderActive(filterId, true);
@@ -215,35 +210,97 @@ const ProductListFilterDetail = () => {
         }
     };
 
+    // ! 이전 코드: 상세필터 두 가지 이상 옵션 선택에 따른 상품 보기가 안됨
+    // const filterProducts = () => {
+    //     let products = [...combinedProductsData];
+
+    //     selectedFilters.forEach(filter => {
+    //         if (filter.id && filter.id.startsWith('gender')) {
+    //             products = products.filter(
+    //                 product => product.gender === filter.value,
+    //             );
+    //         } else if (filter.id && filter.id.startsWith('color')) {
+    //             console.log('filter: ', filter);
+    //             products = products.filter(
+    //                 product => product.color === filter.label,
+    //             );
+    //         } else if (filter.id && filter.id.startsWith('size')) {
+    //             products = products.filter(product =>
+    //                 product.size.includes(filter.value),
+    //             );
+    //         } else if (filter.id && filter.id.startsWith('season')) {
+    //             products = products.filter(product =>
+    //                 product.season.includes(filter.value),
+    //             );
+    //         }
+    //     });
+
+    //     // products = products.filter(
+    //     //     product =>
+    //     //         Number(product.price) >= Number(priceRange[0]) &&
+    //     //         Number(product.price) <= Number(priceRange[1]),
+    //     // );
+
+    //     setFilteredProducts(products);
+    // };
+
+    // ! 수정 완료
     const filterProducts = () => {
         let products = [...combinedProductsData];
 
-        selectedFilters.forEach(filter => {
-            if (filter.id && filter.id.startsWith('gender')) {
-                products = products.filter(
-                    product => product.gender === filter.value,
-                );
-            } else if (filter.id && filter.id.startsWith('color')) {
-                products = products.filter(
-                    product => product.color === filter.label,
-                );
-            } else if (filter.id && filter.id.startsWith('size')) {
-                products = products.filter(product =>
-                    product.size.includes(filter.value),
-                );
-            } else if (filter.id && filter.id.startsWith('season')) {
-                products = products.filter(product =>
-                    product.season.includes(filter.value),
-                );
-            }
-        });
+        const genderFilters = selectedFilters
+            .filter(filter => filter.id?.startsWith('gender'))
+            .map(filter => filter.value);
+        const colorFilters = selectedFilters
+            .filter(filter => filter.id?.startsWith('color'))
+            .map(filter => filter.label);
+        const sizeFilters = selectedFilters
+            .filter(filter => filter.id?.startsWith('size'))
+            .map(filter => filter.value);
+        const seasonFilters = selectedFilters
+            .filter(filter => filter.id?.startsWith('season'))
+            .map(filter => filter.value);
 
-        // Filter by price range
-        // products = products.filter(
-        //     product =>
-        //         Number(product.price) >= Number(priceRange[0]) &&
-        //         Number(product.price) <= Number(priceRange[1]),
-        // );
+        if (genderFilters.length > 0) {
+            products = products.filter(product =>
+                genderFilters.includes(product.gender),
+            );
+        }
+
+        if (colorFilters.length > 0) {
+            products = products.filter(product =>
+                colorFilters.includes(product.color),
+            );
+        }
+
+        if (sizeFilters.length > 0) {
+            products = products.filter(product =>
+                sizeFilters.some(size => product.size.includes(size)),
+            );
+        }
+
+        if (seasonFilters.length > 0) {
+            products = products.filter(product =>
+                seasonFilters.some(season => product.season.includes(season)),
+            );
+        }
+
+        if (Array.isArray(priceRange) && priceRange.length === 2) {
+            const [minPrice, maxPrice] = priceRange;
+
+            // ! json에서 price에 문자 포함. 제거해야한다
+            // products = products.filter(
+            //     product =>
+            //         Number(product.price) >= Number(minPrice) &&
+            //         Number(product.price) <= Number(maxPrice),
+            // );
+            products = products.filter(product => {
+                const productPrice = Number(product.price.replace(/,/g, ''));
+                return productPrice >= minPrice && productPrice <= maxPrice;
+            });
+        } else {
+            console.error('Invalid priceRange:', priceRange);
+        }
 
         setFilteredProducts(products);
     };
@@ -289,14 +346,14 @@ const ProductListFilterDetail = () => {
         // ! ProductListFilterCategoryBox에서 `setSelectedFilters([]);` 초기화를 직접했더니 해결되긴했지만, dependency가 왜 두번째에 적용되는가?
         // setSelectedFilters([]);
         filterProducts();
-
-        console.log('**useEffecet seleted 1', selectedFilters);
     }, [category, subcategory, thirdcategory]);
 
     const handleSearch = () => {
         setCurrentPage(1);
         filterProducts();
     };
+
+    console.log('selectedFilters: ', selectedFilters);
 
     return (
         <div className="productlist-filter-detail">
@@ -364,7 +421,7 @@ const ProductListFilterDetail = () => {
                             <FilterColor
                                 key={color.inputId}
                                 color={color}
-                                onSelect={handleSelectFilter}
+                                onSelect={handleColorFilter}
                             />
                         ))}
                     </ul>
