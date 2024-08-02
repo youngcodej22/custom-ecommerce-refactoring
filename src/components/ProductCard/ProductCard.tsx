@@ -1,7 +1,13 @@
-import React, { useEffect, useState } from 'react';
-
 import defaultImage from '/assets/product/default_image.png';
-import labelRecommend from '/assets/label/label-recommend.gif';
+import label2024 from '/assets/label/label-2024.png';
+import labelNew from '/assets/label/label-new.png';
+import labelMen from '/assets/label/label-men.png';
+import labelWomen from '/assets/label/label-women.png';
+import labelSale from '/assets/label/label-sale.png';
+import label40DC from '/assets/label/label-40dc.png';
+import labelUnisex from '/assets/label/label-unisex.png';
+// import labelHot from '/assets/label/label-hot.png';
+// import labelRecommend from '/assets/label/label-recommend.gif';
 
 import './ProductCard.scss';
 
@@ -12,8 +18,20 @@ const ProductCard = ({ product }) => {
 
     const onErrorLabel = e => {
         // 다른 라벨로 else if로 추가 하자
-        if (e.target.alt === '추천상품') {
-            e.target.src = labelRecommend;
+        if (e.target.alt === '2024SS') {
+            e.target.src = label2024;
+        } else if (e.target.alt === '신상품') {
+            e.target.src = labelNew;
+        } else if (e.target.alt === '남성') {
+            e.target.src = labelMen;
+        } else if (e.target.alt === '여성') {
+            e.target.src = labelWomen;
+        } else if (e.target.alt === '세일') {
+            e.target.src = labelSale;
+        } else if (e.target.alt === '40%DC') {
+            e.target.src = label40DC;
+        } else if (e.target.alt === '공용') {
+            e.target.src = labelUnisex;
         }
     };
 

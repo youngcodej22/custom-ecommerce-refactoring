@@ -9,15 +9,15 @@ export interface GenderListType {
 export const genderList: GenderListType[] = [
     {
         inputId: "gender_M",
-        inputValue: "남성용",
-        inputDataText: "남성용",
+        inputValue: "남성",
+        inputDataText: "남성",
         labelHtmlFor: "gender_M",
         text: "남성"
     },   
     {
         inputId: "gender_W",
-        inputValue: "여성용",
-        inputDataText: "여성용",
+        inputValue: "여성",
+        inputDataText: "여성",
         labelHtmlFor: "gender_W",
         text: "여성"
     },   

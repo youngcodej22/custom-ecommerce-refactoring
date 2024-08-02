@@ -86,9 +86,7 @@ const ProductListFilterDetail = () => {
             // newFilters.push(filter);
             setSelectedFilters(prevFilters =>
                 prevFilters
-                    .filter(
-                        f => !['여성용', '남성용', '공용'].includes(f.value),
-                    )
+                    .filter(f => !['여성', '남성', '공용'].includes(f.value))
                     .concat(filter),
             );
         }

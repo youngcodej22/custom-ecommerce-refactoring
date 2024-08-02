@@ -27,18 +27,18 @@ export const colorPalette: ColorPaletteType[] = [
     {
         inputId: "color_696969",
         inputValue: "696969",
-        inputDataText: "다크 그레이",
+        inputDataText: "다크그레이",
         labelHtmlFor: "color_696969",
         labelTitle: "696969",
-        title: "다크 그레이"
+        title: "다크그레이"
     }   ,
     {
         inputId: "color_d3d3d3",
         inputValue: "d3d3d3",
-        inputDataText: "라이트 그레이",
+        inputDataText: "라이트그레이",
         labelHtmlFor: "color_d3d3d3",
         labelTitle: "d3d3d3",
-        title: "라이트 그레이"
+        title: "라이트그레이"
     }   ,
     {
         inputId: "color_a0a0a0",
@@ -139,10 +139,10 @@ export const colorPalette: ColorPaletteType[] = [
     {
         inputId: "color_d3f5d3",
         inputValue: "d3f5d3",
-        inputDataText: "라이트 그린",
+        inputDataText: "라이트그린",
         labelHtmlFor: "color_d3f5d3",
         labelTitle: "d3f5d3",
-        title: "라이트 그린"
+        title: "라이트그린"
     }   ,
     {
         inputId: "color_038606",
@@ -163,10 +163,10 @@ export const colorPalette: ColorPaletteType[] = [
     {
         inputId: "color_93c2df",
         inputValue: "93c2df",
-        inputDataText: "라이트 블루",
+        inputDataText: "라이트블루",
         labelHtmlFor: "color_93c2df",
         labelTitle: "93c2df",
-        title: "라이트 블루"
+        title: "라이트블루"
     }   ,
     {
         inputId: "color_0406cb",
