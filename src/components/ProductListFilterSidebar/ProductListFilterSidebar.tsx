@@ -98,7 +98,7 @@ const cateBoxItems = [
                 thirdCategory: ['ALL', '상의', '하의', '아우터'],
             },
             {
-                subCategory: '악세서리',
+                subCategory: '액세서리',
                 thirdCategory: ['ALL', '남성', '여성'],
             },
         ],
