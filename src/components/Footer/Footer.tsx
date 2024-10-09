@@ -19,7 +19,7 @@ const Footer = () => {
                     </div>
                     <div className="footer-info">
                         <div className="footer-info-list">
-                            <p>(주)맥케이슨 대표이사 : 백배순</p>
+                            <p>(주)테스트회사 대표이사 : 지영배</p>
                             <p>
                                 서울특별시 종로구 종로00길 0 (KOSMO DAECHI) 1층{' '}
                                 <span className="bar"></span> 사업자등록번호 :
@@ -99,7 +99,7 @@ const Footer = () => {
                             href="mailto:online@mckayson.com"
                             className="btn-email"
                         >
-                            online@mckayson.com
+                            online@test.com
                         </a>
                     </p>
                     <p>대리점 개설문의: 010-9841-7890</p>
