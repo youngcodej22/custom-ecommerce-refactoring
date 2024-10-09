@@ -11,12 +11,15 @@
             padding-bottom: 37px;
         }
 
-        ul.swiper-wrapper {
+        // .swiper-wrapper
+        ul {
             // margin: 0 -5px;
 
             .md-pick-content {
                 // width: 851px;
-                width: 50%;
+                // width: 50%;
+                // ! MainMdPick.tsx에 slidesPerView={2}를 설정하고 100%로 맞추니 문제해결
+                width: 100%;
                 display: flex;
                 flex-wrap: wrap;
                 align-items: center;
@@ -74,7 +77,8 @@
                                         margin: 0;
 
                                         &:not(:last-child) {
-                                            border-bottom: 1px solid rgba(0,0,0,0.05);
+                                            border-bottom: 1px solid
+                                                rgba(0, 0, 0, 0.05);
                                         }
 
                                         .item-cont {
@@ -82,7 +86,7 @@
                                             flex-wrap: wrap;
                                             align-items: center;
                                             padding: 0;
-                                            
+
                                             .item-photo-box {
                                                 width: 30%;
                                                 box-sizing: border-box;
@@ -231,10 +235,9 @@
                     margin-right: 15px;
                 }
                 .swiper-pagination-bullet-active {
-                    background-color: #0AD09C;
+                    background-color: #0ad09c;
                 }
             }
         }
-
     }
 }

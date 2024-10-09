@@ -14,13 +14,13 @@ header#header-nav {
     transition: all 0.2s ease-in-out;
     border-bottom: 1px solid transparent;
     background: transparent;
-    
+
     &.on {
         background: #fff;
         border-bottom: 1px solid #eee;
 
         // .gnb .gnb-wrap .gnb-li .gnb-deps1 {
-            // opacity: 1;
+        // opacity: 1;
         // }
 
         .gnb .gnb-wrap .gnb-li .gnb-link {
@@ -115,14 +115,12 @@ header#header-nav {
                     color: #fff;
                     text-align: center;
                     line-height: 49px;
-                    letter-spacing: 1px;
 
                     @media (max-width: 1700px) {
                         // margin: 0 25px;
                         // padding: 25.5px 0;
-                        padding: 25.5px 15px;    
+                        padding: 25.5px 15px;
                         letter-spacing: 0px;
-                        
                     }
 
                     &:hover::after {
@@ -148,7 +146,6 @@ header#header-nav {
                 }
 
                 &.new {
-
                     & > a {
                         position: relative;
                     }
@@ -186,7 +183,7 @@ header#header-nav {
                     z-index: 1;
 
                     // & > ul:not(:first-child) {
-                        // display: flex;
+                    // display: flex;
                     // }
 
                     ul {
@@ -243,12 +240,12 @@ header#header-nav {
             }
 
             // * 첫번째 Tab만 제외하고 (brand)
-            & .gnb-li:not(:first-child) .gnb-deps1 > ul{
+            & .gnb-li:not(:first-child) .gnb-deps1 > ul {
                 display: flex;
                 font-family: 'Noto Sans KR', sans-serif;
             }
 
-            & .gnb-li:nth-child(2) .gnb-deps1 > ul > li:first-child > a{
+            & .gnb-li:nth-child(2) .gnb-deps1 > ul > li:first-child > a {
                 color: #0ad09c;
             }
         }

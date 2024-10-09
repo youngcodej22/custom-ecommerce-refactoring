@@ -63,26 +63,59 @@ const ProductDetail = () => {
 
                             <div className="item_info_box">
                                 <form name="frmView" id="frmView" method="post">
-                                    <input type="hidden" name="mode" value="get_benefit" />
-                                    <input type="hidden" name="scmNo" value="1" />
-                                    <input type="hidden" name="cartMode" value="" />
-                                    <input type="hidden" name="set_goods_price" value="430000" />
+                                    <input
+                                        type="hidden"
+                                        name="mode"
+                                        value="get_benefit"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="scmNo"
+                                        value="1"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="cartMode"
+                                        value=""
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="set_goods_price"
+                                        value="430000"
+                                    />
                                     <input
                                         type="hidden"
                                         id="set_goods_fixedPrice"
                                         name="set_goods_fixedPrice"
                                         value="430000.00"
                                     />
-                                    <input type="hidden" name="set_goods_mileage" value="0" />
-                                    <input type="hidden" name="set_goods_stock" value="16" />
-                                    <input type="hidden" name="set_coupon_dc_price" value="430000.00" />
+                                    <input
+                                        type="hidden"
+                                        name="set_goods_mileage"
+                                        value="0"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="set_goods_stock"
+                                        value="16"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="set_coupon_dc_price"
+                                        value="430000.00"
+                                    />
                                     <input
                                         type="hidden"
                                         id="set_goods_total_price"
                                         name="set_goods_total_price"
                                         value="0"
                                     />
-                                    <input type="hidden" id="set_option_price" name="set_option_price" value="0" />
+                                    <input
+                                        type="hidden"
+                                        id="set_option_price"
+                                        name="set_option_price"
+                                        value="0"
+                                    />
                                     <input
                                         type="hidden"
                                         id="set_option_text_price"
@@ -95,34 +128,120 @@ const ProductDetail = () => {
                                         name="set_add_goods_price"
                                         value="0"
                                     />
-                                    <input type="hidden" name="set_total_price" value="430000" />
-                                    <input type="hidden" name="mileageFl" value="c" />
-                                    <input type="hidden" name="mileageGoods" value="0.00" />
-                                    <input type="hidden" name="mileageGoodsUnit" value="percent" />
-                                    <input type="hidden" name="goodsDiscountFl" value="n" />
-                                    <input type="hidden" name="goodsDiscount" value="0.00" />
-                                    <input type="hidden" name="goodsDiscountUnit" value="percent" />
-                                    <input type="hidden" name="taxFreeFl" value="t" />
-                                    <input type="hidden" name="taxPercent" value="10.0" />
-                                    <input type="hidden" name="scmNo" value="1" />
-                                    <input type="hidden" name="brandCd" value="002" />
-                                    <input type="hidden" name="cateCd" value="004002003" />
-                                    <input type="hidden" id="set_dc_price" value="0" />
-                                    <input type="hidden" id="goodsOptionCnt" value="1" />
-                                    <input type="hidden" name="optionFl" value="y" />
-                                    <input type="hidden" name="goodsDeliveryFl" value="y" />
-                                    <input type="hidden" name="sameGoodsDeliveryFl" value="n" />
-                                    <input type="hidden" name="useBundleGoods" value="1" />
-                                    <input type="hidden" name="ac_id" value="" />
-                                    <input type="hidden" name="event_id" value="" />
+                                    <input
+                                        type="hidden"
+                                        name="set_total_price"
+                                        value="430000"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="mileageFl"
+                                        value="c"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="mileageGoods"
+                                        value="0.00"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="mileageGoodsUnit"
+                                        value="percent"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="goodsDiscountFl"
+                                        value="n"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="goodsDiscount"
+                                        value="0.00"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="goodsDiscountUnit"
+                                        value="percent"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="taxFreeFl"
+                                        value="t"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="taxPercent"
+                                        value="10.0"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="scmNo"
+                                        value="1"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="brandCd"
+                                        value="002"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="cateCd"
+                                        value="004002003"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        id="set_dc_price"
+                                        value="0"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        id="goodsOptionCnt"
+                                        value="1"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="optionFl"
+                                        value="y"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="goodsDeliveryFl"
+                                        value="y"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="sameGoodsDeliveryFl"
+                                        value="n"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="useBundleGoods"
+                                        value="1"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="ac_id"
+                                        value=""
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="event_id"
+                                        value=""
+                                    />
                                     <div className="item_tit_detail_cont">
                                         <div className="item_detail_tit">
-                                            <p className="model_name">MDW1PC615 LBE</p>
+                                            <p className="model_name">
+                                                MDW1PC615 LBE
+                                            </p>
                                             <h3>
-                                                24 개더 플리츠 스커트 베이지 MDW1PC615 LBE
+                                                24 개더 플리츠 스커트 베이지
+                                                MDW1PC615 LBE
                                                 <div className="btn_layer btn_qa_share_box">
                                                     <span className="btn_gray_list target_sns_share">
-                                                        <a href="#lySns" className="share_btn">
+                                                        <a
+                                                            href="#lySns"
+                                                            className="share_btn"
+                                                        >
                                                             <img
                                                                 src="https://mckayson.cdn-nhncommerce.com/data/skin/front/moment_C_C/img/goods/share_btn.png"
                                                                 alt=""
@@ -130,10 +249,18 @@ const ProductDetail = () => {
                                                         </a>
                                                     </span>
 
-                                                    <div id="lySns" className="layer_area" style={{ display: 'none' }}>
+                                                    <div
+                                                        id="lySns"
+                                                        className="layer_area"
+                                                        style={{
+                                                            display: 'none',
+                                                        }}
+                                                    >
                                                         <div className="ly_wrap sns_layer">
                                                             <div className="ly_tit">
-                                                                <strong>SNS 공유하기</strong>
+                                                                <strong>
+                                                                    SNS 공유하기
+                                                                </strong>
                                                             </div>
                                                             <div className="ly_cont">
                                                                 <div className="sns_list">
@@ -149,7 +276,9 @@ const ProductDetail = () => {
                                                                                     alt="카카오톡 공유"
                                                                                 />
                                                                                 <br />
-                                                                                <span>카카오톡링크</span>
+                                                                                <span>
+                                                                                    카카오톡링크
+                                                                                </span>
                                                                             </a>
                                                                         </li>
                                                                     </ul>
@@ -164,13 +293,18 @@ const ProductDetail = () => {
                                                                             title="상품주소"
                                                                             data-clipboard-text="https://www.mckayson.com/goods/goods_view.php?goodsNo=1000005851"
                                                                         >
-                                                                            <em>URL복사</em>
+                                                                            <em>
+                                                                                URL복사
+                                                                            </em>
                                                                         </button>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             {/* ly_cont */}
-                                                            <a href="#close" className="ly_close">
+                                                            <a
+                                                                href="#close"
+                                                                className="ly_close"
+                                                            >
                                                                 <img
                                                                     src="https://mckayson.cdn-nhncommerce.com/data/skin/front/moment_C_C/img/common/layer/btn_layer_close.png"
                                                                     alt="닫기"
@@ -207,7 +341,10 @@ const ProductDetail = () => {
                                                                     disabled
                                                                     value="112378||0||||0^|^베이지:061"
                                                                 />
-                                                                <label htmlFor="size0_0" className="choice_s">
+                                                                <label
+                                                                    htmlFor="size0_0"
+                                                                    className="choice_s"
+                                                                >
                                                                     베이지:061
                                                                 </label>
                                                             </span>
@@ -219,7 +356,10 @@ const ProductDetail = () => {
                                                                     name="optionSnoInput"
                                                                     value="112379||0||||5^|^베이지:064"
                                                                 />
-                                                                <label htmlFor="size1_1" className="choice_s">
+                                                                <label
+                                                                    htmlFor="size1_1"
+                                                                    className="choice_s"
+                                                                >
                                                                     베이지:064
                                                                 </label>
                                                             </span>
@@ -231,7 +371,10 @@ const ProductDetail = () => {
                                                                     name="optionSnoInput"
                                                                     value="112380||0||||4^|^베이지:067"
                                                                 />
-                                                                <label htmlFor="size2_2" className="choice_s">
+                                                                <label
+                                                                    htmlFor="size2_2"
+                                                                    className="choice_s"
+                                                                >
                                                                     베이지:067
                                                                 </label>
                                                             </span>
@@ -243,7 +386,10 @@ const ProductDetail = () => {
                                                                     name="optionSnoInput"
                                                                     value="112381||0||||7^|^베이지:070"
                                                                 />
-                                                                <label htmlFor="size3_3" className="choice_s">
+                                                                <label
+                                                                    htmlFor="size3_3"
+                                                                    className="choice_s"
+                                                                >
                                                                     베이지:070
                                                                 </label>
                                                             </span>
@@ -256,7 +402,10 @@ const ProductDetail = () => {
                                                                     disabled
                                                                     value="112382||0||||0^|^베이지:073"
                                                                 />
-                                                                <label htmlFor="size4_4" className="choice_s">
+                                                                <label
+                                                                    htmlFor="size4_4"
+                                                                    className="choice_s"
+                                                                >
                                                                     베이지:073
                                                                 </label>
                                                             </span>
@@ -278,12 +427,15 @@ const ProductDetail = () => {
                                                 <dt>구매혜택</dt>
                                                 <dd>
                                                     <span className="item_discount dn">
-                                                        할인 : <strong className="total_benefit_price"></strong>{' '}
+                                                        할인 :{' '}
+                                                        <strong className="total_benefit_price"></strong>{' '}
                                                         <span className="benefit_price item_apply"></span>
                                                     </span>
                                                     <span className="item_mileage">
                                                         적립 :{' '}
-                                                        <strong className="total_benefit_mileage">+21,500원</strong>{' '}
+                                                        <strong className="total_benefit_mileage">
+                                                            +21,500원
+                                                        </strong>{' '}
                                                         <span className="benefit_mileage item_apply">
                                                             (상품 : 21,500원)
                                                         </span>
@@ -294,88 +446,193 @@ const ProductDetail = () => {
                                                 <dt>카드혜택</dt>
                                                 <dd>
                                                     최대 7개월 무이자 할부 혜택{' '}
-                                                    <a href="#cardBenefit" className="card_popup_open">
+                                                    <a
+                                                        href="#cardBenefit"
+                                                        className="card_popup_open"
+                                                    >
                                                         자세히 보기
                                                     </a>
-                                                    <div id="cardBenefit" className="cart_benefit_wrap dn">
+                                                    <div
+                                                        id="cardBenefit"
+                                                        className="cart_benefit_wrap dn"
+                                                    >
                                                         <div className="card_benefit_cont">
                                                             <h4 className="card_benefit_tit">
-                                                                이달의 무이자할부 카드 안내
+                                                                이달의
+                                                                무이자할부 카드
+                                                                안내
                                                             </h4>
                                                             <div className="card_benefit_detail">
                                                                 <dl>
-                                                                    <dt>행사 기간: </dt>
-                                                                    <dd>2023.11.01 - 2023.11.30</dd>
+                                                                    <dt>
+                                                                        행사
+                                                                        기간:{' '}
+                                                                    </dt>
+                                                                    <dd>
+                                                                        2023.11.01
+                                                                        -
+                                                                        2023.11.30
+                                                                    </dd>
                                                                 </dl>
                                                                 <table className="card_benefit_table">
-                                                                    <caption>무이자할부 적용 카드</caption>
+                                                                    <caption>
+                                                                        무이자할부
+                                                                        적용
+                                                                        카드
+                                                                    </caption>
                                                                     <thead>
                                                                         <tr>
-                                                                            <th>카드사</th>
-                                                                            <th>조건</th>
-                                                                            <th>할부개월</th>
+                                                                            <th>
+                                                                                카드사
+                                                                            </th>
+                                                                            <th>
+                                                                                조건
+                                                                            </th>
+                                                                            <th>
+                                                                                할부개월
+                                                                            </th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td>현대카드</td>
-                                                                            <td>1만원 이상</td>
-                                                                            <td>2~3개월</td>
+                                                                            <td>
+                                                                                현대카드
+                                                                            </td>
+                                                                            <td>
+                                                                                1만원
+                                                                                이상
+                                                                            </td>
+                                                                            <td>
+                                                                                2~3개월
+                                                                            </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td>신한카드</td>
-                                                                            <td>5만원 이상</td>
-                                                                            <td>2~3개월</td>
+                                                                            <td>
+                                                                                신한카드
+                                                                            </td>
+                                                                            <td>
+                                                                                5만원
+                                                                                이상
+                                                                            </td>
+                                                                            <td>
+                                                                                2~3개월
+                                                                            </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td>국민카드</td>
-                                                                            <td>5만원 이상</td>
-                                                                            <td>2~3개월</td>
+                                                                            <td>
+                                                                                국민카드
+                                                                            </td>
+                                                                            <td>
+                                                                                5만원
+                                                                                이상
+                                                                            </td>
+                                                                            <td>
+                                                                                2~3개월
+                                                                            </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td>롯데카드</td>
-                                                                            <td>5만원 이상</td>
-                                                                            <td>2~3개월</td>
+                                                                            <td>
+                                                                                롯데카드
+                                                                            </td>
+                                                                            <td>
+                                                                                5만원
+                                                                                이상
+                                                                            </td>
+                                                                            <td>
+                                                                                2~3개월
+                                                                            </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td>삼성카드</td>
-                                                                            <td>5만원 이상</td>
-                                                                            <td>2~3개월</td>
+                                                                            <td>
+                                                                                삼성카드
+                                                                            </td>
+                                                                            <td>
+                                                                                5만원
+                                                                                이상
+                                                                            </td>
+                                                                            <td>
+                                                                                2~3개월
+                                                                            </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td>하나카드</td>
-                                                                            <td>5만원 이상</td>
-                                                                            <td>2~3개월</td>
+                                                                            <td>
+                                                                                하나카드
+                                                                            </td>
+                                                                            <td>
+                                                                                5만원
+                                                                                이상
+                                                                            </td>
+                                                                            <td>
+                                                                                2~3개월
+                                                                            </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td>전북카드</td>
-                                                                            <td>5만원 이상</td>
-                                                                            <td>2~3개월</td>
+                                                                            <td>
+                                                                                전북카드
+                                                                            </td>
+                                                                            <td>
+                                                                                5만원
+                                                                                이상
+                                                                            </td>
+                                                                            <td>
+                                                                                2~3개월
+                                                                            </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td>NH농협카드</td>
-                                                                            <td>5만원 이상</td>
-                                                                            <td>2~4개월</td>
+                                                                            <td>
+                                                                                NH농협카드
+                                                                            </td>
+                                                                            <td>
+                                                                                5만원
+                                                                                이상
+                                                                            </td>
+                                                                            <td>
+                                                                                2~4개월
+                                                                            </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td>비씨카드</td>
-                                                                            <td>5만원 이상</td>
-                                                                            <td>2~6개월</td>
+                                                                            <td>
+                                                                                비씨카드
+                                                                            </td>
+                                                                            <td>
+                                                                                5만원
+                                                                                이상
+                                                                            </td>
+                                                                            <td>
+                                                                                2~6개월
+                                                                            </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td>우리카드</td>
-                                                                            <td>5만원 이상</td>
-                                                                            <td>2~6개월</td>
+                                                                            <td>
+                                                                                우리카드
+                                                                            </td>
+                                                                            <td>
+                                                                                5만원
+                                                                                이상
+                                                                            </td>
+                                                                            <td>
+                                                                                2~6개월
+                                                                            </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td>광주카드</td>
-                                                                            <td>5만원 이상</td>
-                                                                            <td>2~7개월</td>
+                                                                            <td>
+                                                                                광주카드
+                                                                            </td>
+                                                                            <td>
+                                                                                5만원
+                                                                                이상
+                                                                            </td>
+                                                                            <td>
+                                                                                2~7개월
+                                                                            </td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
-                                                            <a href="#close" className="card_popup_close">
+                                                            <a
+                                                                href="#close"
+                                                                className="card_popup_close"
+                                                            >
                                                                 팝업 닫기
                                                             </a>
                                                         </div>
@@ -406,7 +663,10 @@ const ProductDetail = () => {
                                                 </colgroup>
                                             </table>
                                             <div className="item_price_cont">
-                                                <div className="end_price item_tatal_box" style={{ display: 'none' }}>
+                                                <div
+                                                    className="end_price item_tatal_box"
+                                                    style={{ display: 'none' }}
+                                                >
                                                     <dl className="total_goods">
                                                         <dt>총 상품금액</dt>
                                                         <dd>
@@ -434,11 +694,22 @@ const ProductDetail = () => {
 
                                         <div className="btn_choice_box">
                                             <div className="flex_box ">
-                                                <button id="wishBtn" type="button" className="btn_add_wish"></button>
-                                                <button id="cartBtn" type="button" className="btn_add_cart">
+                                                <button
+                                                    id="wishBtn"
+                                                    type="button"
+                                                    className="btn_add_wish"
+                                                ></button>
+                                                <button
+                                                    id="cartBtn"
+                                                    type="button"
+                                                    className="btn_add_cart"
+                                                >
                                                     장바구니
                                                 </button>
-                                                <button type="button" className="btn_add_order">
+                                                <button
+                                                    type="button"
+                                                    className="btn_add_order"
+                                                >
                                                     구매하기
                                                 </button>
                                             </div>
@@ -447,7 +718,11 @@ const ProductDetail = () => {
                                         {/* naver pay */}
                                         <div className="pay_box"></div>
                                     </div>
-                                    <input type="hidden" name="deliveryCollectFl" value="pre"></input>
+                                    <input
+                                        type="hidden"
+                                        name="deliveryCollectFl"
+                                        value="pre"
+                                    ></input>
                                 </form>
                             </div>
                         </div>
