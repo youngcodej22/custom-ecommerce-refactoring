@@ -8,7 +8,8 @@ import { ProductType, FilterType } from '../data/products'
 interface TabContextType {
     isTabTitleOn: number;
     isTabBoxOn: number;
-    handleClick: (index: number) => void;
+    // handleClick: (index: number) => void;
+    handleClick: (e: React.MouseEvent<HTMLAnchorElement>, index: number) => void;
 }
 
 export const TabsContext = createContext<TabContextType>({
@@ -21,7 +22,8 @@ export const useTabState = () => {
     const [isTabTitleOn, setIsTabTitleOn] = useState(0);
     const [isTabBoxOn, setIsTabBoxOn] = useState(0);
 
-    const handleClick = (e, index) => {
+    // const handleClick = (e, index) => {
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number) => {
         // setIsActiveTab(index);
         // a 태그에 #으로 페이지 첫화면 상단으로 가는 것을 막자
         e.preventDefault();
