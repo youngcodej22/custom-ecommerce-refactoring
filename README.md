@@ -1,6 +1,27 @@
-# E-commerce with Custom CSS Framework
+# E-commerce with Web Scraping
 
-## commit convention
+## 목적
+
+💡 '웹크롤링'을 통해 할 수 있는 작업을 해본다.
+
+-   [Repo: 나의 웹크롤링](https://github.com/youngcodej22/ecommerce-web-scraping)
+
+💡 'commit convention' 및 PR(pull request) 작성 연습을 통해 문제점을 고민해본다.
+
+## 작업 소개 및 내용
+
+✔️ 골프웨어 사이트 디자인 클론 및 리액트로 변경 <br />
+✔️ 제품 이미지, 상세 내용 🗝️'웹크롤링'을 통해 추가 (연습 목적 일회성, 추후 변경 예정) <br />
+❗ 현재 '메인페이지', 상품 리스트 페이지만 구현 (상세 페이지, 그 외 페이지 X)
+
+## Skill
+
+-   React
+-   TypeScript
+-   Vite
+-   SCSS
+
+## Commit convention
 
 -   [참고: conventional-emoji-commits](https://conventional-emoji-commits.site/list/list)
 
