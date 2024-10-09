@@ -15,7 +15,7 @@ interface TabContextType {
 export const TabsContext = createContext<TabContextType>({
     isTabTitleOn: 0,
     isTabBoxOn: 0, // Initial state
-    handleClick: () => {}, // Default empty handler
+    handleClick: () => {},  // Default empty handler
 });
 
 export const useTabState = () => {

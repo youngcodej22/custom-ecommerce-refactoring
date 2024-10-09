@@ -20,6 +20,7 @@ const FilterSize: React.FC<FilterSizeProps> = ({ size, onSelect }) => {
             value: size.inputValue,
             id: size.inputId,
         });
+        // onSelect(size);
     };
 
     return (
@@ -30,6 +31,7 @@ const FilterSize: React.FC<FilterSizeProps> = ({ size, onSelect }) => {
                 name="goodsSize[]"
                 value={size.inputValue}
                 data-text={size.inputDataText}
+                // onChange={() => onSelect(size)}
             />
             <label
                 htmlFor={size.labelHtmlFor}
